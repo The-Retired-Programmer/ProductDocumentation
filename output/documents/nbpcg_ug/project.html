@@ -1,0 +1,164 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="utf-8"/>
+            <title>NBPCG User Guide - Project Creation and Execution</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta name="description" content="">
+            <meta name="author" content="">
+            <meta name="keywords" content="">
+            <meta name="generator" content="JBake">
+
+            <link href="../../css/bootstrap.min.css" rel="stylesheet">
+            <link href="../../css/asciidoctor.css" rel="stylesheet">
+            <link href="../../css/base.css" rel="stylesheet">
+            <link href="../../css/prettify.css" rel="stylesheet">
+            <link href="../../css/styles_trp.css" rel="stylesheet">
+
+            <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+            <!--[if lt IE 9]>
+              <script src="../../js/html5shiv.min.js"></script>
+            <![endif]-->
+
+            <!-- Fav and touch icons -->
+            <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+            <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+            <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+            <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+            <link rel="shortcut icon" href="../../favicon.ico">
+        </head>
+        <body onload="prettyPrint()">
+            <div id="wrap">
+                <!-- Fixed navbar -->
+                <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="../../index.html">The Retired Programmer</a>
+                        </div>
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a href="../../index.html">Home</a></li>
+                                <li><a href="../../about.html">About</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Products<b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="../../tags/NetBeans_Plugins.html"><b>NetBeans_Plugins</b></a></li>
+                                        <li><a href="../../tags/Extexp.html">Extexp</a></li>
+                                        <li><a href="../../tags/NBPCG.html">NBPCG</a></li>
+                                        <li><a href="../../tags/NBPCGLibrary.html">NBPCGLibrary</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="../../archive.html">Archive</a></li>
+                            </ul>
+                        </div><!--/.nav-collapse -->
+                    </div>        
+                </div>
+                <div class="container">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                                    <h3><a href="#nbpcg-user-guide" id="nbpcg-user-guide">NBPCG User Guide</a></h3>
+<ul>
+<li><a href="index.html">Introduction</a></li>
+<li><a href="project.html">An NBPCG Project</a></li>
+<li><a href="script.html">The NBPCG Script</a></li>
+<li><a href="install.html">Installation</a></li>
+<li><a href="developer.html">Developer Notes</a></li>
+<li><a href="release.html">Release Notes</a></li>
+</ul>
+
+                    <p><em>21 May 2022</em></p>
+                </div>
+                <div class="col-sm-8">
+                    <div class="previousnextmenu">
+                        <div class="button-icon-left" >
+                                <a href="index.html">Previous</a>
+                        </div>
+                        <div class="button-icon-right" >
+                                <a href="script.html">Next</a>
+                        </div>
+                    </div>
+<h2><a href="#creating-a-project-and-running-the-code-generator" id="creating-a-project-and-running-the-code-generator">Creating a project and running the code generator</a></h2>
+<p>A normal NetBeans module project should be created (both Maven and ANT build system projects are supported).  This project is then customised so that the code generator can be add code to the project.</p>
+<h3><a href="#customising-a-maven-project" id="customising-a-maven-project">Customising a Maven project</a></h3>
+<ul>
+<li>In Projects View, Add a folder named <code>nbpcg</code> under <code>Other Sources</code>.</li>
+<li>Place the nbpcg script file ( <code>script.xml</code>) in the <code>nbpcg</code> node</li>
+</ul>
+<p><img src="resources/nbpcgfolderandscript.jpg" alt="nbpcg folder and script" /></p>
+<h3><a href="#customising-an-ant-project" id="customising-an-ant-project">Customising an ANT project</a></h3>
+<ul>
+<li>In Files view, Add a folder name <code>nbpcg-files</code> under the project root.</li>
+<li>In Project view, Place the nbpcg script file ( <code>script.xml</code>) in the <code>NBPCG File</code> node.</li>
+</ul>
+<h3><a href="#executing-the-nbpcg-script" id="executing-the-nbpcg-script">Executing the NBPCG script</a></h3>
+<p>The NBPCG script can be executed by actions on the popup menu on:</p>
+<p>1)   The Project node</p>
+<p><img src="resources/projectaction.jpg" alt="project node action" /></p>
+<p>2)   The NBPCG script file</p>
+<p><img src="resources/scriptaction.jpg" alt="script action" /></p>
+<p>Executing the script will open a new tab in the output window. Progress and errors will be reported in that tab.</p>
+<p><img src="resources/outputtab.jpg" alt="output tab" /></p>
+<h3><a href="#dependency-information-for-nbpcg-generated-modules" id="dependency-information-for-nbpcg-generated-modules">Dependency Information for NBPCG generated Modules</a></h3>
+<p>NBPCG does not currently setup dependencies for the generated modules (either on NBPCG support libraries or Netbean Platform modules). The following documentation details the dependencies that exist and should be added to the various generated modules.</p>
+<table>
+<thead>
+<tr><th align="left">                              : Datamodel     : NodeModel     : NodeViewer    : NodeEditor </th></tr>
+</thead>
+<tbody>
+<tr><td align="left" colspan="5"><strong>NetBeans Platform</strong></td></tr>
+<tr><td align="left">Explorer &amp; Property Sheet API</td><td align="center"> </td><td align="center">x</td><td align="center">x</td><td align="center"> </td></tr>
+<tr><td align="left">Lookup API</td><td align="center">x</td><td align="center"> </td><td align="center">x</td><td align="center">x</td></tr>
+<tr><td align="left">Nodes API</td><td align="center"> </td><td align="center">x</td><td align="center">x</td><td align="center">x</td></tr>
+<tr><td align="left">UI Utilities API</td><td align="center">: </td><td align="center">x</td><td align="center">x</td></tr>
+<tr><td align="left">Utilities API</td><td align="center"> </td><td align="center">x</td><td align="center">x</td><td align="center">x</td></tr>
+<tr><td align="left">Window System API</td><td align="center">: </td><td align="center">x</td><td align="center">x</td></tr>
+<tr><td align="left" colspan="5"><strong>NBPCG-Library</strong></td></tr>
+<tr><td align="left">MySQL</td><td align="center"> *: </td><td align="center">: </td></tr>
+<tr><td align="left">NBPCG Data Support Lib</td><td align="center">x</td><td align="center">x</td><td align="center">x</td><td align="center">x</td></tr>
+<tr><td align="left">NBPCG Form Support Lib</td><td align="center">: </td><td align="center"> </td><td align="center">x</td></tr>
+<tr><td align="left">NBPCG Node Support Lib</td><td align="center"> </td><td align="center">x</td><td align="center">x</td><td align="center">x</td></tr>
+<tr><td align="left">NBPCG Support Lib</td><td align="center">x</td><td align="center">x</td><td align="center">x</td><td align="center">x</td></tr>
+<tr><td align="left">NBPCG TopComponent Support Lib</td><td align="center">: </td><td align="center">x</td><td align="center">x</td></tr>
+<tr><td align="left" colspan="5"><strong>GENERATED MODULES</strong></td></tr>
+<tr><td align="left">XX DataModel</td><td align="center"> </td><td align="center">x</td><td align="center">x</td><td align="center">x</td></tr>
+<tr><td align="left">XX NodeModel</td><td align="center">: </td><td align="center">x</td><td align="center">x</td></tr>
+<tr><td align="left">XX NodeEditor</td><td align="center"> </td><td align="center">x</td><td align="center">: </td></tr>
+<tr><td align="left" colspan="5"> <em>If you are using table aliases to access other tables then you will need to add addition dependencies to those modules</em></td></tr>
+<tr><td align="left" colspan="5"><strong>ALIAS MODULES</strong></td></tr>
+<tr><td align="left">XX DataModel</td><td align="center">x</td><td align="center">x</td><td align="center">x</td><td align="center">x</td></tr>
+</tbody>
+</table>
+                    <div class="previousnextmenu">
+                        <div class="button-icon-left" >
+                                <a href="index.html">Previous</a>
+                        </div>
+                        <div class="button-icon-right" >
+                                <a href="script.html">Next</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                </div>
+                <div id="push"></div>
+            </div>
+            <div id="footer">
+              <div class="container">
+                <p class="muted credit">&copy; The-Retired-Programmer 2019&ndash;2021</p>
+              </div>
+            </div>
+            <!-- Placed at the end of the document so the pages load faster -->
+            <script src="../../js/jquery-1.11.1.min.js"></script>
+            <script src="../../js/bootstrap.min.js"></script>
+            <script src="../../js/prettify.js"></script>
+        </body>
+    </html>
+

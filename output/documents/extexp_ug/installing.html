@@ -1,0 +1,136 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="utf-8"/>
+            <title>Extexp User Guide - Installing / Configuring / Extending Extexp</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta name="description" content="">
+            <meta name="author" content="">
+            <meta name="keywords" content="">
+            <meta name="generator" content="JBake">
+
+            <link href="../../css/bootstrap.min.css" rel="stylesheet">
+            <link href="../../css/asciidoctor.css" rel="stylesheet">
+            <link href="../../css/base.css" rel="stylesheet">
+            <link href="../../css/prettify.css" rel="stylesheet">
+            <link href="../../css/styles_trp.css" rel="stylesheet">
+
+            <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+            <!--[if lt IE 9]>
+              <script src="../../js/html5shiv.min.js"></script>
+            <![endif]-->
+
+            <!-- Fav and touch icons -->
+            <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+            <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+            <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+            <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+            <link rel="shortcut icon" href="../../favicon.ico">
+        </head>
+        <body onload="prettyPrint()">
+            <div id="wrap">
+                <!-- Fixed navbar -->
+                <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="../../index.html">The Retired Programmer</a>
+                        </div>
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a href="../../index.html">Home</a></li>
+                                <li><a href="../../about.html">About</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Products<b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="../../tags/NetBeans_Plugins.html"><b>NetBeans_Plugins</b></a></li>
+                                        <li><a href="../../tags/Extexp.html">Extexp</a></li>
+                                        <li><a href="../../tags/NBPCG.html">NBPCG</a></li>
+                                        <li><a href="../../tags/NBPCGLibrary.html">NBPCGLibrary</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="../../archive.html">Archive</a></li>
+                            </ul>
+                        </div><!--/.nav-collapse -->
+                    </div>        
+                </div>
+                <div class="container">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                                    <h3><a href="#extexp-user-guide" id="extexp-user-guide">Extexp User Guide</a></h3>
+<ul>
+<li><a href="introduction.html">Introduction</a></li>
+<li><a href="installing.html">Installation</a></li>
+<li><a href="project.html">An Extexp Project</a></li>
+<li><a href="commands.html">Commands</a></li>
+<li>   <a href="execenv.html">The Execution Environment</a></li>
+<li>   <a href="controls.html">Controls</a></li>
+<li>   <a href="executors.html">Executors</a></li>
+<li><a href="extending.html">Extending Extexp</a></li>
+<li><a href="developer.html">Developer Notes</a></li>
+<li><a href="release.html">Release Notes</a></li>
+</ul>
+
+                    <p><em>21 May 2022</em></p>
+                </div>
+                <div class="col-sm-8">
+                    <div class="previousnextmenu">
+                        <div class="button-icon-left" >
+                                <a href="introduction.html">Previous</a>
+                        </div>
+                        <div class="button-icon-right" >
+                                <a href="project.html">Next</a>
+                        </div>
+                    </div>
+<h2><a href="#installing-configuring-extending-extexp" id="installing-configuring-extending-extexp">Installing / Configuring / Extending Extexp</a></h2>
+<h3><a href="#installing" id="installing">Installing</a></h3>
+<p>&hellip; more to added when first version is released &hellip;</p>
+<h3><a href="#configuring-configure" id="configuring-configure">Configuring ### {#configure}</a></h3>
+<p>To enable all Extexp functionality, additional software needs to be installed:</p>
+<ul>
+<li>
+<p><strong>Markdown</strong>: it is recommended that the kramdown processor is used to process markdown. Kramdown can be downloaded from its <a href="https://kramdown.gettalong.org">website</a>. Just follow the instructions on the install tab. Once installed, Extexp needs to know about kramdown&rsquo;s location.  By using the NetBeans preferences window and  selecting the Extexp options panel and then the markdown tab, the path to the kramdown executable can be defined. \ <img src="resources/options-markdown.png" alt="options for markdown" /></p>
+</li>
+<li>
+<p><strong>FOP</strong>: install the latest version of FOP and then use the same process as was used for markdown (Extexp options panel/FOP tab) in order to define the location of the executable script for FOP.</p>
+</li>
+<li>
+<p><strong>FreeMarker</strong>: while FreeMarker software is already installed, it is necessary to define the root of the users file system where FreeMarker templates are stored. This defaults to a OS specific value (&ldquo;/&rdquo; for MacOS and LINUX, or &quot;c:&quot; for Windows). If this needs to be changed for your workstation, it can be configured in the preferences window (Extexp options panel/FreeMarker tab).</p>
+</li>
+</ul>
+<h3><a href="#extending" id="extending">Extending</a></h3>
+<p>Extexp is designed for extendability. At the simplest level the External command runs any executable to process textual data.</p>
+<p>However to allow a developer to completely integrate new executors into the processor it is possible to create an additional NetBeans module which adds one or more executors, with full integration (parameters, in-memory file store, Preferences URI, and visual display) with Extexp. Details for creating such an extension can be found <a href="extending.html">here</a>.</p>
+                    <div class="previousnextmenu">
+                        <div class="button-icon-left" >
+                                <a href="introduction.html">Previous</a>
+                        </div>
+                        <div class="button-icon-right" >
+                                <a href="project.html">Next</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                </div>
+                <div id="push"></div>
+            </div>
+            <div id="footer">
+              <div class="container">
+                <p class="muted credit">&copy; The-Retired-Programmer 2019&ndash;2021</p>
+              </div>
+            </div>
+            <!-- Placed at the end of the document so the pages load faster -->
+            <script src="../../js/jquery-1.11.1.min.js"></script>
+            <script src="../../js/bootstrap.min.js"></script>
+            <script src="../../js/prettify.js"></script>
+        </body>
+    </html>
+

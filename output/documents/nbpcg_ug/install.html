@@ -1,0 +1,132 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="utf-8"/>
+            <title>NBPCG User Guide - Installation Notes</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta name="description" content="">
+            <meta name="author" content="">
+            <meta name="keywords" content="">
+            <meta name="generator" content="JBake">
+
+            <link href="../../css/bootstrap.min.css" rel="stylesheet">
+            <link href="../../css/asciidoctor.css" rel="stylesheet">
+            <link href="../../css/base.css" rel="stylesheet">
+            <link href="../../css/prettify.css" rel="stylesheet">
+            <link href="../../css/styles_trp.css" rel="stylesheet">
+
+            <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+            <!--[if lt IE 9]>
+              <script src="../../js/html5shiv.min.js"></script>
+            <![endif]-->
+
+            <!-- Fav and touch icons -->
+            <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+            <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+            <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+            <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+            <link rel="shortcut icon" href="../../favicon.ico">
+        </head>
+        <body onload="prettyPrint()">
+            <div id="wrap">
+                <!-- Fixed navbar -->
+                <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="../../index.html">The Retired Programmer</a>
+                        </div>
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a href="../../index.html">Home</a></li>
+                                <li><a href="../../about.html">About</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Products<b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="../../tags/NetBeans_Plugins.html"><b>NetBeans_Plugins</b></a></li>
+                                        <li><a href="../../tags/Extexp.html">Extexp</a></li>
+                                        <li><a href="../../tags/NBPCG.html">NBPCG</a></li>
+                                        <li><a href="../../tags/NBPCGLibrary.html">NBPCGLibrary</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="../../archive.html">Archive</a></li>
+                            </ul>
+                        </div><!--/.nav-collapse -->
+                    </div>        
+                </div>
+                <div class="container">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                                    <h3><a href="#nbpcg-user-guide" id="nbpcg-user-guide">NBPCG User Guide</a></h3>
+<ul>
+<li><a href="index.html">Introduction</a></li>
+<li><a href="project.html">An NBPCG Project</a></li>
+<li><a href="script.html">The NBPCG Script</a></li>
+<li><a href="install.html">Installation</a></li>
+<li><a href="developer.html">Developer Notes</a></li>
+<li><a href="release.html">Release Notes</a></li>
+</ul>
+
+                    <p><em>21 May 2022</em></p>
+                </div>
+                <div class="col-sm-8">
+                    <div class="previousnextmenu">
+                        <div class="button-icon-left" >
+                                <a href="script.html">Previous</a>
+                        </div>
+                        <div class="button-icon-right" >
+                                <a href="developer.html">Next</a>
+                        </div>
+                    </div>
+<h2><a href="#installation-notes" id="installation-notes">Installation Notes</a></h2>
+<p><strong>Current release</strong>: v5.0.1</p>
+<p><strong>Minimum Environment</strong>: Netbeans 8.2 and Java 8</p>
+<p>The recommended installation process is obtain the Plugin using an additional Update Centre.  This must be defined in your IDE, but is needed to be done only once as all IDE plugins developed by the The-Retired-Programmer programme will be distributed via this single Uodate Centre.</p>
+<p>To add the Update Centre to the IDE, click on the  Plugins entry in the Tool Menu to display the Plugins Dialog.</p>
+<p><img src="resources/pluginmenu.png" alt="Plugin Menu" /></p>
+<p>Select the Setting tab, to display the current list of Update Centres.</p>
+<p><img src="resources/plugindialogsettings.png" alt="Plugin Dialog - Settings Tab" /></p>
+<p>Assuming that the additional Update Centre has not already been defined, press the Add button and enter the two required fields (Name and URL). Once correctly entered, press OK to complete this operation.</p>
+<p><img src="resources/addupdatecentre.png" alt="Add Update Centre" /></p>
+<p>Now select the &ldquo;Available Plugins&rdquo; tab.  You should now find a list of all available plugins, including a set of The-Retired-Programmer plugins.</p>
+<p>If you can&rsquo;t find any entries you could press the &ldquo;Check for Newest&rdquo; button to refresh this list, after which the new entries should be visible.</p>
+<p>Select one or more plugins and then press the Install button.  This will install the plugins into your IDE.</p>
+<p><img src="resources/plugindialogavailable.png" alt="Plugin Dialog - Available Tab" /></p>
+<p>During this process a warning is raised indicating that the plugin(s) are not signed and so may be a risk. By pressing the Continue putton the installation wil continue.</p>
+<p>To confirm this has occurred you can switch to the Installed tab and view the installed plugins.  Note you will have to tick the box labelled &ldquo;Show detail&rdquo; on this tab in order to list all plugins.</p>
+<p><img src="resources/plugindialoginstalled.png" alt="Plugin Dialog - Installed Tab" /></p>
+<p>Alternatively the plugin can be downloaded directly from Maven Central.  The current release is v5.0.1, which can be downloaded <a href="http://central.maven.org/maven2/uk/theretiredprogrammer/nbpcg/5.0.1/nbpcg-5.0.1.nbm">from Maven Central</a>.</p>
+<p>The nbm file can be placed anywhere in the filesystem on your machine, and loaded manually into the IDE using the Plugin Dialog.</p>
+                    <div class="previousnextmenu">
+                        <div class="button-icon-left" >
+                                <a href="script.html">Previous</a>
+                        </div>
+                        <div class="button-icon-right" >
+                                <a href="developer.html">Next</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                </div>
+                <div id="push"></div>
+            </div>
+            <div id="footer">
+              <div class="container">
+                <p class="muted credit">&copy; The-Retired-Programmer 2019&ndash;2021</p>
+              </div>
+            </div>
+            <!-- Placed at the end of the document so the pages load faster -->
+            <script src="../../js/jquery-1.11.1.min.js"></script>
+            <script src="../../js/bootstrap.min.js"></script>
+            <script src="../../js/prettify.js"></script>
+        </body>
+    </html>
+

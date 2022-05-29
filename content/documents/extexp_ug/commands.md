@@ -1,0 +1,44 @@
+title=Extexp User Documentation - Structure of the Build file
+date=2022-05-21
+type=document
+status=published
+nextpage=execenv
+previouspage=project
+sectionlistname=extexp_ug
+~~~~~~
+
+## Structure of the Build file ##
+
+The Command sequences are named JSON arrays. The first sequence is named `MAIN`
+(must always be defined in every build file). Additional sequences can be defined
+with other names, which can be called when required.
+
+A sequence is a series of JSON objects, which describe the commands to
+be sequentially undertaken.
+
+These Commands can be Controls or Executors. Controls manage the flow of control
+through sequences, while Executors are the commands which process textual objects,
+transforming them in someway.
+
+The command format is:
+
+~~~ json
+    {
+        "<key>": "<value>";     (repeat as necessary}
+    }
+~~~
+
+The value can be a:
+
+*   Textual value
+*   In-memory filestore reference(i.e. filename)
+*   Filename, the execution environment will be used to determine the location context (input v. output)
+
+All these forms of a value can include parameter substitution using ${\<key>},
+which is replaced with the value of the parameter.
+Substitutions can be embedded within text, and multiple substitutions are allowed.
+The substitution process is recursive so allowing complex generation of values (filenames or text).
+
+Details of Controls (syntax and examples) can be found [here](controls.html).
+
+Details of Executors (syntax and examples) can be found [here](executors.html).

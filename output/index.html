@@ -1,0 +1,145 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="utf-8"/>
+            <title>JBake</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta name="description" content="">
+            <meta name="author" content="">
+            <meta name="keywords" content="">
+            <meta name="generator" content="JBake">
+
+            <link href="css/bootstrap.min.css" rel="stylesheet">
+            <link href="css/asciidoctor.css" rel="stylesheet">
+            <link href="css/base.css" rel="stylesheet">
+            <link href="css/prettify.css" rel="stylesheet">
+            <link href="css/styles_trp.css" rel="stylesheet">
+
+            <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+            <!--[if lt IE 9]>
+              <script src="js/html5shiv.min.js"></script>
+            <![endif]-->
+
+            <!-- Fav and touch icons -->
+            <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+            <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+            <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+            <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+            <link rel="shortcut icon" href="favicon.ico">
+        </head>
+        <body onload="prettyPrint()">
+            <div id="wrap">
+                <!-- Fixed navbar -->
+                <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="index.html">The Retired Programmer</a>
+                        </div>
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="about.html">About</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Products<b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="tags/NetBeans_Plugins.html"><b>NetBeans_Plugins</b></a></li>
+                                        <li><a href="tags/Extexp.html">Extexp</a></li>
+                                        <li><a href="tags/NBPCG.html">NBPCG</a></li>
+                                        <li><a href="tags/NBPCGLibrary.html">NBPCGLibrary</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="archive.html">Archive</a></li>
+                            </ul>
+                        </div><!--/.nav-collapse -->
+                    </div>        
+                </div>
+                <div class="container">
+	<div class="page-header">
+            <h1>News Items</h1>
+	</div>
+                <a href="blog/2022/002-Website_JBake.html"><h1>Revised Website</h1></a>
+                <p><p>You will probably notice additional changes to this WebSite.  These are due to a decision to move away from a privately developed tool (Extexp) and use JBake as the website build tool.</p>
+<p>The Document and News Items structure has not changed, so I don&rsquo;t think there will be any problems in navigating this latest varient of the WebSite.</p>
+</p>
+                <div class="previousnextmenu">
+                    <div class="button-icon-left" >
+                            Product:
+                                <a href="/tags/General.html">General</a>
+                    </div>
+                    <div class="button-icon-right" >
+                        28 May 2022
+                    </div>
+                </div>
+                <hr/>
+                <a href="blog/2021/001-extexp-release-1dot1.html"><h1>Extexp version 1.1 released</h1></a>
+                <p><p>Extexp has been updated and a new version (1.1) has been released.  The NBM is available for download from GitHub.</p>
+<p>This release includes a new control command &ldquo;ForList&rdquo;, a loop construct which runs a command once for each element in a list.  The actual element value is presented via a special parameter &ldquo;__ELEMENT__&rdquo;.  The element list is a string using the &lsquo;|&rsquo; character as the element delimiter.</p>
+<p>Examples of syntax:</p>
+<pre><code class="language-json">    {
+        &quot;ForList&quot;: &quot;${pageorder}&quot;,
+        &quot;do&quot;: {
+            &quot;Use&quot;: &quot;PAGEBUILDERWITHCONTENTSSIDEBAR&quot;,
+            &quot;page&quot;: &quot;${__ELEMENT__}&quot;
+        }
+    }
+</code></pre>
+<pre><code class="language-json">    {
+        &quot;ForList&quot;: &quot;apple|lemon|pear&quot;,
+        &quot;do&quot;: {
+            &quot;Do&quot;: &quot;message&quot;,
+            &quot;text&quot;: &quot;the fruit is ${__ELEMENT__}&quot;
+        }
+    }
+</code></pre>
+</p>
+                <div class="previousnextmenu">
+                    <div class="button-icon-left" >
+                            Product:
+                                <a href="/tags/Extexp.html">Extexp</a>
+                                <a href="/tags/NetBeans_Plugins.html">NetBeans_Plugins</a>
+                    </div>
+                    <div class="button-icon-right" >
+                        15 November 2021
+                    </div>
+                </div>
+                <hr/>
+                <a href="blog/2021/000-newwebsite.html"><h1>Welcome to the new Website</h1></a>
+                <p><p>You’ll have noticed something a bit different when you visit The-Retired-Programmer today.</p>
+<p>I wanted to start sharing additional information, while continuing to support the previous content of the site (documentation for various packages).</p>
+<p>The new approach to organising the site will be a combination of a news feed and Document store. News items being single page information, presented in a time based manner. Documents can be multipaged, with page based access.</p>
+<p>Both News items and Documents can be associated with Products.  This allows a simple mechanism to access list of items associated with a particular subject area.</p>
+<p>The initial content will be that of the previous website (ie covering the EXTEXP and NBPCG software), so these will be the initial projects.  Other projects will be added as necessary.</p>
+</p>
+                <div class="previousnextmenu">
+                    <div class="button-icon-left" >
+                            Product:
+                                <a href="/tags/General.html">General</a>
+                    </div>
+                    <div class="button-icon-right" >
+                        10 November 2021
+                    </div>
+                </div>
+                <hr/>
+	<p>Older posts are available in the <a href="archive.html">archive</a>.</p>
+                </div>
+                <div id="push"></div>
+            </div>
+            <div id="footer">
+              <div class="container">
+                <p class="muted credit">&copy; The-Retired-Programmer 2019&ndash;2021</p>
+              </div>
+            </div>
+            <!-- Placed at the end of the document so the pages load faster -->
+            <script src="js/jquery-1.11.1.min.js"></script>
+            <script src="js/bootstrap.min.js"></script>
+            <script src="js/prettify.js"></script>
+        </body>
+    </html>
+

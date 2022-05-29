@@ -1,0 +1,24 @@
+title=About
+date=2022-05-28
+type=page
+status=published
+~~~~~~
+
+## The-Retired-Programmer ##
+
+
+As a software engineer with over 40 years experience of software development, product
+delivery and project management, I have wide range of experience in the profession.
+Now retired I have returned to my roots as a programmer continuing to build software
+solutions.
+
+
+My interests are in the areas of embedded solutions (particularly based on the Raspberry Pi
+family of products - both the Pico and the Pi), and also small software solutions
+aimed at my personal productivity, which others can find useful.
+
+
+In keeping with encouraging general use, my software solutions are
+available on GitHub, with open source licensing (Apache v2.0).
+
+This site provides both documentation and news items for these solutions.

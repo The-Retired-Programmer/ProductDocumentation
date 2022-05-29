@@ -1,0 +1,350 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="utf-8"/>
+            <title>Extexp User Documentation - Executor Commands</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta name="description" content="">
+            <meta name="author" content="">
+            <meta name="keywords" content="">
+            <meta name="generator" content="JBake">
+
+            <link href="../../css/bootstrap.min.css" rel="stylesheet">
+            <link href="../../css/asciidoctor.css" rel="stylesheet">
+            <link href="../../css/base.css" rel="stylesheet">
+            <link href="../../css/prettify.css" rel="stylesheet">
+            <link href="../../css/styles_trp.css" rel="stylesheet">
+
+            <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+            <!--[if lt IE 9]>
+              <script src="../../js/html5shiv.min.js"></script>
+            <![endif]-->
+
+            <!-- Fav and touch icons -->
+            <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+            <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+            <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+            <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+            <link rel="shortcut icon" href="../../favicon.ico">
+        </head>
+        <body onload="prettyPrint()">
+            <div id="wrap">
+                <!-- Fixed navbar -->
+                <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="../../index.html">The Retired Programmer</a>
+                        </div>
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a href="../../index.html">Home</a></li>
+                                <li><a href="../../about.html">About</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Products<b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="../../tags/NetBeans_Plugins.html"><b>NetBeans_Plugins</b></a></li>
+                                        <li><a href="../../tags/Extexp.html">Extexp</a></li>
+                                        <li><a href="../../tags/NBPCG.html">NBPCG</a></li>
+                                        <li><a href="../../tags/NBPCGLibrary.html">NBPCGLibrary</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="../../archive.html">Archive</a></li>
+                            </ul>
+                        </div><!--/.nav-collapse -->
+                    </div>        
+                </div>
+                <div class="container">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                                    <h3><a href="#extexp-user-guide" id="extexp-user-guide">Extexp User Guide</a></h3>
+<ul>
+<li><a href="introduction.html">Introduction</a></li>
+<li><a href="installing.html">Installation</a></li>
+<li><a href="project.html">An Extexp Project</a></li>
+<li><a href="commands.html">Commands</a></li>
+<li>   <a href="execenv.html">The Execution Environment</a></li>
+<li>   <a href="controls.html">Controls</a></li>
+<li>   <a href="executors.html">Executors</a></li>
+<li><a href="extending.html">Extending Extexp</a></li>
+<li><a href="developer.html">Developer Notes</a></li>
+<li><a href="release.html">Release Notes</a></li>
+</ul>
+
+                    <p><em>21 May 2022</em></p>
+                </div>
+                <div class="col-sm-8">
+                    <div class="previousnextmenu">
+                        <div class="button-icon-left" >
+                                <a href="controls.html">Previous</a>
+                        </div>
+                        <div class="button-icon-right" >
+                                <a href="extending.html">Next</a>
+                        </div>
+                    </div>
+<h2><a href="#executor-commands" id="executor-commands">Executor Commands</a></h2>
+<p>Executors are the set of commands which undertake the text transformations.</p>
+<p>Whilst Extexp is designed as an extendable text processor and can have additional executors added, there are a standard set of executor commands present in the extexp plug-in.</p>
+<p>All executors commands have a parameter with the key <code>Do</code> and a value which is the executor name.</p>
+<p>An example of this part of the executor command is:</p>
+<pre><code class="language-json">    {
+        &quot;Do&quot;: &quot;copy&quot;;
+        ...
+    }
+</code></pre>
+<hr />
+<h3><a href="#copy-copy" id="copy-copy"> Copy ### {#copy}</a></h3>
+<p>The <code>Copy</code> command copies text to the target file.</p>
+<p>Example:</p>
+<pre><code class="language-json">    {
+        &quot;Do&quot;: &quot;copy&quot;;
+        &quot;from&quot;: &quot;example.md&quot;;
+        &quot;to&quot;: &quot;!example&quot;;
+    }
+</code></pre>
+<hr />
+<h3><a href="#copy-resources-copyresources" id="copy-resources-copyresources"> Copy resources ### {#copyresources}</a></h3>
+<p>The <code>Copy Resources</code> command copies contents of resource folder to the target folder.</p>
+<p>It has two optional parameters <code>to</code> and <code>foldername</code>.</p>
+<ul>
+<li>
+<p><code>to</code> defines the target folder and is one of two values <code>output</code> or <code>cache</code>.  The parameter is optional, with its default being <code>output</code>.</p>
+</li>
+<li>
+<p>&ldquo;foldername&rdquo; describes the name of the resources folder.  The parameter is optional with its default being &ldquo;resources&rdquo;.</p>
+</li>
+</ul>
+<p>The folder structure for resource input will allow optional child folder structures within the <code>resources</code> folder, but the resulting created <code>resources</code> folder will be  flat structure.</p>
+<p>The folder structure between the project source folder and the input resources folder will be replicated between the source folder and the output resources folder.</p>
+<p>Examples:</p>
+<pre><code class="language-json">    {
+        &quot;Do&quot;: &quot;copyresources&quot;;
+    }
+</code></pre>
+<pre><code>or
+</code></pre>
+<pre><code class="language-json">    {
+        &quot;Do&quot;: &quot;copyresources&quot;;
+        &quot;to&quot;: &quot;cache&quot;;
+        &quot;foldername&quot;: &quot;images&quot;;
+    }
+</code></pre>
+<hr />
+<h3><a href="#list-list" id="list-list"> List ### {#list}</a></h3>
+<p>The <code>List</code> command copies the source to the output window.  The <code>title</code> parameter defines the displayed title and <code>from</code> parameter defines the source.</p>
+<p>Example:</p>
+<pre><code class="language-json">    {
+        &quot;Do&quot;: &quot;list&quot;;
+        &quot;from&quot;: &quot;example.md&quot;;
+        &quot;title&quot;: &quot;Example ONE&quot;;
+    }
+</code></pre>
+<p>which displays:</p>
+<pre><code>======================================
+Example ONE
+======================================
+file content 
+....
+======================================
+</code></pre>
+<hr />
+<h3><a href="#message-message" id="message-message"> Message ### {#message}</a></h3>
+<p>The <code>Message</code> command writes a message to the output window.  The <code>text</code> parameter defines the displayed message.</p>
+<p>Example:</p>
+<pre><code class="language-json">    {
+        &quot;Do&quot;: &quot;message&quot;;
+        &quot;text&quot;: &quot;Processing page ${page}&quot;;
+    }
+</code></pre>
+<p>displays (where parameter <code>page</code> has the value &ldquo;index&rdquo;):</p>
+<pre><code>Processing page index
+</code></pre>
+<hr />
+<h3><a href="#substitute-substitute" id="substitute-substitute"> Substitute ### {#substitute}</a></h3>
+<p>The substitute command processes a template (usually a file) performing parameter substitution on all ${&lt;key&gt;} markers.  The substitutions can be parameter values, in-memory file content, files content (from the input and shared input contexts).  All insertions have parameter substitution performed on their content (i.e. the substitution process is fully recursive).</p>
+<p>The command has two parameters:</p>
+<ul>
+<li><code>from</code> - the template file</li>
+<li><code>to</code> - the results of the substitution process</li>
+</ul>
+<p>Additional parameters may be defined in the command which will be available for use in the substitute process (as well as all parameters defined in parent controls).</p>
+<p>Example:</p>
+<pre><code class="language-json">    {
+        &quot;Do&quot;: &quot;substitute&quot;;
+        &quot;from&quot;: &quot;simple-template.txt&quot;,
+        &quot;to&quot;: &quot;+generated-text&quot;;
+    }
+</code></pre>
+<hr />
+<h3><a href="#fop-fop" id="fop-fop"> FOP ### {#fop}</a></h3>
+<p>XSL-FO is a W3C standard describing a XML vocabulary which defined printed pages. Tools exist which can process these documents and create PDF output.  There is an Apache open source tool (FOP) which can be used for this purpose.  This commands runs the FOP tool.</p>
+<p>The command has two parameters:</p>
+<ul>
+<li><code>xsl-fo</code> - the xsl-fo document</li>
+<li><code>pdf</code> - the resulting pdf document</li>
+</ul>
+<p>This commands requires that the FOP software is installed on your machine and the any necessary configuration is undertaken via the NetBeans Preference screen.  For more details about this please see <a href="installing.html#configure">Configuring Extexp</a>.</p>
+<p>Example:</p>
+<pre><code class="language-json">    {
+        &quot;Do&quot;: &quot;fop&quot;;
+        &quot;xsl-fo&quot;: &quot;book&quot;,
+        &quot;to&quot;: &quot;Book.pdf&quot;;
+    }
+</code></pre>
+<hr />
+<h3><a href="#external-external" id="external-external"> External ### {#external}</a></h3>
+<p>This command will run any simple text processing program that is available on your workstation. It required addition parameters:</p>
+<ul>
+<li><code>command</code> - the command name to be executed</li>
+<li><code>parameters</code> - any additional command parameters that are required (optional)</li>
+<li><code>from</code> - the input text for the command</li>
+<li><code>to</code> - the output file to collect the output from the command</li>
+</ul>
+<p>The error stream from the external program will be written to the netbeans output window.</p>
+<p>If using Linux or MacOS, programs such as grep, sed and awk are text processing programs which could be executed by this command to access additional specialist text processing capabilities.</p>
+<p>Example:</p>
+<pre><code class="language-json">    {
+        &quot;Do&quot;: &quot;external&quot;;
+        &quot;command&quot;: &quot;wc&quot;,
+        &quot;parameters&quot;: &quot;-w&quot;,
+        &quot;from&quot;: &quot;chapter2.md&quot;,
+        &quot;to&quot;: &quot;wc-param&quot;
+    }
+</code></pre>
+<hr />
+<h3><a href="#markdown-markdown" id="markdown-markdown"> Markdown ### {#markdown}</a></h3>
+<p>Markdown is a lightweight markup language with plain text formatting syntax.  This command processes the markdown document and process html output (which is probably a html fragment for later insertion into a full html document).</p>
+<p>There are a range of markdown processors available, and whilst it is technically possible to use any such software, the extexp project recommends use of the kramdown processor.</p>
+<p>The command requires up to three parameters:</p>
+<ul>
+<li><code>from</code> - the markdown source file</li>
+<li><code>to</code> - the generated html fragment</li>
+<li><code>template</code> - The name of an ERB template file (optional)</li>
+</ul>
+<p>At its simplest, the ERB template file provides a wrapper around the generated source.  The point in the template where the processed markdown is to be inserted is marked with a tag <code>&lt;%=@body%&gt;</code>.</p>
+<p>However it is more normal practise within Extexp to use the markdown command to generate a html fragment, and then combine all the fragments into a final html document using either the Substitute or FreeMarker commands (i.e. not using the markdown template parameter), but the software can support either styles.</p>
+<p>This commands requires that the kramdown software is installed on your machine and the any necessary configuration is undertaken via the NetBeans Preference screen.  For more details about this please see <a href="installing.html#configure">Configuring Extexp</a>.</p>
+<p>Example:</p>
+<pre><code class="language-json">    {
+        &quot;Do&quot;: &quot;markdown&quot;;
+        &quot;from&quot;: &quot;chapter2.md&quot;,
+        &quot;to&quot;: &quot;!chapter2&quot;
+    }
+</code></pre>
+<hr />
+<h3><a href="#markdown-and-substitute-markownsubstitute" id="markdown-and-substitute-markownsubstitute"> Markdown and Substitute ### {#markownsubstitute}</a></h3>
+<p>The Markdown And Substitute command (<code>markdown-substitute</code>) is a convenience command combining the Markdown and Substitute commands.  It has the same parameters as the markdown command, first processing the markdown text, after which it runs the substitution process on the generated output before saving it (the <code>to</code> parameter).</p>
+<p>Additional parameters may be defined in the command which will be available foe use in the substitute process (as well as all parameters defined in parent controls).</p>
+<p>Example:</p>
+<pre><code class="language-json">    {
+        &quot;Do&quot;: &quot;markdown-substitute&quot;;
+        &quot;from&quot;: &quot;chapter2.md&quot;,
+        &quot;to&quot;: &quot;!chapter2&quot;,
+        &quot;title&quot;: &quot;ABC ... XYZ&quot;
+    }
+</code></pre>
+<hr />
+<h3><a href="#freemarker-freemarker" id="freemarker-freemarker"> FreeMarker ### {#freemarker}</a></h3>
+<p>FreeMarker provides a more fully featured templating language for building complex documents.  All parameters and in-memory filestore is made available to the FreeMarker engine, and files can be made available, by declaration as a parameter value.</p>
+<p>Two parameters are required:</p>
+<ul>
+<li><code>template</code> - the Freemarker template</li>
+<li><code>to</code> - the output document generated by FreeMarker</li>
+</ul>
+<p>Additional parameters may be defined in the command which will be available for use by FreeMarker (as well as all parameters defined in parent controls).</p>
+<p>While the FreeMarker software is already installed on your workstation, there is a small amount of necessary configuration to be undertaken via the NetBeans Preference screen.  For more details about this please see <a href="installing.html#configure">Configuring Extexp</a>.</p>
+<p>Example:</p>
+<pre><code class="language-json">    {
+        &quot;Do&quot;: &quot;freemarker&quot;;
+        &quot;template&quot;: &quot;main.ftl&quot;,
+        &quot;to&quot;: &quot;!chapter2&quot;,
+        &quot;title&quot;: &quot;Chapter 2 - Getting to know your Software&quot;,
+        &quot;content&quot;: &quot;content-fragment-ch2&quot;
+    }
+</code></pre>
+<hr />
+<h3><a href="#imageset-imageset" id="imageset-imageset"> Imageset ### {#imageset}</a></h3>
+<p>The Imageset command (<code>create-imageset</code>) collects together information about a set of like images (each being a different image size) and creates a suitable &lt;IMG&gt; html tag. Such a tag would be used to display an image in a responsive design and would be inserted into an html document or fragment (using a templating or substitution method provided within Extexp).</p>
+<p>The command has 5 required parameters:</p>
+<ul>
+<li><code>image</code> - the image name for the &lsquo;core image&rsquo;</li>
+<li><code>width</code> - the width of the core image</li>
+<li><code>height</code> - the height of the core image</li>
+<li><code>class</code> - the css class name to be added to the imageset tag</li>
+<li><code>to</code> - the html output created by the command.</li>
+</ul>
+<p>Example:</p>
+<pre><code class="language-json">    {
+        &quot;Do&quot;: &quot;create-imageset&quot;,
+        &quot;to&quot;: &quot;!swimming-3&quot;,
+        &quot;class&quot;: &quot;img-responsive&quot;,
+        &quot;image&quot;: &quot;Swimming-3.png&quot;,
+        &quot;width&quot;: &quot;500&quot;,
+        &quot;height&quot;: &quot;300&quot;
+    }
+</code></pre>
+<p>which creates content:</p>
+<pre><code class="language-html">    &lt;img
+        width=&quot;500&quot;
+        height=&quot;300&quot;
+        src=&quot;resources/Swimming-3.jpg&quot;
+        class=&quot;img-responsive&quot; alt=&quot;&quot;
+        srcset=&quot;resources/Swimming-3.jpg 500w,
+            resources/Swimming-3-300x180.jpg 300w,
+            resources/Swimming-3-200x120.jpg 200w,
+            resources/Swimming-3-60x36.jpg 60w&quot;
+            sizes=&quot;(max-width: 500px) 100vw, 500px&quot;
+    /&gt;
+</code></pre>
+<hr />
+<h3><a href="#xslt-xslt" id="xslt-xslt"> XSLT ### {#xslt}</a></h3>
+<p>XLST is a W3C standard describing a language for defining transforms that can be applied to a XML document to produce an output (normally another XML document). As HTML5 is an XML subset, it can be used to transform html documents or fragments.</p>
+<p>The command requires 3 parameters:</p>
+<ul>
+<li><code>from</code> - the source XML (html) document</li>
+<li><code>stylesheet</code> - the file defining the transformations to be applied (xslt language)</li>
+<li><code>to</code> - the output document created by the xslt</li>
+</ul>
+<p>Example of use:  to transform a html document (probably generated from markdown sources) into an xsl-fo document for passing to  FOP to build a pdf document.</p>
+<p>Example:</p>
+<pre><code class="language-json">    {
+        &quot;Do&quot;: &quot;xslt&quot;,
+        &quot;from&quot;: &quot;fullbook&quot;,
+        &quot;stylesheet&quot;: &quot;bookbuilder.xsl&quot;,
+        &quot;to&quot;: &quot;!fo&quot;
+    }
+</code></pre>
+<hr />
+                    <div class="previousnextmenu">
+                        <div class="button-icon-left" >
+                                <a href="controls.html">Previous</a>
+                        </div>
+                        <div class="button-icon-right" >
+                                <a href="extending.html">Next</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                </div>
+                <div id="push"></div>
+            </div>
+            <div id="footer">
+              <div class="container">
+                <p class="muted credit">&copy; The-Retired-Programmer 2019&ndash;2021</p>
+              </div>
+            </div>
+            <!-- Placed at the end of the document so the pages load faster -->
+            <script src="../../js/jquery-1.11.1.min.js"></script>
+            <script src="../../js/bootstrap.min.js"></script>
+            <script src="../../js/prettify.js"></script>
+        </body>
+    </html>
+

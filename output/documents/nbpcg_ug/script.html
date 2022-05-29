@@ -1,0 +1,273 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="utf-8"/>
+            <title>NBPCG User Guide - Script Content/Syntax Notes</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta name="description" content="">
+            <meta name="author" content="">
+            <meta name="keywords" content="">
+            <meta name="generator" content="JBake">
+
+            <link href="../../css/bootstrap.min.css" rel="stylesheet">
+            <link href="../../css/asciidoctor.css" rel="stylesheet">
+            <link href="../../css/base.css" rel="stylesheet">
+            <link href="../../css/prettify.css" rel="stylesheet">
+            <link href="../../css/styles_trp.css" rel="stylesheet">
+
+            <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+            <!--[if lt IE 9]>
+              <script src="../../js/html5shiv.min.js"></script>
+            <![endif]-->
+
+            <!-- Fav and touch icons -->
+            <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+            <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+            <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+            <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+            <link rel="shortcut icon" href="../../favicon.ico">
+        </head>
+        <body onload="prettyPrint()">
+            <div id="wrap">
+                <!-- Fixed navbar -->
+                <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="../../index.html">The Retired Programmer</a>
+                        </div>
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a href="../../index.html">Home</a></li>
+                                <li><a href="../../about.html">About</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Products<b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="../../tags/NetBeans_Plugins.html"><b>NetBeans_Plugins</b></a></li>
+                                        <li><a href="../../tags/Extexp.html">Extexp</a></li>
+                                        <li><a href="../../tags/NBPCG.html">NBPCG</a></li>
+                                        <li><a href="../../tags/NBPCGLibrary.html">NBPCGLibrary</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="../../archive.html">Archive</a></li>
+                            </ul>
+                        </div><!--/.nav-collapse -->
+                    </div>        
+                </div>
+                <div class="container">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                                    <h3><a href="#nbpcg-user-guide" id="nbpcg-user-guide">NBPCG User Guide</a></h3>
+<ul>
+<li><a href="index.html">Introduction</a></li>
+<li><a href="project.html">An NBPCG Project</a></li>
+<li><a href="script.html">The NBPCG Script</a></li>
+<li><a href="install.html">Installation</a></li>
+<li><a href="developer.html">Developer Notes</a></li>
+<li><a href="release.html">Release Notes</a></li>
+</ul>
+
+                    <p><em>21 May 2022</em></p>
+                </div>
+                <div class="col-sm-8">
+                    <div class="previousnextmenu">
+                        <div class="button-icon-left" >
+                                <a href="project.html">Previous</a>
+                        </div>
+                        <div class="button-icon-right" >
+                                <a href="install.html">Next</a>
+                        </div>
+                    </div>
+<h2><a href="#script-contentsyntax-notes" id="script-contentsyntax-notes">Script Content/Syntax Notes</a></h2>
+<p>The NBPCG script is an XML document.  A template is available - using the New&hellip; entry, the template can be selected from the other category with file type NBPCG Definition file</p>
+<p><img src="resources/newfile.jpg" alt="script template selection" /></p>
+<p>The structure of the script XML file is described below:</p>
+<p>The top level element is the &lt;nbpcg&gt; element.</p>
+<h3><a href="#the-nbpcg-element" id="the-nbpcg-element">The &lt;nbpcg&gt; element</a></h3>
+<p><em>Attributes</em></p>
+<ul>
+<li>name: The name of the script (required)</li>
+</ul>
+<p><em>Child Elements</em></p>
+<ul>
+<li>build: (one or more)</li>
+<li>node: (one or more)</li>
+<li>databases: (one or more)</li>
+</ul>
+<h3><a href="#the-build-element" id="the-build-element">The &lt;build&gt; element</a></h3>
+<p>Defines the build information - artifact selection, projects and packages etc.</p>
+<p><em>Attributes</em></p>
+<ul>
+<li>viewerrole: the viewerroles for this application - comma separated list (required)</li>
+<li>copyright: the copyright key information -  year(s) and name / email, this will be added to every licence header placed in a generated file (required)</li>
+</ul>
+<p><em>Child Elements</em></p>
+<ul>
+<li>project: (one or more)</li>
+</ul>
+<h3><a href="#the-project-element" id="the-project-element">The &lt;project&gt; element</a></h3>
+<p>Defines the project information.</p>
+<p><em>Attributes</em></p>
+<ul>
+<li>name: the project name (required)</li>
+<li>license: the license header to be added to generated files - one of apache20, gpl30 or lgpl21 (optional, default apache20)</li>
+</ul>
+<p><em>Child Elements</em></p>
+<ul>
+<li>generate: (one or more)</li>
+</ul>
+<h3><a href="#the-generate-element" id="the-generate-element">The &lt;generate&gt; element</a></h3>
+<p>Requests the generation of code or resource files for various types of entities.</p>
+<p><em>Attributes</em></p>
+<ul>
+<li>type: the type of code artifact to be generated - one of data, dataaccess, node, nodeviewer, editor, script (required)</li>
+<li>package: the package name to be used for all artifacts generated by this request (required)</li>
+<li>exclude: a list of nodes or entities to be excluded from this generate command, the list is comma separated and must not include any spaces around the comma (optional)</li>
+</ul>
+<h3><a href="#the-node-element" id="the-node-element">The &lt;node&gt; element</a></h3>
+<p>Defines the nodes required and their interrelationships.</p>
+<p><em>Attributes</em></p>
+<ul>
+<li>name: the node name (required)</li>
+<li>view: the types of view required - one of both, icon, tree, none (optional, default tree)</li>
+<li>viewers: (optional)</li>
+<li>dbname: the database name  (optional)</li>
+<li>rootlabel:  (optional)</li>
+<li>rooticon: the root node icon name (optional)</li>
+<li>icon: the node icon name (optional)</li>
+<li>label:  (optional)</li>
+<li>orderable: set to yes if nodes are allowed to be orderable (by drag and drop) - default is no (optional)</li>
+<li>nullallowed: set to yes if null value is allowed (optional)</li>
+<li>fkey: set to no if foreign key is not utilised - default is yes (optional)</li>
+<li>nomodifiers: set to yes if nodeviewers are to be created without the default copy/cut/paste/delete functionality (optional)</li>
+<li>customchildfactorypackage: set if user provides the child factory implementation for this node.  The value is the package in which the custom code exists (optional)</li>
+<li>childnodesineditor: a comma separated list of child nodes which are to be displayed in this node&rsquo;s editor as editable tables (optional)</li>
+<li>dynamicicon: the method use to obtain the icon for this node, if dynamic icon selection is required (optional)</li>
+<li>displaynameformat: format for the node&rsquo;s display name (optional)</li>
+<li>displaytitleformat: format for the node&rsquo;s display title (optional)</li>
+<li>sortformat: format for the node&rsquo;s sort string - also implies sortable (optional)</li>
+<li>childnodesineditor: the list of child nodes in this editor (optional)</li>
+<li>min: minimum number of this node type (as a childnode)  (optional)</li>
+<li>max: maximum number of this node type (as a childnode) (optional)</li>
+</ul>
+<p><em>Child Elements</em></p>
+<ul>
+<li>entryfields: entry fields (zero or more)</li>
+<li>action: (zero or more)</li>
+<li>node: child nodes of this node (zero or more)</li>
+</ul>
+<h3><a href="#the-entryfield-element" id="the-entryfield-element">The &lt;entryfield&gt; element</a></h3>
+<p>Defines an entry fields and its configuration and mapping to an entity field.</p>
+<p><em>Attributes</em></p>
+<ul>
+<li>name: the name of the field (required)</li>
+<li>label:  (optional)</li>
+<li>type: the entry field type (must be password) (required)</li>
+<li>mapsto: the entity field to which this field is mapped (required)</li>
+<li>mapping: the method used to converted the entry field value to the entity field value (required)</li>
+<li>rule: the method to be applied to this entry field to test it correctness (optional)</li>
+<li>errormessage: The error message to be generated if the rule fails  (optional)</li>
+</ul>
+<h3><a href="#the-action-element" id="the-action-element">The &lt;action&gt; element</a></h3>
+<p><em>Attributes</em></p>
+<ul>
+<li>name (required)</li>
+<li>label (required)</li>
+</ul>
+<h3><a href="#the-databases-element" id="the-databases-element">The &lt;databases&gt; element</a></h3>
+<p>Collection of all database definitions.</p>
+<p><em>Child Elements</em></p>
+<ul>
+<li>database: (zero or more)</li>
+</ul>
+<h3><a href="#the-database-element" id="the-database-element">The &lt;database&gt; element</a></h3>
+<p>Definition of a database object.</p>
+<p><em>Attributes</em></p>
+<ul>
+<li>name: the logical name of this database (required)</li>
+<li>dbname: the database name of this database - default is attribute name (optional)</li>
+<li>pkey: database key type - one of idauto (optional)</li>
+<li>extrafields: additional standard fields to add - one of usertimestamp (optional)</li>
+<li>usepackage: ?? (optional)</li>
+</ul>
+<p><em>Child Elements</em></p>
+<ul>
+<li>table: (zero or more)</li>
+</ul>
+<h3><a href="#the-table-element" id="the-table-element">The &lt;table&gt; element</a></h3>
+<p>Definition of a database table object.</p>
+<p><em>Attributes</em></p>
+<ul>
+<li>name: entity name (required)</li>
+<li>dbname: the database name of this table - default is attribute name  (optional)</li>
+<li>pkey: database key type - one of idauto (optional)</li>
+<li>extrafields: additional standard fields to add - one of usertimestamp (optional)</li>
+<li>rule: the table level rule to be applied (optional)</li>
+</ul>
+<p><em>Child Elements</em></p>
+<ul>
+<li>field: (zero or more)</li>
+<li>insertentity: (zero or more)</li>
+</ul>
+<h3><a href="#the-field-element" id="the-field-element">The &lt;field&gt; element</a></h3>
+<p>Definition of a database table field (column) object.</p>
+<p><em>Attributes</em></p>
+<ul>
+<li>pkey: yes if this field is the primary key  (optional)</li>
+<li>name: field name (required)</li>
+<li>dbname: the table column name - defaults to attribute name (optional)</li>
+<li>index: define the indexing for this field - one of unique or yes - default is no (optional)</li>
+<li>unique: define the uniqueness of this field - one of yes - default is no (optional)</li>
+<li>type: data type of the field one of boolean, long, int, date, datetime, enum, password or reference - default is string (optional)</li>
+<li>decimalsize: the size of the  decimal number (optional)</li>
+<li>choicemethod: the method to be used to obtain set of possible choices for this field (optional)</li>
+<li>nullallowed: are null values allowed? - one of yes - default is no (optional)</li>
+<li>label: the field label (optional)</li>
+<li>references: the target entity for this reference (optional)</li>
+<li>fkey:  set to no if foreign key is not utilised - default is yes  (optional)</li>
+<li>values: set of enum values (comma separated) (optional)</li>
+<li>min: min length of string entered, min value of number entered (optional)</li>
+<li>max: max length of string entered, max value of number entered (optional)</li>
+<li>future: set to yes if date or datetime entered must be in future (optional)</li>
+<li>past: set to yes if date or datetime entered must be in past (optional)</li>
+<li>tablecolumnname (optional)</li>
+</ul>
+<h3><a href="#the-insertentity-element" id="the-insertentity-element">The &lt;insertentity&gt; element</a></h3>
+<p>Definition of an data row to be inserted into the database table object.</p>
+<p><em>Child Elements</em></p>
+<ul>
+<li>insertfield: (zero or more)</li>
+</ul>
+                    <div class="previousnextmenu">
+                        <div class="button-icon-left" >
+                                <a href="project.html">Previous</a>
+                        </div>
+                        <div class="button-icon-right" >
+                                <a href="install.html">Next</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                </div>
+                <div id="push"></div>
+            </div>
+            <div id="footer">
+              <div class="container">
+                <p class="muted credit">&copy; The-Retired-Programmer 2019&ndash;2021</p>
+              </div>
+            </div>
+            <!-- Placed at the end of the document so the pages load faster -->
+            <script src="../../js/jquery-1.11.1.min.js"></script>
+            <script src="../../js/bootstrap.min.js"></script>
+            <script src="../../js/prettify.js"></script>
+        </body>
+    </html>
+
