@@ -1,4 +1,4 @@
-title=Extexp User Documentation - Structure of the Build file
+title=Extexp User Guide - Structure of the Build file
 date=2022-05-21
 type=document
 status=published

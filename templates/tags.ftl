@@ -3,7 +3,7 @@
 <@layout/>
 
 <#macro layout>
-    <@parent.layout>
+    <@parent.layout title=tag>
 	<div class="page-header">
             <h2>Product: ${tag}</h2>
 	</div>

@@ -1,4 +1,4 @@
-title=Extexp User Documentation - An Extexp Project
+title=Extexp User Guide - An Extexp Project
 date=2022-05-21
 type=document
 status=published

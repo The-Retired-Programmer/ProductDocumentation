@@ -1,9 +1,14 @@
-<#macro layout>
+<#macro layout title="">
+    <#assign _title2 = content.title!title/>
+    <#assign _title = config.title>
+    <#if _title2 != "">
+        <#assign _title =  _title+" - "+_title2/>
+     <#else></#if>
     <!DOCTYPE html>
     <html lang="en">
         <head>
             <meta charset="utf-8"/>
-            <title><#if (content.title)??>${content.title}<#else>JBake</#if></title>
+            <title>${_title}</title>
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <meta name="description" content="">
             <meta name="author" content="">

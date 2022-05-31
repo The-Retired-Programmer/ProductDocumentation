@@ -3,7 +3,7 @@
 <@layout/>
 
 <#macro layout>
-    <@parent.layout>
+    <@parent.layout title="News Items">
 	<div class="page-header">
             <h1>News Items</h1>
 	</div>

@@ -1,4 +1,4 @@
-title=Extexp User Documentation - Release Notes
+title=Extexp User Guide - Release Notes
 date=2022-05-21
 type=document
 status=published

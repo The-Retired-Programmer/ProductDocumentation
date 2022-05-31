@@ -1,4 +1,4 @@
-title=Extexp User Documentation - Control Commands
+title=Extexp User Guide - Control Commands
 date=2022-05-21
 type=document
 status=published
