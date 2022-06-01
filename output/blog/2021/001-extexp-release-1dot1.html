@@ -64,26 +64,40 @@
             <div class="page-header">
                 <h1>Extexp version 1.1 released</h1>
             </div>
-<p>Extexp has been updated and a new version (1.1) has been released.  The NBM is available for download from GitHub.</p>
-<p>This release includes a new control command &ldquo;ForList&rdquo;, a loop construct which runs a command once for each element in a list.  The actual element value is presented via a special parameter &ldquo;__ELEMENT__&rdquo;.  The element list is a string using the &lsquo;|&rsquo; character as the element delimiter.</p>
+<div class="paragraph">
+<p>Extexp has been updated and a new version (1.1) has been released.  The NBM is available for
+download from GitHub.</p>
+</div>
+<div class="paragraph">
+<p>This release includes a new control command "ForList", a loop construct which runs a command
+once for each element in a list.  The actual element value is presented via a special parameter
+"__ELEMENT__".  The element list is a string using the '|' character as the element delimiter.</p>
+</div>
+<div class="paragraph">
 <p>Examples of syntax:</p>
-<pre><code class="language-json">    {
-        &quot;ForList&quot;: &quot;${pageorder}&quot;,
-        &quot;do&quot;: {
-            &quot;Use&quot;: &quot;PAGEBUILDERWITHCONTENTSSIDEBAR&quot;,
-            &quot;page&quot;: &quot;${__ELEMENT__}&quot;
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="json">    {
+        "ForList": "${pageorder}",
+        "do": {
+            "Use": "PAGEBUILDERWITHCONTENTSSIDEBAR",
+            "page": "${__ELEMENT__}"
         }
-    }
-</code></pre>
-<pre><code class="language-json">    {
-        &quot;ForList&quot;: &quot;apple|lemon|pear&quot;,
-        &quot;do&quot;: {
-            &quot;Do&quot;: &quot;message&quot;,
-            &quot;text&quot;: &quot;the fruit is ${__ELEMENT__}&quot;
+    }</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="json">    {
+        "ForList": "apple|lemon|pear",
+        "do": {
+            "Do": "message",
+            "text": "the fruit is ${__ELEMENT__}"
         }
-    }
-</code></pre>
-        <div class="previousnextmenu">
+    }</code></pre>
+</div>
+</div>        <div class="previousnextmenu">
             <div class="button-icon-left" >
                     Product:
                         <a href="../../tags/Extexp.html">Extexp</a>
