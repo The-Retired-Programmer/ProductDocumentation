@@ -64,16 +64,33 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-4">
-                                    <h3><a href="#nbpcg-user-guide" id="nbpcg-user-guide">NBPCG User Guide</a></h3>
+                                    <div class="sect1">
+<h2 id="_nbpcg_user_guide">NBPCG User Guide</h2>
+<div class="sectionbody">
+<div class="ulist">
 <ul>
-<li><a href="index.html">Introduction</a></li>
-<li><a href="project.html">An NBPCG Project</a></li>
-<li><a href="script.html">The NBPCG Script</a></li>
-<li><a href="install.html">Installation</a></li>
-<li><a href="developer.html">Developer Notes</a></li>
-<li><a href="release.html">Release Notes</a></li>
+<li>
+<p><a href="index.html">Introduction</a></p>
+</li>
+<li>
+<p><a href="project.html">An NBPCG Project</a></p>
+</li>
+<li>
+<p><a href="script.html">The NBPCG Script</a></p>
+</li>
+<li>
+<p><a href="install.html">Installation</a></p>
+</li>
+<li>
+<p><a href="developer.html">Developer Notes</a></p>
+</li>
+<li>
+<p><a href="release.html">Release Notes</a></p>
+</li>
 </ul>
-
+</div>
+</div>
+</div>
                     <p><em>21 May 2022</em></p>
                 </div>
                 <div class="col-sm-8">
@@ -85,58 +102,254 @@
                                 <a href="script.html">Next</a>
                         </div>
                     </div>
-<h2><a href="#creating-a-project-and-running-the-code-generator" id="creating-a-project-and-running-the-code-generator">Creating a project and running the code generator</a></h2>
-<p>A normal NetBeans module project should be created (both Maven and ANT build system projects are supported).  This project is then customised so that the code generator can be add code to the project.</p>
-<h3><a href="#customising-a-maven-project" id="customising-a-maven-project">Customising a Maven project</a></h3>
+<div class="sect1">
+<h2 id="_creating_a_project_and_running_the_code_generator">Creating a project and running the code generator</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A normal NetBeans module project should be created (both Maven and ANT build
+system projects are supported).  This project is then customised so that the code
+generator can be add code to the project.</p>
+</div>
+<div class="sect2">
+<h3 id="_customising_a_maven_project">Customising a Maven project</h3>
+<div class="ulist">
 <ul>
-<li>In Projects View, Add a folder named <code>nbpcg</code> under <code>Other Sources</code>.</li>
-<li>Place the nbpcg script file ( <code>script.xml</code>) in the <code>nbpcg</code> node</li>
+<li>
+<p>In Projects View, Add a folder named <code>nbpcg</code> under <code>Other Sources</code>.</p>
+</li>
+<li>
+<p>Place the nbpcg script file ( <code>script.xml</code>) in the <code>nbpcg</code> node</p>
+</li>
 </ul>
-<p><img src="resources/nbpcgfolderandscript.jpg" alt="nbpcg folder and script" /></p>
-<h3><a href="#customising-an-ant-project" id="customising-an-ant-project">Customising an ANT project</a></h3>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="resources/nbpcgfolderandscript.jpg" alt="nbpcg folder and script">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_customising_an_ant_project">Customising an ANT project</h3>
+<div class="ulist">
 <ul>
-<li>In Files view, Add a folder name <code>nbpcg-files</code> under the project root.</li>
-<li>In Project view, Place the nbpcg script file ( <code>script.xml</code>) in the <code>NBPCG File</code> node.</li>
+<li>
+<p>In Files view, Add a folder name <code>nbpcg-files</code> under the project root.</p>
+</li>
+<li>
+<p>In Project view, Place the nbpcg script file ( <code>script.xml</code>) in the <code>NBPCG File</code> node.</p>
+</li>
 </ul>
-<h3><a href="#executing-the-nbpcg-script" id="executing-the-nbpcg-script">Executing the NBPCG script</a></h3>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_executing_the_nbpcg_script">Executing the NBPCG script</h3>
+<div class="paragraph">
 <p>The NBPCG script can be executed by actions on the popup menu on:</p>
+</div>
+<div class="paragraph">
 <p>1)   The Project node</p>
-<p><img src="resources/projectaction.jpg" alt="project node action" /></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="resources/projectaction.jpg" alt="project node action">
+</div>
+</div>
+<div class="paragraph">
 <p>2)   The NBPCG script file</p>
-<p><img src="resources/scriptaction.jpg" alt="script action" /></p>
-<p>Executing the script will open a new tab in the output window. Progress and errors will be reported in that tab.</p>
-<p><img src="resources/outputtab.jpg" alt="output tab" /></p>
-<h3><a href="#dependency-information-for-nbpcg-generated-modules" id="dependency-information-for-nbpcg-generated-modules">Dependency Information for NBPCG generated Modules</a></h3>
-<p>NBPCG does not currently setup dependencies for the generated modules (either on NBPCG support libraries or Netbean Platform modules). The following documentation details the dependencies that exist and should be added to the various generated modules.</p>
-<table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="resources/scriptaction.jpg" alt="script action">
+</div>
+</div>
+<div class="paragraph">
+<p>Executing the script will open a new tab in the output window. Progress and errors will be reported
+in that tab.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="resources/outputtab.jpg" alt="output tab">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_dependency_information_for_nbpcg_generated_modules">Dependency Information for NBPCG generated Modules</h3>
+<div class="paragraph">
+<p>NBPCG does not currently setup dependencies for the generated modules
+(either on NBPCG support libraries or Netbean Platform modules). The
+following documentation details the dependencies that exist and should
+be added to the various generated modules.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.6669%;">
+</colgroup>
 <thead>
-<tr><th align="left">                              : Datamodel     : NodeModel     : NodeViewer    : NodeEditor </th></tr>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-left valign-top">Datamodel</th>
+<th class="tableblock halign-left valign-top">NodeModel</th>
+<th class="tableblock halign-left valign-top">NodeViewer</th>
+<th class="tableblock halign-left valign-top">NodeEditor</th>
+</tr>
 </thead>
 <tbody>
-<tr><td align="left" colspan="5"><strong>NetBeans Platform</strong></td></tr>
-<tr><td align="left">Explorer &amp; Property Sheet API</td><td align="center"> </td><td align="center">x</td><td align="center">x</td><td align="center"> </td></tr>
-<tr><td align="left">Lookup API</td><td align="center">x</td><td align="center"> </td><td align="center">x</td><td align="center">x</td></tr>
-<tr><td align="left">Nodes API</td><td align="center"> </td><td align="center">x</td><td align="center">x</td><td align="center">x</td></tr>
-<tr><td align="left">UI Utilities API</td><td align="center">: </td><td align="center">x</td><td align="center">x</td></tr>
-<tr><td align="left">Utilities API</td><td align="center"> </td><td align="center">x</td><td align="center">x</td><td align="center">x</td></tr>
-<tr><td align="left">Window System API</td><td align="center">: </td><td align="center">x</td><td align="center">x</td></tr>
-<tr><td align="left" colspan="5"><strong>NBPCG-Library</strong></td></tr>
-<tr><td align="left">MySQL</td><td align="center"> *: </td><td align="center">: </td></tr>
-<tr><td align="left">NBPCG Data Support Lib</td><td align="center">x</td><td align="center">x</td><td align="center">x</td><td align="center">x</td></tr>
-<tr><td align="left">NBPCG Form Support Lib</td><td align="center">: </td><td align="center"> </td><td align="center">x</td></tr>
-<tr><td align="left">NBPCG Node Support Lib</td><td align="center"> </td><td align="center">x</td><td align="center">x</td><td align="center">x</td></tr>
-<tr><td align="left">NBPCG Support Lib</td><td align="center">x</td><td align="center">x</td><td align="center">x</td><td align="center">x</td></tr>
-<tr><td align="left">NBPCG TopComponent Support Lib</td><td align="center">: </td><td align="center">x</td><td align="center">x</td></tr>
-<tr><td align="left" colspan="5"><strong>GENERATED MODULES</strong></td></tr>
-<tr><td align="left">XX DataModel</td><td align="center"> </td><td align="center">x</td><td align="center">x</td><td align="center">x</td></tr>
-<tr><td align="left">XX NodeModel</td><td align="center">: </td><td align="center">x</td><td align="center">x</td></tr>
-<tr><td align="left">XX NodeEditor</td><td align="center"> </td><td align="center">x</td><td align="center">: </td></tr>
-<tr><td align="left" colspan="5"> <em>If you are using table aliases to access other tables then you will need to add addition dependencies to those modules</em></td></tr>
-<tr><td align="left" colspan="5"><strong>ALIAS MODULES</strong></td></tr>
-<tr><td align="left">XX DataModel</td><td align="center">x</td><td align="center">x</td><td align="center">x</td><td align="center">x</td></tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>NetBeans Platform</strong></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Explorer &amp; Property Sheet API</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lookup API</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nodes API</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UI Utilities API</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Utilities API</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Window System API</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>NBPCG-Library</strong></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MySQL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">*</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NBPCG Data Support Lib</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NBPCG Form Support Lib</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NBPCG Node Support Lib</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NBPCG Support Lib</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NBPCG TopComponent Support Lib</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>GENERATED MODULES</strong></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">XX DataModel</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">XX NodeModel</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">XX NodeEditor</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>If you are using table aliases to access other tables then you will need to add addition dependencies to those modules</strong></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ALIAS MODULES</strong></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">XX DataModel</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x</p></td>
+</tr>
 </tbody>
 </table>
-                    <div class="previousnextmenu">
+</div>
+</div>
+</div>                    <div class="previousnextmenu">
                         <div class="button-icon-left" >
                                 <a href="index.html">Previous</a>
                         </div>
@@ -152,7 +365,7 @@
             </div>
             <div id="footer">
               <div class="container">
-                <p class="muted credit">&copy; The-Retired-Programmer 2019&ndash;2021</p>
+                <p class="muted credit">&copy; The-Retired-Programmer 2019&ndash;2022</p>
               </div>
             </div>
             <!-- Placed at the end of the document so the pages load faster -->

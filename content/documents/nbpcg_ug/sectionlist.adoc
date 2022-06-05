@@ -1,0 +1,16 @@
+= nbpcg section list
+Richard Linsdale
+2022-05-21
+:jbake-document: nbpcg_ug
+:jbake-type: sectionlist
+:jbake-status: published
+
+
+== NBPCG User Guide
+
+* xref:index.html[Introduction]
+* xref:project.html[An NBPCG Project]
+* xref:script.html[The NBPCG Script]
+* xref:install.html[Installation]
+* xref:developer.html[Developer Notes]
+* xref:release.html[Release Notes]

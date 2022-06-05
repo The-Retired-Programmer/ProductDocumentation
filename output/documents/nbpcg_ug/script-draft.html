@@ -64,44 +64,25 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-4">
-                                    <div class="sect1">
-<h2 id="_nbpcg_user_guide">NBPCG User Guide</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p><a href="index.html">Introduction</a></p>
-</li>
-<li>
-<p><a href="project.html">An NBPCG Project</a></p>
-</li>
-<li>
-<p><a href="script.html">The NBPCG Script</a></p>
-</li>
-<li>
-<p><a href="install.html">Installation</a></p>
-</li>
-<li>
-<p><a href="developer.html">Developer Notes</a></p>
-</li>
-<li>
-<p><a href="release.html">Release Notes</a></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
                     <p><em>21 May 2022</em></p>
                 </div>
                 <div class="col-sm-8">
                     <div class="previousnextmenu">
                         <div class="button-icon-left" >
-                                <a href="project.html">Previous</a>
                         </div>
                         <div class="button-icon-right" >
-                                <a href="install.html">Next</a>
                         </div>
                     </div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>:jbake-status:published
+:jbake-nextpage: install
+:jbake-previouspage: project
+:jbake-sectionlistname: nbpcg_ug</p>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_script_contentsyntax_notes">Script Content/Syntax Notes</h2>
 <div class="sectionbody">
@@ -118,10 +99,10 @@ from the other category with file type NBPCG Definition file</p>
 <p>The structure of the script XML file is described below:</p>
 </div>
 <div class="paragraph">
-<p>The top level element is the &lt;nbpcg&gt; element.</p>
+<p>The top level element is the \&lt;nbpcg&gt; element.</p>
 </div>
 <div class="sect2">
-<h3 id="_the_nbpcg_element">The &lt;nbpcg&gt; element</h3>
+<h3 id="_the_nbpcg_element">The \&lt;nbpcg&gt; element</h3>
 <div class="paragraph">
 <p><strong>Attributes</strong></p>
 </div>
@@ -150,7 +131,7 @@ from the other category with file type NBPCG Definition file</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_the_build_element">The &lt;build&gt; element</h3>
+<h3 id="_the_build_element">The \&lt;build&gt; element</h3>
 <div class="paragraph">
 <p>Defines the build information - artifact selection, projects and packages etc.</p>
 </div>
@@ -179,7 +160,7 @@ from the other category with file type NBPCG Definition file</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_the_project_element">The &lt;project&gt; element</h3>
+<h3 id="_the_project_element">The \&lt;project&gt; element</h3>
 <div class="paragraph">
 <p>Defines the project information.</p>
 </div>
@@ -208,9 +189,11 @@ from the other category with file type NBPCG Definition file</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_the_generate_element">The &lt;generate&gt; element</h3>
-<div class="paragraph">
-<p>Requests the generation of code or resource files for various types of entities.</p>
+<h3 id="_the_generate_element">The \&lt;generate&gt; element</h3>
+<div class="literalblock">
+<div class="content">
+<pre>Requests the generation of code or resource files for various types of entities.</pre>
+</div>
 </div>
 <div class="paragraph">
 <p><strong>Attributes</strong></p>
@@ -230,9 +213,11 @@ from the other category with file type NBPCG Definition file</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_the_node_element">The &lt;node&gt; element</h3>
-<div class="paragraph">
-<p>Defines the nodes required and their interrelationships.</p>
+<h3 id="_the_node_element">The \&lt;node&gt; element</h3>
+<div class="literalblock">
+<div class="content">
+<pre>Defines the nodes required and their interrelationships.</pre>
+</div>
 </div>
 <div class="paragraph">
 <p><strong>Attributes</strong></p>
@@ -322,9 +307,11 @@ from the other category with file type NBPCG Definition file</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_the_entryfield_element">The &lt;entryfield&gt; element</h3>
-<div class="paragraph">
-<p>Defines an entry fields and its configuration and mapping to an entity field.</p>
+<h3 id="_the_entryfield_element">The \&lt;entryfield&gt; element</h3>
+<div class="literalblock">
+<div class="content">
+<pre>Defines an entry fields and its configuration and mapping to an entity field.</pre>
+</div>
 </div>
 <div class="paragraph">
 <p><strong>Attributes</strong></p>
@@ -356,7 +343,7 @@ from the other category with file type NBPCG Definition file</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_the_action_element">The &lt;action&gt; element</h3>
+<h3 id="_the_action_element">The \&lt;action&gt; element</h3>
 <div class="paragraph">
 <p><strong>Attributes</strong></p>
 </div>
@@ -372,7 +359,7 @@ from the other category with file type NBPCG Definition file</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_the_databases_element">The &lt;databases&gt; element</h3>
+<h3 id="_the_databases_element">The \&lt;databases&gt; element</h3>
 <div class="paragraph">
 <p>Collection of all database definitions.</p>
 </div>
@@ -390,7 +377,7 @@ from the other category with file type NBPCG Definition file</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_the_database_element">The &lt;database&gt; element</h2>
+<h2 id="_the_database_element">The \&lt;database&gt; element</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Definition of a database object.</p>
@@ -428,7 +415,7 @@ from the other category with file type NBPCG Definition file</p>
 </ul>
 </div>
 <div class="sect2">
-<h3 id="_the_table_element">The &lt;table&gt; element</h3>
+<h3 id="_the_table_element">The \&lt;table&gt; element</h3>
 <div class="paragraph">
 <p>Definition of a database table object.</p>
 </div>
@@ -469,7 +456,7 @@ from the other category with file type NBPCG Definition file</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_the_field_element">The &lt;field&gt; element</h3>
+<h3 id="_the_field_element">The \&lt;field&gt; element</h3>
 <div class="paragraph">
 <p>Definition of a database table field (column) object.</p>
 </div>
@@ -536,7 +523,7 @@ from the other category with file type NBPCG Definition file</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_the_insertentity_element">The &lt;insertentity&gt; element</h3>
+<h3 id="_the_insertentity_element">The \&lt;insertentity&gt; element</h3>
 <div class="paragraph">
 <p>Definition of an data row to be inserted into the database table object.</p>
 </div>
@@ -554,10 +541,8 @@ from the other category with file type NBPCG Definition file</p>
 </div>
 </div>                    <div class="previousnextmenu">
                         <div class="button-icon-left" >
-                                <a href="project.html">Previous</a>
                         </div>
                         <div class="button-icon-right" >
-                                <a href="install.html">Next</a>
                         </div>
                     </div>
                 </div>

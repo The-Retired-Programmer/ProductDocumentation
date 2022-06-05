@@ -1,13 +1,13 @@
-title= NBPCG User Guide - Installation Notes
-date=2022-05-21
-type=document
-status=published
-nextpage=developer
-previouspage=script
-sectionlistname=nbpcg_ug
-~~~~~~
+= NBPCG User Guide - Installation Notes
+Richard Linsdale
+2022-05-21
+:jbake-type: document
+:jbake-status: published
+:jbake-nextpage: developer
+:jbake-previouspage: script
+:jbake-sectionlistname: nbpcg_ug
 
-## Installation Notes ##
+== Installation Notes
 
 **Current release**: v5.0.1
 
@@ -19,17 +19,17 @@ programme will be distributed via this single Uodate Centre.
 
 To add the Update Centre to the IDE, click on the  Plugins entry in the Tool Menu to display the Plugins Dialog.
 
-![Plugin Menu](resources/pluginmenu.png)
+image::resources/pluginmenu.png[Plugin Menu]
 
 Select the Setting tab, to display the current list of Update Centres.
 
-![Plugin Dialog - Settings Tab](resources/plugindialogsettings.png)
+image::resources/plugindialogsettings.png[Plugin Dialog - Settings Tab]
 
 Assuming that the additional
 Update Centre has not already been defined, press the Add button and enter the two required fields (Name and URL).
 Once correctly entered, press OK to complete this operation.
 
-![Add Update Centre](resources/addupdatecentre.png)
+image::resources/addupdatecentre.png[Add Update Centre]
 
 Now select the "Available Plugins" tab.  You should now find a list of all available plugins, including a set of
 The-Retired-Programmer plugins.  
@@ -39,7 +39,7 @@ entries should be visible.
 
 Select one or more plugins and then press the Install button.  This will install the plugins into your IDE.
 
-![Plugin Dialog - Available Tab](resources/plugindialogavailable.png)
+image::resources/plugindialogavailable.png[Plugin Dialog - Available Tab]
 
 During this process a warning is raised indicating that the plugin(s) are not signed and so may be a risk.
 By pressing the Continue putton the installation wil continue.
@@ -47,10 +47,10 @@ By pressing the Continue putton the installation wil continue.
 To confirm this has occurred you can switch to the Installed tab and view the installed plugins.  Note you will have to tick
 the box labelled "Show detail" on this tab in order to list all plugins.
 
-![Plugin Dialog - Installed Tab](resources/plugindialoginstalled.png)
+image::resources/plugindialoginstalled.png[Plugin Dialog - Installed Tab]
 
 Alternatively the plugin can be downloaded directly from Maven Central.  The current release is v5.0.1, which can be downloaded
-[from Maven Central](http://central.maven.org/maven2/uk/theretiredprogrammer/nbpcg/5.0.1/nbpcg-5.0.1.nbm).
+http://central.maven.org/maven2/uk/theretiredprogrammer/nbpcg/5.0.1/nbpcg-5.0.1.nbm[from Maven Central].
 
 The nbm file can be placed anywhere in the filesystem on your machine, and loaded manually into the IDE using the
 Plugin Dialog.

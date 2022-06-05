@@ -72,7 +72,7 @@
             </div>
             <div id="footer">
               <div class="container">
-                <p class="muted credit">&copy; The-Retired-Programmer 2019&ndash;2021</p>
+                <p class="muted credit">&copy; The-Retired-Programmer 2019&ndash;2022</p>
               </div>
             </div>
             <!-- Placed at the end of the document so the pages load faster -->
