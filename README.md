@@ -1,2 +1,2 @@
-# Extexp-Documentation
+# Extexp Documentation
 Documentation for Extexp
