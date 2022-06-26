@@ -1,0 +1,27 @@
+
+== Developer Notes
+
+The source code is available on GitHub.
+
+The build/dependency manangement system is Maven.
+
+The development environment uses the Netbeans IDE, but this is not mandatory,
+any development environment which can work with a Maven project can be used.
+
+=== Source Code
+
+Sources for this release can be found https://github.com/The-Retired-Programmer/nbpcg/releases/tag/v5.0.1[here].
+
+Alternatively the project can be forked from https://github.com/The-Retired-Programmer/nbpcg[here]
+to obtain the whole source tree.  Tag v5.0.1 refers to the sources
+relevant to this release.
+
+Online Javadoc for this release can be found
+xref:javadoc/index.adoc[here],
+whilst a downloadable jar file containing the same Javadoc is available from
+http://www.rlinsdale.org.uk/repository/uk/theretiredprogrammer/nbpcg/5.0.1/nbpcg-5.0.1-javadoc.jar[here]
+
+Developers modifying the source code are encouraged to submit their changes
+back to the project using a Pull-Request (for consideration for
+inclusion in a future release).
+                

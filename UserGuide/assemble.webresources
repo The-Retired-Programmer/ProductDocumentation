@@ -1,0 +1,6 @@
+# assemble all the resources into the target resources folder
+#
+cp src/chapter1/resources/* target/resources/
+cp src/chapter2/resources/* target/resources/
+cp src/chapter3/resources/* target/resources/
+cp src/chapter4/resources/* target/resources/

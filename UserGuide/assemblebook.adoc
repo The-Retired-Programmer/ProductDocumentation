@@ -1,0 +1,18 @@
+= NBPCG User Guide
+
+:imagesdir: src/chapter1/
+include::src/chapter1/index.adoc[]
+
+:imagesdir: src/chapter2/
+include::src/chapter2/project.adoc[]
+
+:imagesdir: src/chapter3/
+include::src/chapter3/script.adoc[]
+
+:imagesdir: src/chapter4/
+include::src/chapter4/install.adoc[]
+
+include::src/chapter5/developer.adoc[]
+
+include::src/chapter6/release.adoc[]
+
