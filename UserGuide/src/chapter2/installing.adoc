@@ -16,7 +16,7 @@ kramdown's location.  By using the NetBeans preferences window and  selecting
 the Extexp options panel and then the markdown tab, the path to the kramdown executable
 can be defined.
        
-image::./resources/options-markdown.png[options for markdown]
+image::resources/options-markdown.png[options for markdown]
 
 *   **FOP**: install the latest version of FOP and then use the same process as was used for
 markdown (Extexp options panel/FOP tab) in order to define the location of the executable script for FOP.
