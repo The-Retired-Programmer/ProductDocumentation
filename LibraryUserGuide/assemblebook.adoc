@@ -1,0 +1,9 @@
+= NBPCG Library User Guide
+
+include::src/chapter1/index.adoc[]
+
+include::src/chapter2/user.adoc[]
+
+include::src/chapter3/developer.adoc[]
+
+include::src/chapter4/release.adoc[]
