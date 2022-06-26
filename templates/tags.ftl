@@ -20,6 +20,15 @@
                             </#list>
                         <#else></#if>
                     </#list>
+                    <#list passthroughs as passthrough>
+                        <#if (passthrough.tags)??>
+                            <#list passthrough.tags as dtag>
+                                <#if dtag == tag>
+                                    <li><a href="${content.rootpath}${passthrough.uri}">${passthrough.title}</a> - ${passthrough.date?string("dd MMMM yyyy")}</li>
+                                <#else></#if>
+                            </#list>
+                        <#else></#if>
+                    </#list>
                 </div>
                 <div class="col-sm-6">
                     <h3>News Items</h3>

@@ -9,7 +9,7 @@
 	</div>
 	<#list posts as post>
             <#if (post.status == "published")>
-                <a href="${post.uri}"><h1>${post.title}</h1></a>
+                <a href="${post.uri}"><h2>${post.title}</h2></a>
                 <p>${post.body}</p>
                 <div class="previousnextmenu">
                     <div class="button-icon-left" >
