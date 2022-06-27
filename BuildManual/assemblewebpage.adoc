@@ -1,0 +1,3 @@
+= PICOHAT BUILD MANUAL
+
+//include::src/chapter1/introduction.adoc[]

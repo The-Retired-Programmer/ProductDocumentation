@@ -1,0 +1,3 @@
+= PICOHAT Design Guide
+
+//include::src/chapter1/introduction.adoc[]

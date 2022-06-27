@@ -1,0 +1,4 @@
+= PICOHAT BUILD MANUAL
+
+//:imagesdir: src/chapter2/
+//include::src/chapter2/installing.adoc[]
