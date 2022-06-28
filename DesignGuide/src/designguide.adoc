@@ -3,12 +3,13 @@
 The term PicoHat could be confusing, either a PI Hat which includes a Pico
 processor, or a Hat for a Pico.  In this case it is the former.
 
-The PicoHat is a derivitive by a project from Luke Wren named Pi400-Pico-Plate,
-who wanted a board that "connects a Pico to the GPIO header on a Pi 400, without
+The PicoHat is a derivative by a solution by Luke Wren named
+https://github.com/Wren6991/Pi400-Pico-Plate[Pi400-Pico-Plate].
+Luke wanted a board that "connects a Pico to the GPIO header on a Pi400, without
 any wires flapping in the breeze".
 
-It's primary task (as was the original design) was to provide a platform for
-testing Pico code, developed on a RPi.
+PicoHat's primary task (as was the original Pi400-Pico-Plate) was to provide
+a platform for testing Pico code, developed on a Pi.
 
 It also should be capable of supporting the connection of additional hardware, in order
 to support the development of Pico software which interacts with external components.
@@ -22,7 +23,7 @@ to support the development of Pico software which interacts with external compon
 
 ** To allow any subsequent builder to easily customise the design.
 
-* To build a conventional Pi HAT, rather that a specific RPi 400 product.
+* To build a conventional Pi HAT, rather that the specific Pi400 product.
 
 
 
@@ -40,25 +41,49 @@ Minor operational problems were observed which could be improved in a future des
 * The pins are sometimes difficult to quickly locate, being all black.
 
 * The USB connection being on the left hand side of the Hat was not in the best
-place, when being used with a RPi 400.  This was particularly obvious when
-trying to also use a patchboard for protyping where its natural position could
+place, when being used with a Pi400.  This was particularly obvious when
+trying to also use a breadboard for prototyping where its natural position could
 be to the left of the Hat.
 
 * The reset switch is difficult to reach, being positioned to the far side of
 the Pico.
 
 * There is a lack of +5V, +3.3V and 0V pins available for prototyping use.
-Using either Pico or RPi pins results in many jumper leads crossing the board.
+Using either Pico or Pi pins results in many jumper leads crossing the board.
 
 == Design changes for V2 Pico Hat
 
+Resolve all this issue mentioned above:
 
+* create a mirror image board design, rotating the Pico through 180 degress, to
+position the Pico USB socket to the right of the Hat.
 
+* use dual pins for Pico pins- the first being used only the solder the Pico to
+the board.
+The second being the pins for use with jumper wires.
+These connecting pins to be mixed colours depending upon use:
+** Red - 5V
+** Orange - 3.3V
+** Black - 0V
+** Green - Pico data pins
+** Blue - special Pico Pins
+** White - Pi data pins 
 
+* The design to include cut tracks on the board to allow more freedom to install
+components (such as the Reset switch) at more accessible positions.
+
+* add sets of power pins on the edge of the board:
+** Pico: 5V and 3.3V
+** Pi GPIO: 5v and 3.3V 
+** Common: 0V
+
+* include 3 LEDs on the board (optional) to be able to monitor UART TX and RX, and
+the ??? CLK.  This was on schematic of Pi400-Pico-Plate but was not featured in the
+last PCB design.
 
 == References
 
-1) https://github.com/Wren6991/Pi400-Pico-PlateLuke[Wren's GitHub repository for Pi400-Pico-Plate]
+1) https://github.com/Wren6991/Pi400-Pico-PlateLuke[Luke Wren's GitHub repository for Pi400-Pico-Plate]
 
 
 
