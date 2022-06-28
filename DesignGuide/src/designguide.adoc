@@ -1,0 +1,65 @@
+== Introduction
+
+The term PicoHat could be confusing, either a PI Hat which includes a Pico
+processor, or a Hat for a Pico.  In this case it is the former.
+
+The PicoHat is a derivitive by a project from Luke Wren named Pi400-Pico-Plate,
+who wanted a board that "connects a Pico to the GPIO header on a Pi 400, without
+any wires flapping in the breeze".
+
+It's primary task (as was the original design) was to provide a platform for
+testing Pico code, developed on a RPi.
+
+It also should be capable of supporting the connection of additional hardware, in order
+to support the development of Pico software which interacts with external components.
+
+
+== Original design goals
+
+* To build the product without a custom Printed Circuit Board:
+
+** To allow this variant to be constructed without PCB design skills.
+
+** To allow any subsequent builder to easily customise the design.
+
+* To build a conventional Pi HAT, rather that a specific RPi 400 product.
+
+
+
+== Experiences from use of the Version 1 PicoHat
+
+The product worked well as a software platform, really a validation of the original
+design of the Pi400-Pico-Plate.
+
+Minor operational problems were observed which could be improved in a future design:
+
+* The Pico pins are difficult to connect to, when using jumper wires:
+** they are shorter that normal pins, due to their use to solder the Pico. 
+** they could be residual solder on the pins which makes connection difficult.
+
+* The pins are sometimes difficult to quickly locate, being all black.
+
+* The USB connection being on the left hand side of the Hat was not in the best
+place, when being used with a RPi 400.  This was particularly obvious when
+trying to also use a patchboard for protyping where its natural position could
+be to the left of the Hat.
+
+* The reset switch is difficult to reach, being positioned to the far side of
+the Pico.
+
+* There is a lack of +5V, +3.3V and 0V pins available for prototyping use.
+Using either Pico or RPi pins results in many jumper leads crossing the board.
+
+== Design changes for V2 Pico Hat
+
+
+
+
+
+== References
+
+1) https://github.com/Wren6991/Pi400-Pico-PlateLuke[Wren's GitHub repository for Pi400-Pico-Plate]
+
+
+
+
