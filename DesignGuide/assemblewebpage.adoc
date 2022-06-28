@@ -1,3 +1,3 @@
-= PICOHAT Design Guide
+= PICO-HAT Design Guide
 
-//include::src/chapter1/introduction.adoc[]
+include::src/designguide.adoc[]

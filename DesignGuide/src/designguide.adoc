@@ -1,21 +1,41 @@
 == Introduction
 
-The term PicoHat could be confusing, either a PI Hat which includes a Pico
+The term Pico-Hat could be confusing, could be either a PI Hat which includes a Pico
 processor, or a Hat for a Pico.  In this case it is the former.
 
-The PicoHat is a derivative by a solution by Luke Wren named
+The Pico-Hat is a derivative by a solution by Luke Wren named
 https://github.com/Wren6991/Pi400-Pico-Plate[Pi400-Pico-Plate].
 Luke wanted a board that "connects a Pico to the GPIO header on a Pi400, without
 any wires flapping in the breeze".
 
-PicoHat's primary task (as was the original Pi400-Pico-Plate) was to provide
-a platform for testing Pico code, developed on a Pi.
+Pico-Hat's primary task is to provide
+a platform for testing Pico code which had been developed on a Pi (the same as
+the task of the Pi400-Pico-Plate).
 
+However the Pico-Hat initial design goals were not to just emulate the Pico-Plate,
+but also provide additional functionality in it's implementation.
 It also should be capable of supporting the connection of additional hardware, in order
 to support the development of Pico software which interacts with external components.
 
+== The Pi400-Pico-Plate
 
-== Original design goals
+I have include a couple of images from Luke's documentation, so that simple
+visual comparison of the various products can be made. 
+
+image::resources/plugged_in.jpg[view of Pico-Plate plugged into the Pi400]
+
+image::resources/top_view.jpg[Pico-Plate]
+
+Pi400-Pico-Plate References
+
+. https://github.com/Wren6991/Pi400-Pico-Plate[Luke Wren's GitHub repository for Pi400-Pico-Plate]
+
+. https://github.com/Wren6991/Pi400-Pico-Plate/blob/master/pi400-pico-plate.pdf[Pi400-Pico-Plate original schematic]
+
+
+== The Pico-Hat version 1
+
+=== Design Goals
 
 * To build the product without a custom Printed Circuit Board:
 
@@ -25,18 +45,27 @@ to support the development of Pico software which interacts with external compon
 
 * To build a conventional Pi HAT, rather that the specific Pi400 product.
 
+* It also should be capable of easily supporting the connection of additional hardware,
+in order to support the development of Pico software which interacts with
+external components.
+
+=== The Product
 
 
-== Experiences from use of the Version 1 PicoHat
+=== Operational Use
 
-The product worked well as a software platform, really a validation of the original
+
+=== Design Review 
+
+The product worked well as a software platform, validating the original
 design of the Pi400-Pico-Plate.
 
 Minor operational problems were observed which could be improved in a future design:
 
 * The Pico pins are difficult to connect to, when using jumper wires:
-** they are shorter that normal pins, due to their use to solder the Pico. 
-** they could be residual solder on the pins which makes connection difficult.
+** they are shorter that normal pins, due to their use to solder the Pico to the
+board. 
+** there could be residual solder on the pins which makes connection difficult.
 
 * The pins are sometimes difficult to quickly locate, being all black.
 
@@ -48,18 +77,20 @@ be to the left of the Hat.
 * The reset switch is difficult to reach, being positioned to the far side of
 the Pico.
 
-* There is a lack of +5V, +3.3V and 0V pins available for prototyping use.
+* There is a lack of +5V, +3.3V and 0V pins easily available for prototyping use.
 Using either Pico or Pi pins results in many jumper leads crossing the board.
 
-== Design changes for V2 Pico Hat
+== The Pico-Hat version 2
 
-Resolve all this issue mentioned above:
+=== Design changes
 
-* create a mirror image board design, rotating the Pico through 180 degress, to
+Resolve all the issues mentioned in Pico-Hat version 1 review:
+
+* Create a mirror image board design, rotating the Pico through 180 degress, to
 position the Pico USB socket to the right of the Hat.
 
-* use dual pins for Pico pins- the first being used only the solder the Pico to
-the board.
+* Use dual sets of pins for Pico connections - the first being used only
+the solder the Pico to the board.
 The second being the pins for use with jumper wires.
 These connecting pins to be mixed colours depending upon use:
 ** Red - 5V
@@ -69,22 +100,42 @@ These connecting pins to be mixed colours depending upon use:
 ** Blue - special Pico Pins
 ** White - Pi data pins 
 
-* The design to include cut tracks on the board to allow more freedom to install
+* The design to include cutting tracks on the board to allow more freedom to install
 components (such as the Reset switch) at more accessible positions.
 
-* add sets of power pins on the edge of the board:
+* Add sets of power pins on the edge of the board:
 ** Pico: 5V and 3.3V
 ** Pi GPIO: 5v and 3.3V 
 ** Common: 0V
 
-* include 3 LEDs on the board (optional) to be able to monitor UART TX and RX, and
-the ??? CLK.  This was on schematic of Pi400-Pico-Plate but was not featured in the
-last PCB design.
+* Include 3 LEDs on the board to be able to monitor UART TX and RX, and
+the SWCLK.  This is on schematic of Pi400-Pico-Plate but was not featured in the
+latest PCB design.
 
-== References
+=== The Product
 
-1) https://github.com/Wren6991/Pi400-Pico-PlateLuke[Luke Wren's GitHub repository for Pi400-Pico-Plate]
+=== Operational Use
 
+=== Customisations
 
+A number of possible customisations of the version 2 product have been thought
+about.  These have not been included in the documented build, but could be
+considered by anyone choosing to build a derivative of the V2 design.
 
+==== Create a Pi400 dedicated version
 
+Using a 20x2 right angled connector it would be possible to omit the use of the
+HAT adaptor and GPIO socket, and make a direct connection to a Pi400.  The connector
+should be fitted to come out of the top of the board (as per the Pi400-Pico-Plate).
+about 16 wiring connections would have to be updated in the build (due to changes
+to GPIO pin locations made by changing the connector).
+
+==== Omit LEDs
+
+LEDS can obvious omitted from the design, if they are not deemed a benefit
+for you.
+
+==== And anything else that a designer may want to achieve
+
+The design is not closed and so can be customised in anyway to meet your
+individual needs.
