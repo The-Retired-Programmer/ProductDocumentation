@@ -1,0 +1,19 @@
+== Step 2: Insert Pins
+
+Pins are inserted and soldered into the board for a variety of uses on the board.
+
+The diagram shows the schematic of the pins location and colour.
+
+<add diagram>
+
+=== The Pico Pins
+
+
+=== The Pico Connection Pins
+
+
+=== Power Distribution Pins
+
+
+=== Link Pins
+

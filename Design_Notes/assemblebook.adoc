@@ -1,4 +1,4 @@
-= PICO-HAT DESIGN GUIDE
+= PICO-HAT Design Notes
 
 //:imagesdir: src/chapter2/
 //include::src/chapter2/installing.adoc[]

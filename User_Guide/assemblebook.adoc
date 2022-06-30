@@ -1,4 +1,4 @@
-= PICOHAT BUILD MANUAL
+= PICO-HAT User Guide
 
 //:imagesdir: src/chapter2/
 //include::src/chapter2/installing.adoc[]
