@@ -1,3 +1,3 @@
 # JBake-NBPlugin-Documentation
 
-Bake-NBPlugin is NetBeans Plugin which implements a JBake Project
+JBake-NBPlugin is NetBeans Plugin which implements a JBake Project
