@@ -1,0 +1,31 @@
+== Availability
+
+The Events source files are available on GitHub.
+Events is one part of Pico-Lib.
+
+The GitHub repository for Pico-Lib is: https://github.com/The-Retired-Programmer/Pico-Lib
+
+The project uses the GitHub Releases record the formal releases, so
+the source files should be obtained from here.
+
+For a fuller description of The-Retired_Programmer use of GitHub as repository,
+please look at: https://www.the-retired-programmer.uk/githubdevelopmentnotes.html
+
+All the information in this document expects the Application Project and Pico-Lib
+to be installed within the pico directory (as built with the standard Raspberry Pi
+installation scripts).
+Thus expected folder structure would be similar to:
+
+[source]
+----
+    |
+    |- pico -
+    |       |- my application - ...
+    |       |- PicoLib -
+    |       |          |- src -
+    |       |                 |- events - ...
+    |       | - pico-sdk - ...
+----
+
+However the user is free to use whatever folder structure they would like,
+changing their build system appropriately.

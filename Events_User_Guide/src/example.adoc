@@ -1,0 +1,71 @@
+== An Example of Events Handler in action
+
+=== main.c
+
+[source,c]
+----
+
+int main() {
+    stdio_init_all();
+    buttonActionsINIT(); <1>
+    timerActionsINIT(); <2>
+    eventHandler(); <3>
+}
+
+----
+<1> initialise the buttons (GPIO event generation)
+<2> initialise the timer (timer event generation)
+<3> run the event handler to sequencially process events from both sources
+
+=== buttonActionsINIT()
+
+Initialise the GPIO subsystem.  First defining the Event Handler action function,
+then initialising the GPIO configuration (including any PIO support) to generate
+the GPIO events.
+
+[source,c]
+----
+
+...
+void buttonActionsINIT() {
+    onEventGPIO( gpioaction, GPIO_IRQ_EDGE_RISE); <1>
+    uint from_pins[] = {10,11,12}; <2>
+    uint to_pins[] = {6,7,8}; <3>
+    if (!gpio_debounce_enable_events(from_pins, to_pins, 3, GPIO_IRQ_EDGE_RISE )) { <4>
+        printf("PANIC: failed to setup/enable buttons\n");
+        exit(EXIT_FAILURE);
+    }
+}
+...
+
+----
+<1> setup the function to be executed when the Event Handler processes a
+GPIO event (for a specified IRQ)
+<2> the source GPIO pins
+<3> the pins on which the debounced version of the source values are placed
+(but inverted)
+<4> configure the debounce PIO subsystem and the GPIO event generator.
+
+
+=== timerActionsINIT()
+
+Initialise the timer subsystem.  First defining the Event Handler action function,
+then initialising the timer configuration to generate the timer events.
+
+[source,c]
+----
+
+....
+void timerActionsINIT() {
+    onEventTimer(timeraction); <1>
+    if (!timer_enable_events(500)) { <2>
+        printf("PANIC: failed to setup/enable timers\n");
+        exit(EXIT_FAILURE);
+    }
+}
+....
+
+----
+<1> setup the function to be executed when the Event Handler processes a
+timer event
+<2> start the timer generating events at 500ms (1/2 sec) intervals

@@ -1,0 +1,9 @@
+= Events User Guide
+
+include::src/introduction.adoc[]
+
+include::src/example.adoc[]
+
+include::src/api.adoc[]
+
+include::src/availability.adoc[]
