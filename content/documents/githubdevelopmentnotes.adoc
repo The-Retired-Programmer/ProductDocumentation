@@ -1,0 +1,82 @@
+= Development Notes - Using GitHub
+Richard Linsdale
+2022-07-10
+:jbake-type: page
+:jbake-status: published
+:jbake-tags: General
+
+The-Retired-Programmer (TRP) uses some general principles in the processes associated
+with product development as cross all projects.
+This document covers the use of GitHub.
+
+GitHub serves the following functions for any product:
+
+* Source code repository (git).
+* Release system of record - both source and some build source entities.
+* Issues system for reporting bugs.
+* Discussion area - for problem and/or new feature discussions.
+* PR are accepted for review from other developers who may want
+to contribute to the project.
+
+=== Source Code repository
+
+The GitHub repository is the source control system for the TRP projects.
+The projects will use trunk based development (main), rather than branch based
+development.
+At point of release a branch will be created, marking the release point and also
+enabling the capability of creating a "hot-fix" release on that branch in
+emergency situations.
+While users could use the source code at the head of the trunk, this would be
+unadvisable for any product use, as trunk development does mean that such code:
+
+* could be unstable
+* include APIs which may be withdrawn
+* is not documented 
+
+=== GitHub Release Records
+
+The GitHub process for recording releases will be used for projects.  The default
+action of the release process:
+
+* tagging the release source within Git
+* building a release record
+* attaching source files (zip and tar.gz)
+
+In addition the TRP projects will attach additional files as are necessary
+for the release.
+This may include generated (executable) objects:
+
+* .nbm files for NetBeans projects
+* .jar files for Java projects
+* .o files for c projects
+* .pdf files for documentation projects
+
+
+=== Problem reporting (Discussions and Issues)
+
+TRP projects would like to use a work flow that handled problem reporting by using
+Discussions. 
+When the problem as been confirmed and all necessary information has been
+collected to reproduce it, then it will be recorded as an Issue. 
+
+=== New Features / Improvements (Discussion and Issues)
+
+New ideas or potential improvements need to be floated using Discussions.
+There should not be an immediate need to capture a full requirements statement
+at that point.
+A simple statement of the item and its benefits from a users point of
+view should be enough.
+
+Additions of a major size (sometimes called epics, or major stories)
+should also follow this route, but one of the first steps after validating
+the request may be to decompose it into small size unit (still delivering a user
+feature/benefit).
+Once features are selected to be worked on then they will be recorded via as Issues.
+
+=== Submission of PRs
+
+Developers who wish to submit new features, improvements, or problem fixes,
+should use the GitHub PR process to submit their changes.
+
+It is advisable that the problem reporting or new features / improvement processes
+are used initially to alert everyone of the proposed changes.

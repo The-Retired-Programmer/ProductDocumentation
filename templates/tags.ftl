@@ -29,6 +29,15 @@
                             </#list>
                         <#else></#if>
                     </#list>
+                    <#list pages as page>
+                        <#if (page.tags)??>
+                            <#list page.tags as dtag>
+                                <#if dtag == tag>
+                                    <li><a href="${content.rootpath}${page.uri}">${page.title}</a> - ${page.date?string("dd MMMM yyyy")}</li>
+                                <#else></#if>
+                            </#list>
+                        <#else></#if>
+                    </#list>
                 </div>
                 <div class="col-sm-6">
                     <h3>News Items</h3>
