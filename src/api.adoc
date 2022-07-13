@@ -1,0 +1,120 @@
+== The Actions Support API
+
+
+=== Dynamic Action
+
+Dynamic Action is the basic class of the Actions Support Plugin.
+A Dynamic Action is an implementation of the Netbeans AbstractAction class.
+
+A Dynamic Action is an Action which can be enabled or disabled, is not
+displayed when disabled and is associated with a CLI-like command which
+is executed when the enabled DynamicAction is selected.
+The action uses the NetBeans ProcessBuilder to execute the command.
+
+A DynamicAction has a folder to which it is associated. This is the node folder
+to which the action is attached.
+This folder is set as the working directory when the command is executed.
+The folder definition does support limited parameter substitution in the
+command line defined:
+
+* ${NODEPATH} - is replaced with the folder path.
+
+Commands have to be parsed into CLI "phrases" - options, option parameters, filenames etc.
+As this plugin can never have a full understanding of every command's syntax, it
+employs a basic parsing technique (breaking on word breaks ie white space).
+This works in the vast majority of cases, but there are cases where the CLI "phrase"
+is can include multiple words.  In this case, the phrase should be written with
+enclosing double quotes.
+These quotes will be stripped from input prior to it being passed to ProcessBuilder.
+
+If the label is set to null, the DynamicAction will be disabled and not displayed
+This can be dynamical updated during program execution.
+    
+
+==== Constructors
+
+public DynamicAction(FileObject dir, String label, String command) :: Construct
+a Dynamic Action which is enabled.
+* _dir_ the folder which is the node for this action
+* _label_ the label displayed when this DynamicAction is displayed.
+* _command_ the CLI command which is associated with this action.
+       
+public DynamicAction(FileObject dir) :: Construct a Dynamic Action which is
+disabled.
+* _dir_ the folder which is the node for this action
+
+==== Methods
+
+public final void setCommand(String label, String command) :: Enable this
+DynamicAction.
+* _label_ the label displayed when this DynamicAction is displayed.
+* _command_ the CLI command which is associated with this action.
+    
+public final void clearCommand() :: Disable this Dynamic Action.
+
+
+=== DynamicActions
+
+DynamicActions is a higher level implementation which uses Dynamic Actions.
+It creates a number of Dynamic Actions and reads an actions property file which
+defines the required labels and commands required for each action.
+
+These actions can then be merged with another set of actions.
+So node action popup list can be created, which continue to support the dynamic
+capabilities of actions merged.
+
+DynamicActions will observe the folder containing the property file,
+ensuring the actions are updated whenever changes to the property file occur.
+
+Additional files within the folder can be added to the observation list.
+
+
+public static enum FileChangeType {CREATED, CHANGED, RENAMEDTO, RENAMEDFROM, DELETED} ::
+The types of file changes which are observed by DynamicActions.
+    
+
+==== Constructor
+
+public DynamicActions(FileObject filefolder, String actionpropertiesfilename, int maxactions) ::
+Create a DynamicActions object
+* _filefolder_ The filefolder containing the actionsproperties file (the node folder)
+* _actionpropertiesfilename_ The filename of the actions property file
+* _maxactions_ The number of dynamicactions to be created
+
+
+==== Methods
+
+public final void registerFiles(String filename, String fileext, Consumer<FileChangeType> callback) ::
+Register an addition file to be observed.
+This file is expected to be present (when existing) in the same folder as the
+actions properties file
+* _filename_ The filename of the file to be observed.
+* _fileext_ The file file extension of the file to be observed.
+* _callback_ The method to be called where a change is observed on this file.
+
+public Action[] getActions(Action[] coreactions) :: Add the DynamicActions to
+a provided set of actions, with a separator between the two parts.
+* _coreactions_ a standard list of actions that the caller wished to have
+included in the merged list of actions.
+
+==== Structure of the Properties file
+
+The properties file must include a property _COMMANDCOUNT_ which indicates
+the number of actions being defined in this file.
+
+Each action being defined must have two property lines defined:
+
+* _n.label_ the label displayed in the popup list 
+* _n.command_ the CLI command to be executed when the action is selected
+
+note that _n_ must be between 1 & 9 and actions cannot be defined which exceed
+_maxactions_ (as defined in the Constructor).
+
+[source]
+----
+1.label = Bake
+1.command = jbake -b"
+2.label = Copy NBPCG User Guide (html format)
+2.command = bash -c "./copynbpcguguide ${NODEPATH} ~/DocumentationProjects/NBPCGDocumentation/UserGuide"
+COMMANDCOUNT = 2
+----

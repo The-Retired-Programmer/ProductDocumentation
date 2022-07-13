@@ -1,0 +1,63 @@
+== An Example of Action Usage in action
+
+=== DynamicAction example
+
+Add a DynamicAction to a project node's list of actions.
+
+[source,java]
+----
+
+@Override
+public Action[] getActions(boolean arg0) {
+    return dynamicactions.getActions(
+            new Action[]{
+                ...
+                null,
+                new DynamicAction(projectDir, "Bake", "jbake -b") <1>
+            });
+}
+
+----
+<1> Add the DynamicAction to the nodes's actions.
+The actions is enabled so needs no further initialisation.
+
+
+=== DynamicActions example
+
+To add up to five dynamic actions to the node, taking their configuration from 
+a properties file which may exist in this project file structure.
+
+In the project constructor, add:
+
+[source,java]
+----
+
+XXXXProject(FileObject dir, ProjectState state) {
+        .....
+        dynamicactions = new DynamicActions(dir, "projectactions", 5); <1>
+    }
+
+----
+<1> create a DynamicActions object, which will observe a
+file _projectactions.properties_ within folder _dir_ for changes.
+It will use the content of that file to define up to 5 DynamicAction objects,
+updating these actions whenever the file changes.
+
+
+The Node should include the DynamicActions Actions into its popup list, by
+requesting DynamicActions support when generating this list.
+
+[source, java]
+----
+
+public Action[] getActions(boolean arg0) {
+    return dynamicactions.getActions( <1>
+            new Action[]{
+                ... <2>
+            });
+}
+
+----
+<1> Call DynamicActions getActions method to get a merged list of all actions.
+<2> Build the list of required Node actions and pass as a parameter to
+the DynamicActions getActions method.

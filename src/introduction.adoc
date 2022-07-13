@@ -1,0 +1,38 @@
+== Introduction
+
+The ActionsSupport NBM is a set of classes which can be used by NetBeans project
+plugins, to allow the creation of actions which can execute programs in a CLI-like
+manner.
+This allows the project plugin to use native executors from within the NetBeans UI.
+
+This document is designed for developers of NetBeans Modules who wish to
+integrate these features into their code.
+
+Such actions can be either:
+
+* hardcoded commands - where a generic project-wide command is required
+* dynamic commands - defined at a project specific level by an embedded
+properties file.
+  
+=== DynamicActions features
+
+DynamicActions is a higher level implementation which uses Dynamic Actions.
+It creates a number of Dynamic Actions and reads an actions property file which
+defines the required labels and commands required for each action.
+
+DynamicActions will observe the folder containing the property file,
+ensuring the actions are updated whenever changes to the property file occur.
+
+Additional files within the folder can be added to the observation list.
+
+=== DynamicAction features
+
+A Dynamic Action is an Action which can be enabled or disabled, is not
+displayed when disabled and is associated with a CLI-like command which
+is executed when the enabled DynamicAction is selected.
+The action uses the NetBeans ProcessBuilder to execute the command.
+
+Dynamic actions can be attached to nodes in the logical project structure.
+
+
+
