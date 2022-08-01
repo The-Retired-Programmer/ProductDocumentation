@@ -49,10 +49,11 @@
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Products<b class="caret"></b></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="../tags/NetBeans_Plugins.html"><b>NetBeans_Plugins</b></a></li>
-                                        <li><a href="../tags/Extexp.html">Extexp</a></li>
+                                        <li><a href="../tags/Publishing.html"><b>Publishing</b></a></li>
+                                        <li><a href="../tags/NetBeans_Plugins.html"><b>NetBeans Plugins</b></a></li>
                                         <li><a href="../tags/NBPCG.html">NBPCG</a></li>
                                         <li><a href="../tags/NBPCGLibrary.html">NBPCGLibrary</a></li>
+                                        <li><a href="../tags/Retired_Products.html"><b>Retired Products</b></a></li>
                                     </ul>
                                 </li>
                                 <li><a href="../archive.html">Archive</a></li>
@@ -67,29 +68,33 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>The-Retired-Programmer (TRP) uses some general principles in the processes associated
-with product development as cross all projects.
+<p>The-Retired-Programmer (TRP) uses some general principles in the processes
+associated with product development as they are common across all Products.
 This document covers the use of GitHub.</p>
 </div>
 <div class="paragraph">
-<p>GitHub serves the following functions for any product:</p>
+<p>Each Product will have one or more GitHub repositories, usually two - one for
+the product software and a second for the product documentation.</p>
+</div>
+<div class="paragraph">
+<p>The following functions of a GitHub repository are used for most products:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Source code repository (git).</p>
+<p>A Source code repository (git).</p>
 </li>
 <li>
-<p>Release system of record - both source and some build source entities.</p>
+<p>A Release system of record - both source and some generated entities.</p>
 </li>
 <li>
-<p>Issues system for reporting bugs.</p>
+<p>An Issues system for reporting bugs.</p>
 </li>
 <li>
-<p>Discussion area - for problem and/or new feature discussions.</p>
+<p>A Discussion area - for problem and/or new feature discussions.</p>
 </li>
 <li>
-<p>PR are accepted for review from other developers who may want
+<p>Pull Requests may be accepted for review from other developers who may wish
 to contribute to the project.</p>
 </li>
 </ul>
@@ -99,8 +104,8 @@ to contribute to the project.</p>
 <div class="sect2">
 <h3 id="_source_code_repository">Source Code repository</h3>
 <div class="paragraph">
-<p>The GitHub repository is the source control system for the TRP projects.
-The projects will use trunk based development (main), rather than branch based
+<p>The GitHub repository is the source control system for the TRP Products.
+Products will use trunk based development (main), rather than branch based
 development.
 At point of release a branch will be created, marking the release point and also
 enabling the capability of creating a "hot-fix" release on that branch in
@@ -114,7 +119,7 @@ unadvisable for any product use, as trunk development does mean that such code:<
 <p>could be unstable</p>
 </li>
 <li>
-<p>include APIs which may be withdrawn</p>
+<p>include experimental APIs which may be withdrawn</p>
 </li>
 <li>
 <p>is not documented</p>
@@ -125,13 +130,13 @@ unadvisable for any product use, as trunk development does mean that such code:<
 <div class="sect2">
 <h3 id="_github_release_records">GitHub Release Records</h3>
 <div class="paragraph">
-<p>The GitHub process for recording releases will be used for projects.  The default
-action of the release process:</p>
+<p>The GitHub process for recording releases will be used for products.
+The default action of the release process includes:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>tagging the release source within Git</p>
+<p>tagging the release source code within Git</p>
 </li>
 <li>
 <p>building a release record</p>
@@ -142,31 +147,35 @@ action of the release process:</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>In addition the TRP projects will attach additional files as are necessary
-for the release.
+<p>TRP products will attach additional files as are necessary for the release.
 This may include generated (executable) objects:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>.nbm files for NetBeans projects</p>
+<p>.nbm files for NetBeans products</p>
 </li>
 <li>
-<p>.jar files for Java projects</p>
+<p>.jar files for Java products</p>
 </li>
 <li>
-<p>.o files for c projects</p>
+<p>.o files for c products</p>
 </li>
 <li>
-<p>.pdf files for documentation projects</p>
+<p>.pdf and/or .html files for documentation products</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>The release record is the system of record for release content, both source and
+selected binary objects.
+Users will download objects they require from the release record.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_problem_reporting_discussions_and_issues">Problem reporting (Discussions and Issues)</h3>
 <div class="paragraph">
-<p>TRP projects would like to use a work flow that handled problem reporting by using
+<p>TRP would like to use a work flow that handles problem reporting by using
 Discussions.
 When the problem as been confirmed and all necessary information has been
 collected to reproduce it, then it will be recorded as an Issue.</p>
@@ -175,29 +184,100 @@ collected to reproduce it, then it will be recorded as an Issue.</p>
 <div class="sect2">
 <h3 id="_new_features_improvements_discussion_and_issues">New Features / Improvements (Discussion and Issues)</h3>
 <div class="paragraph">
-<p>New ideas or potential improvements need to be floated using Discussions.
-There should not be an immediate need to capture a full requirements statement
-at that point.
+<p>New ideas or potential improvements need to be initially using Discussions.
+There is no need to capture a requirements statement at that point.
 A simple statement of the item and its benefits from a users point of
 view should be enough.</p>
 </div>
 <div class="paragraph">
 <p>Additions of a major size (sometimes called epics, or major stories)
 should also follow this route, but one of the first steps after validating
-the request may be to decompose it into small size unit (still delivering a user
-feature/benefit).
-Once features are selected to be worked on then they will be recorded via as Issues.</p>
+the request may be to decompose it into smaller sized unit (still delivering
+a user feature/benefit).
+Once features are selected to be worked on then they will be recorded as Issues.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_submission_of_prs">Submission of PRs</h3>
+<h3 id="_submission_of_pull_requests">Submission of Pull Requests</h3>
 <div class="paragraph">
 <p>Developers who wish to submit new features, improvements, or problem fixes,
-should use the GitHub PR process to submit their changes.</p>
+should use the GitHub Pull Request workflow to submit their changes.</p>
 </div>
 <div class="paragraph">
 <p>It is advisable that the problem reporting or new features / improvement processes
 are used initially to alert everyone of the proposed changes.</p>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_developing_software_andor_documentation_for_a_product">Developing Software and/or Documentation for a Product</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_dependency_on_an_nbm_in_a_product_which_uses_a_maven_build">Dependency on an NBM in a Product which uses a Maven Build</h3>
+<div class="paragraph">
+<p>Where a NBM is being used in the build of another product, you will find the
+other project&#8217;s POM contains a dependency similar to that below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="xml">&lt;dependencies&gt;
+    ...
+    &lt;dependency&gt;
+        &lt;groupId&gt;uk.theretiredprogrammer&lt;/groupId&gt;
+        &lt;artifactId&gt;actionssupport&lt;/artifactId&gt;
+        &lt;version&gt;{release-version}&lt;/version&gt;
+    &lt;/dependency&gt;
+    ....
+&lt;/dependencies&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To ensure the NBM is available for the build, it needs to be downloaded
+and placed in your local copy of the Maven repository.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_add_a_dependency_in_your_products_pom">Add a dependency in your product&#8217;s POM</h3>
+<div class="paragraph">
+<p>If you wish to develop a product that uses the functionality of a TRP module,
+then a similar dependency must be added to the POM, and the NBM both installed
+in your NetBeans IDE, and placed in your local copy of the Maven repository.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_updating_a_trp_product_fixes_or_new_features">Updating a TRP product (fixes or new features)</h3>
+<div class="paragraph">
+<p>As Pull Requests are the method of submitting changes, the development processes
+are to a degree predefined.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_get_a_personal_copy_of_the_repository_on_github">Get a personal copy of the repository on GitHub</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_clone_that_repository_onto_you_local_machine">Clone that repository onto you local machine</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_complete_the_development">Complete the development</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_generate_a_pr_on_your_repository_and_submit">Generate a PR on your repository and submit</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_be_prepared_to_submit_changes_to_the_modules_documentation_as_soon_as">Be prepared to submit changes to the modules documentation as soon as</h3>
+<div class="paragraph">
+<p>possible</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_updating_documentation">Updating Documentation</h3>
+<div class="paragraph">
+<p><strong>more to add &#8230;&#8203;&#8230;&#8203;..</strong></p>
+</div>
+</div>
 </div>
 </div>                </div>
                 <div id="push"></div>

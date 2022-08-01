@@ -10,4 +10,4 @@ a decision to move away from a privately developed tool (Extexp) and use JBake a
 the website build tool.
 
 The Document and News Items structure has not changed, so I don't think there will
-be any problems in navigating this latest varient of the WebSite.
+be any problems in navigating this latest variant of the WebSite.

@@ -1,27 +1,30 @@
 = Development Notes - Using GitHub
 Richard Linsdale
-2022-07-10
+2022-08-01
 :jbake-type: page
 :jbake-status: published
 :jbake-tags: General
 
-The-Retired-Programmer (TRP) uses some general principles in the processes associated
-with product development as cross all projects.
+The-Retired-Programmer (TRP) uses some general principles in the processes
+associated with product development as they are common across all Products.
 This document covers the use of GitHub.
 
-GitHub serves the following functions for any product:
+Each Product will have one or more GitHub repositories, usually two - one for
+the product software and a second for the product documentation.
 
-* Source code repository (git).
-* Release system of record - both source and some build source entities.
-* Issues system for reporting bugs.
-* Discussion area - for problem and/or new feature discussions.
-* PR are accepted for review from other developers who may want
+The following functions of a GitHub repository are used for most products:
+
+* A Source code repository (git).
+* A Release system of record - both source and some generated entities.
+* An Issues system for reporting bugs.
+* A Discussion area - for problem and/or new feature discussions.
+* Pull Requests may be accepted for review from other developers who may wish
 to contribute to the project.
 
 === Source Code repository
 
-The GitHub repository is the source control system for the TRP projects.
-The projects will use trunk based development (main), rather than branch based
+The GitHub repository is the source control system for the TRP Products.
+Products will use trunk based development (main), rather than branch based
 development.
 At point of release a branch will be created, marking the release point and also
 enabling the capability of creating a "hot-fix" release on that branch in
@@ -30,53 +33,113 @@ While users could use the source code at the head of the trunk, this would be
 unadvisable for any product use, as trunk development does mean that such code:
 
 * could be unstable
-* include APIs which may be withdrawn
+* include experimental APIs which may be withdrawn
 * is not documented 
 
 === GitHub Release Records
 
-The GitHub process for recording releases will be used for projects.  The default
-action of the release process:
+The GitHub process for recording releases will be used for products.
+The default action of the release process includes:
 
-* tagging the release source within Git
+* tagging the release source code within Git
 * building a release record
 * attaching source files (zip and tar.gz)
 
-In addition the TRP projects will attach additional files as are necessary
-for the release.
+TRP products will attach additional files as are necessary for the release.
 This may include generated (executable) objects:
 
-* .nbm files for NetBeans projects
-* .jar files for Java projects
-* .o files for c projects
-* .pdf files for documentation projects
+* .nbm files for NetBeans products
+* .jar files for Java products
+* .o files for c products
+* .pdf and/or .html files for documentation products
 
+
+The release record is the system of record for release content, both source and
+selected binary objects.
+Users will download objects they require from the release record.
 
 === Problem reporting (Discussions and Issues)
 
-TRP projects would like to use a work flow that handled problem reporting by using
+TRP would like to use a work flow that handles problem reporting by using
 Discussions. 
 When the problem as been confirmed and all necessary information has been
 collected to reproduce it, then it will be recorded as an Issue. 
 
 === New Features / Improvements (Discussion and Issues)
 
-New ideas or potential improvements need to be floated using Discussions.
-There should not be an immediate need to capture a full requirements statement
-at that point.
+New ideas or potential improvements need to be initially using Discussions.
+There is no need to capture a requirements statement at that point.
 A simple statement of the item and its benefits from a users point of
 view should be enough.
 
 Additions of a major size (sometimes called epics, or major stories)
 should also follow this route, but one of the first steps after validating
-the request may be to decompose it into small size unit (still delivering a user
-feature/benefit).
-Once features are selected to be worked on then they will be recorded via as Issues.
+the request may be to decompose it into smaller sized unit (still delivering
+a user feature/benefit).
+Once features are selected to be worked on then they will be recorded as Issues.
 
-=== Submission of PRs
+=== Submission of Pull Requests
 
 Developers who wish to submit new features, improvements, or problem fixes,
-should use the GitHub PR process to submit their changes.
+should use the GitHub Pull Request workflow to submit their changes.
 
 It is advisable that the problem reporting or new features / improvement processes
 are used initially to alert everyone of the proposed changes.
+
+
+== Developing Software and/or Documentation for a Product
+
+
+=== Dependency on an NBM in a Product which uses a Maven Build
+
+Where a NBM is being used in the build of another product, you will find the
+other project's POM contains a dependency similar to that below.
+
+[source,xml]
+----
+
+<dependencies>
+    ...
+    <dependency>
+        <groupId>uk.theretiredprogrammer</groupId>
+        <artifactId>actionssupport</artifactId>
+        <version>{release-version}</version> 
+    </dependency>
+    ....
+</dependencies>
+
+----
+
+To ensure the NBM is available for the build, it needs to be downloaded
+and placed in your local copy of the Maven repository.
+
+=== Add a dependency in your product's POM
+
+If you wish to develop a product that uses the functionality of a TRP module,
+then a similar dependency must be added to the POM, and the NBM both installed
+in your NetBeans IDE, and placed in your local copy of the Maven repository.
+
+
+=== Updating a TRP product (fixes or new features)
+
+As Pull Requests are the method of submitting changes, the development processes
+are to a degree predefined. 
+
+=== Get a personal copy of the repository on GitHub
+
+=== Clone that repository onto you local machine
+
+=== Complete the development
+
+// use commits, push and pulls regularly to manage change history, and ensure the
+// development is maintained against the latest version of the source.
+
+=== Generate a PR on your repository and submit
+
+=== Be prepared to submit changes to the modules documentation as soon as
+possible
+
+=== Updating Documentation
+
+
+*more to add ........*

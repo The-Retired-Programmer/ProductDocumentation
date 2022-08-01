@@ -54,10 +54,11 @@
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Products<b class="caret"></b></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>tags/NetBeans_Plugins.html"><b>NetBeans_Plugins</b></a></li>
-                                        <li><a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>tags/Extexp.html">Extexp</a></li>
+                                        <li><a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>tags/Publishing.html"><b>Publishing</b></a></li>
+                                        <li><a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>tags/NetBeans_Plugins.html"><b>NetBeans Plugins</b></a></li>
                                         <li><a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>tags/NBPCG.html">NBPCG</a></li>
                                         <li><a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>tags/NBPCGLibrary.html">NBPCGLibrary</a></li>
+                                        <li><a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>tags/Retired_Products.html"><b>Retired Products</b></a></li>
                                     </ul>
                                 </li>
                                 <li><a href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>archive.html">Archive</a></li>

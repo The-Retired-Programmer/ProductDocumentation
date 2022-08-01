@@ -10,7 +10,7 @@ cat <<HEADER >extexp_ug/webpage.html
 title=EXTEXP USER GUIDE
 date=2022-05-21
 type=passthrough
-tags=Extexp, NetBeans_Plugins
+tags=Retired_Products, Extexp
 status=published
 ~~~~~~
 
