@@ -1,17 +1,26 @@
-== The Actions Support API
+== The ActionsSupport API
 
 
-=== Dynamic Action
+=== DynamicAction
 
 Dynamic Action is the basic class of the Actions Support Plugin.
 A Dynamic Action is an implementation of the Netbeans AbstractAction class.
 
 A Dynamic Action is an Action which can be enabled or disabled, is not
-displayed when disabled and is associated with a CLI-like command which
-is executed when the enabled DynamicAction is selected.
-The action uses the NetBeans ProcessBuilder to execute the command.
+displayed when disabled.
 
-A DynamicAction has a folder to which it is associated. This is the node folder
+The Action is enabled when an onAction method is defined.
+
+
+
+=== DynamicCLIAction
+
+A DynamicCLIAction is a extention of the DynamicAction.  It's action method
+is a CLI command which will be executed.
+
+
+
+A DynamicCLIAction has a folder to which it is associated. This is the node folder
 to which the action is attached.
 This folder is set as the working directory when the command is executed.
 The folder definition does support limited parameter substitution in the
@@ -53,33 +62,32 @@ DynamicAction.
 public final void clearCommand() :: Disable this Dynamic Action.
 
 
-=== DynamicActions
+=== NodeDynamicActions
 
-DynamicActions is a higher level implementation which uses Dynamic Actions.
-It creates a number of Dynamic Actions and reads an actions property file which
-defines the required labels and commands required for each action.
+NodeDynamicActions supports the creation of DynamicCLIActions for a 
+node, by enabling the creation of DynamicCLIActions using a properties file.
 
-These actions can then be merged with another set of actions.
-So node action popup list can be created, which continue to support the dynamic
-capabilities of actions merged.
+NodeDynamicActions observes the node folder containing the property file,
+ensuring the actions are updated whenever changes to the properties file occur.
 
-DynamicActions will observe the folder containing the property file,
-ensuring the actions are updated whenever changes to the property file occur.
+Additional files within the node folder can be observed,
+so that changes can trigger updates to any associated objects.
 
-Additional files within the folder can be added to the observation list.
+NodeDynamicActions provides a method for assembling node actions, combining
+various sources of actions to create the final dynamic actions array required by
+a node definition.
 
 
 public static enum FileChangeType {CREATED, CHANGED, RENAMEDTO, RENAMEDFROM, DELETED} ::
-The types of file changes which are observed by DynamicActions.
+The types of file changes which are observed by NodeDynamicActions.
     
 
 ==== Constructor
 
-public DynamicActions(FileObject filefolder, String actionpropertiesfilename, int maxactions) ::
+public DynamicActions(FileObject filefolder, String actionpropertiesfilename) ::
 Create a DynamicActions object
 * _filefolder_ The filefolder containing the actionsproperties file (the node folder)
 * _actionpropertiesfilename_ The filename of the actions property file
-* _maxactions_ The number of dynamicactions to be created
 
 
 ==== Methods
@@ -92,10 +100,16 @@ actions properties file
 * _fileext_ The file file extension of the file to be observed.
 * _callback_ The method to be called where a change is observed on this file.
 
-public Action[] getActions(Action[] coreactions) :: Add the DynamicActions to
-a provided set of actions, with a separator between the two parts.
-* _coreactions_ a standard list of actions that the caller wished to have
-included in the merged list of actions.
+public void setBasicNodeActions(Action... basicnodeactions) :: define the set of
+basic actions which are to be included in the Node's actions popup.
+
+public void setNodeActions(Action... nodeactions) :: define the set of actions
+which are particular to all projects of this node's project type.
+
+public Action[] getAllNodeActions() :: Return an array of enabled actions for the node.
+This includes the basicNodeActions, the NodeActions and any DynamicCLI actions
+that were defined by the properties file.
+ 
 
 ==== Structure of the Properties file
 
@@ -106,9 +120,9 @@ Each action being defined must have two property lines defined:
 
 * _n.label_ the label displayed in the popup list 
 * _n.command_ the CLI command to be executed when the action is selected
+// add the new property keys ...
 
-note that _n_ must be between 1 & 9 and actions cannot be defined which exceed
-_maxactions_ (as defined in the Constructor).
+note that _n_ and must be an integer between 1 and _COMMANDCOUNT_.
 
 [source]
 ----

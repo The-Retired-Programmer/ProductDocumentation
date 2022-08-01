@@ -1,22 +1,46 @@
-== Availability
+== Installing the ActionsSupport NBM file 
 
 ActionsSupport files are available on GitHub.
 
-The GitHub repository for ActionsSupport is: https://github.com/The-Retired-Programmer/ActionsSupport
+The GitHub repository is:
+https://github.com/The-Retired-Programmer/ActionsSupport
 
-The project uses the GitHub Releases to record the formal releases.  In addition
-the NBM file created as part of the release in stored with the release information.
+GitHub Releases holds the necessary files for all releases, including the NBM
+file.
+Download the NBM file and install it in your current Netbean system.
+For full details see:
+https://www.the-retired-programmer.uk/netbeansinstallingnbm.html
 
-For a fuller description of The-Retired_Programmer use of GitHub as repository,
+For a fuller description of The-Retired_Programmer's use of GitHub as repository,
 please look at: https://www.the-retired-programmer.uk/githubdevelopmentnotes.html
 
-=== Including ActionsSupport in the project build 
+=== Installing the ActionsSupport.nbm when required by another NetBeans plug-in
 
-The latest release NBM file can be downloaded from GitHub and place in the users
-local copy of the Maven repository.
-Add the following dependency in the projects POM to access the module
+==== Installing the ActionsSupport.nbm
+
+The ActionsSupport.nbm file should be downloaded from GitHub Releases and then
+installed into your Netbeans installation.  For full details see:
+https://www.the-retired-programmer.uk/netbeansinstallingnbm.html
+
+Once the dependencies are loaded then the required NBM can be downloaded and
+installed.
+
+=== Developing a Netbeans plug-in which uses ActionsSupport
+
+==== Install the ActionsSupport.nbm plug-in
+
+Ensure the ActionsSupport NBM file is installed into your Netbeans installation.
+
+==== Add the ActionsSupport.nbm in your local Maven repository.
+
+The downloaded NBM file should be placed in the user's local copy of the
+Maven repository.
+
+==== Add the following dependency in your projects POM
+
+Add the following dependency in the projects POM to access the module and
 to be able to build the project.
-[source,xml]
+[source,xml,subs="attributes+"]
 ----
 
 <dependencies>
@@ -24,7 +48,7 @@ to be able to build the project.
     <dependency>
         <groupId>uk.theretiredprogrammer</groupId>
         <artifactId>actionssupport</artifactId>
-        <version>1.2.0</version> <1>
+        <version>{release-version}</version> <1>
     </dependency>
     ....
 </dependencies>
@@ -32,20 +56,52 @@ to be able to build the project.
 ----
 <1> change the version to that of the latest version
 
-=== Debugging/Testing a project which uses the ActionsSupport NBM
+==== Debugging/Testing a project which uses the ActionsSupport NBM
 
-Ensure that the testing version of NetBeans being used has ActionsSupport
-installed.
-Use the NetBeans Tools>Plugins menu item to complete this action.
-For more information about installing a NBM, please look at:
-https://www.the-retired-programmer.uk/netbeansinstallingnbm.html
+with the ActionsSupport installed,
 
-=== Installing the Project NBM
+* JUnit testing can be undertaken.
+
+* Using Run or Debug on your development NBM
+will allow module testing to take place.
+
+==== Installing the Project NBM
 
 Once the project NBM has been built and tested, it can be installed into
 any copies of Netbeans, as required.
 Use the NetBeans Tools>Plugins menu item to complete this action.
-Note that that the latest version of ActionsSupport must be installed prior
+Note that that the required version of ActionsSupport must be installed prior
 to installing any plug-in which uses ActionsSupport features.
-For more information about installing a NBM, please look at:
-https://www.the-retired-programmer.uk/netbeansinstallingnbm.html
+
+It would be the developer's choice about what process they choose to use to
+deliver their plugin to their users.
+
+=== Developing ActionsSupport (fixes or new features)
+
+Users wishing to propose fixes or new features for ActionsSupport should read
+the Guide first:
+https://www.the-retired-programmer.uk/githubdevelopmentnotes.html
+
+==== Get a personal copy of the repository on GitHub
+
+==== Clone that repository onto you local machine
+
+==== Complete the development
+
+// use commits, push and pulls regularly to manage change history, and ensure the
+// development is maintained against the latest version of the source.
+
+==== Generate a PR on your repository and submit
+
+==== Be prepared to submit changes to the modules documentation as soon as
+possible
+
+=== Updating Documentation
+
+Users wishing to propose changes for ActionsSupport documentation should read
+the Guide first:
+https://www.the-retired-programmer.uk/githubdevelopmentnotes.html
+
+The documentation is just another GitHub repository.
+
+*more to add ........*

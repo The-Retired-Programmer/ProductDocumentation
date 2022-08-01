@@ -1,38 +1,47 @@
 == Introduction
 
-The ActionsSupport NBM is a set of classes which can be used by NetBeans project
-plugins, to allow the creation of actions which can execute programs in a CLI-like
-manner.
-This allows the project plugin to use native executors from within the NetBeans UI.
+The ActionsSupport NBM is a set of classes which can be used by other NetBeans
+plugins, to allow the creation of Actions, with the ability to run external
+programs.
 
 This document is designed for developers of NetBeans Modules who wish to
 integrate these features into their code.
 
-Such actions can be either:
+These Action can execute:
 
-* hardcoded commands - where a generic project-wide command is required
-* dynamic commands - defined at a project specific level by an embedded
-properties file.
+* NetBeans methods
+* Methods coded within the plugin
+* External programs which can be executed in a CLI-like manner, allowing the use
+of such programs from the NetBeans UI
+
+=== DynamicActions and DynamicCLIActions
+
+A Dynamic Action is an Action which
+can be enabled or disabled and is not displayed when disabled.
+
+These are two classes of Dynamic Actions:
+
+* The base class (DynamicAction) which mirrors the Action class.
+* The DynamicCLIAction class which provides the extended functionality to run
+an external program.
+
+DynamicActions can be associated with a particular node, either being for: 
+
+* All projects of a particular type
+* A specific project, as defined by a properties file
+(DynamicCLIActions only).
   
-=== DynamicActions features
+=== NodeDynamicActions
 
-DynamicActions is a higher level implementation which uses Dynamic Actions.
-It creates a number of Dynamic Actions and reads an actions property file which
-defines the required labels and commands required for each action.
+NodeDynamicActions supports the creation of DynamicCLIActions for a 
+node, by enabling the creation of DynamicCLIActions using a properties file.
 
-DynamicActions will observe the folder containing the property file,
-ensuring the actions are updated whenever changes to the property file occur.
+NodeDynamicActions observes the node folder containing the property file,
+ensuring the actions are updated whenever changes to the properties file occur.
 
-Additional files within the folder can be added to the observation list.
+Additional files within the node folder can be observed,
+so that changes can trigger updates to any associated objects.
 
-=== DynamicAction features
-
-A Dynamic Action is an Action which can be enabled or disabled, is not
-displayed when disabled and is associated with a CLI-like command which
-is executed when the enabled DynamicAction is selected.
-The action uses the NetBeans ProcessBuilder to execute the command.
-
-Dynamic actions can be attached to nodes in the logical project structure.
-
-
-
+NodeDynamicActions provides a method for assembling node actions, combining
+various sources of actions to create the final dynamic actions array required by
+a node definition.
