@@ -1,73 +1,11 @@
 == The ActionsSupport API
 
-
-=== DynamicAction
-
-Dynamic Action is the basic class of the Actions Support Plugin.
-A Dynamic Action is an implementation of the Netbeans AbstractAction class.
-
-A Dynamic Action is an Action which can be enabled or disabled, is not
-displayed when disabled.
-
-The Action is enabled when an onAction method is defined.
-
-
-
-=== DynamicCLIAction
-
-A DynamicCLIAction is a extention of the DynamicAction.  It's action method
-is a CLI command which will be executed.
-
-
-
-A DynamicCLIAction has a folder to which it is associated. This is the node folder
-to which the action is attached.
-This folder is set as the working directory when the command is executed.
-The folder definition does support limited parameter substitution in the
-command line defined:
-
-* ${NODEPATH} - is replaced with the folder path.
-
-Commands have to be parsed into CLI "phrases" - options, option parameters, filenames etc.
-As this plugin can never have a full understanding of every command's syntax, it
-employs a basic parsing technique (breaking on word breaks ie white space).
-This works in the vast majority of cases, but there are cases where the CLI "phrase"
-is can include multiple words.  In this case, the phrase should be written with
-enclosing double quotes.
-These quotes will be stripped from input prior to it being passed to ProcessBuilder.
-
-If the label is set to null, the DynamicAction will be disabled and not displayed
-This can be dynamical updated during program execution.
-    
-
-==== Constructors
-
-public DynamicAction(FileObject dir, String label, String command) :: Construct
-a Dynamic Action which is enabled.
-* _dir_ the folder which is the node for this action
-* _label_ the label displayed when this DynamicAction is displayed.
-* _command_ the CLI command which is associated with this action.
-       
-public DynamicAction(FileObject dir) :: Construct a Dynamic Action which is
-disabled.
-* _dir_ the folder which is the node for this action
-
-==== Methods
-
-public final void setCommand(String label, String command) :: Enable this
-DynamicAction.
-* _label_ the label displayed when this DynamicAction is displayed.
-* _command_ the CLI command which is associated with this action.
-    
-public final void clearCommand() :: Disable this Dynamic Action.
-
-
 === NodeDynamicActions
 
-NodeDynamicActions supports the creation of DynamicCLIActions for a 
-node, by enabling the creation of DynamicCLIActions using a properties file.
+NodeDynamicActions creates DynamicCLIActions for a  node, using a
+properties file to define the actions.
 
-NodeDynamicActions observes the node folder containing the property file,
+NodeDynamicActions observes the node folder containing the properties file,
 ensuring the actions are updated whenever changes to the properties file occur.
 
 Additional files within the node folder can be observed,
@@ -97,7 +35,7 @@ Register an addition file to be observed.
 This file is expected to be present (when existing) in the same folder as the
 actions properties file
 * _filename_ The filename of the file to be observed.
-* _fileext_ The file file extension of the file to be observed.
+* _fileext_ The file extension of the file to be observed.
 * _callback_ The method to be called where a change is observed on this file.
 
 public void setBasicNodeActions(Action... basicnodeactions) :: define the set of
@@ -132,3 +70,114 @@ note that _n_ and must be an integer between 1 and _COMMANDCOUNT_.
 2.command = bash -c "./copynbpcguguide ${NODEPATH} ~/DocumentationProjects/NBPCGDocumentation/UserGuide"
 COMMANDCOUNT = 2
 ----
+
+=== DynamicAction
+
+Dynamic Action is the basic class of the Actions Support Plugin.
+A Dynamic Action is an implementation of the Netbeans AbstractAction class.
+
+A Dynamic Action is an Action which can be enabled or disabled, it is not
+displayed when disabled.
+
+The Action is enabled when an onAction method is defined.
+
+==== Constructor
+
+public DynamicAction() :: Construct a DynamicAction which is disabled.
+       
+==== Methods
+
+public DynamicAction label(String label) :: Set the label for this Action.
+* _label_ the label displayed when this DynamicAction is displayed.
+
+
+public DynamicAction onAction(Runnable action) :: Set the Action method.
+* _action_ the method to be run when this action is selected.       
+
+public DynamicAction icon(ImageIcon icon) :: Set the Icon for this Action.
+* _icon_ the icon to be displayed (alternative to using a label).
+
+=== DynamicCLIAction
+
+DynamicCLIAction is a extension of DynamicAction.  It's action method
+is a CLI command which will be executed.
+
+A DynamicCLIAction is associated with a folder. This is the node folder
+to which the action is attached.
+This folder is set as the working directory when the command is executed.
+When processing the CLI command it supports limited parameter substitution:
+
+* ${NODEPATH} - is replaced with the folder path.
+
+Commands have to be parsed into CLI "phrases", such as options, option parameters, filenames etc.
+As this plugin can never have a full understanding of every command's syntax, it
+employs a basic parsing technique (breaking on word breaks ie white space).
+This works in the vast majority of cases, but there are times where the CLI "phrase"
+should include multiple words. 
+In this case, the phrase should be written with enclosing double quotes.
+These quotes will be stripped from input prior to it being passed to ProcessBuilder.
+
+If the label is set to null, the DynamicAction will be disabled and not displayed
+This can be updated during program execution.
+
+A DynamicCLIActions has an output window tab associated with it.  STDOUT and STDERR
+output from the command excution will be presented here, and optionally STDIN 
+lines can be entered in the window.
+It is possible to add predefined actions to a sidebar of the output window.
+These actions provide further methods of interacting with the command.
+
+==== Constructor
+
+public DynamicCLIAction(CLICommand cliCommand) :: Construct a DynamicCLIAction.
+* _cliCommand_ contains the details for the Action. 
+       
+==== Methods
+
+public DynamicCLIAction enableIf() :: Check if the
+action should be enabled.
+
+public void issueClose() ::Close the STDIN stream.
+(Used by one of the predefined icon actions, optionally presented
+in the Output window). 
+
+public void issueCancel() :: Cancel the CLI command execution.
+Kills the process.
+(Used by one of the predefined icon actions, optionally presented
+in the Output window).
+
+=== CLICommand
+
+The CLI Command is a structure containing all the information necessary
+to create a DynamicCLIAction.  It can be constructed programmatically
+or more commonly it will be populated with information from the
+associated properties file. 
+
+==== Constructor
+
+public CLICommand(FileObject dir, String label) :: Construct a
+CLI command object.
+* _dir_  The node folder
+* _label_ The label displayed when its associated CLIAction is displayed.
+     
+==== Methods
+
+public CLICommand setParent(DynamicCLIAction parent) :: Set the associated
+Action.
+        
+public CLICommand cliCommandLine(String cliCommandLine) :: Set the 
+CLI command line.
+    
+public CLICommand enableIf(Supplier<Boolean> enableExpression) :: Define the
+enabled test for the associated action.
+
+public CLICommand inputfromFile(FileObject inputfile) :: The command will
+receive input from the defined file.
+
+public CLICommand inputfromUI() :: The command will receive lines of text
+entered by the user in the output window.
+
+public CLICommand noinput() :: the command will not receive input from the user.
+
+public CLICommand actions(Action[] actions) :: define the set of actions to
+be inserted into the output window.
+
