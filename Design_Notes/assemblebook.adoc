@@ -4,4 +4,4 @@
 //include::src/chapter2/installing.adoc[]
 
 :imagesdir: src/
-include::src/designguide.adoc[]
+include::src/designnotes.adoc[]

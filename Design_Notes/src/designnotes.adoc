@@ -109,8 +109,8 @@ components (such as the Reset switch) at more accessible positions.
 ** Common: 0V
 
 * Include 3 LEDs on the board to be able to monitor UART TX and RX, and
-the SWCLK.  This is on schematic of Pi400-Pico-Plate but was not featured in the
-latest PCB design.
+the SWCLK.  Thiese are shown on the schematic of Pi400-Pico-Plate but did not
+featured in the latest PCB design.
 
 === The Product
 
@@ -119,7 +119,7 @@ latest PCB design.
 === Customisations
 
 A number of possible customisations of the version 2 product have been thought
-about.  These have not been included in the documented build, but could be
+about.  These have not been included in this build, but could be
 considered by anyone choosing to build a derivative of the V2 design.
 
 ==== Create a Pi400 dedicated version
@@ -127,13 +127,12 @@ considered by anyone choosing to build a derivative of the V2 design.
 Using a 20x2 right angled connector it would be possible to omit the use of the
 HAT adaptor and GPIO socket, and make a direct connection to a Pi400.  The connector
 should be fitted to come out of the top of the board (as per the Pi400-Pico-Plate).
-about 16 wiring connections would have to be updated in the build (due to changes
+About 16 wiring connections would have to be updated in the build (due to changes
 to GPIO pin locations made by changing the connector).
 
 ==== Omit LEDs
 
-LEDS can obvious omitted from the design, if they are not deemed a benefit
-for you.
+LEDS can obvious omitted from the design, if they are not deemed a benefit.
 
 ==== And anything else that a designer may want to achieve
 
