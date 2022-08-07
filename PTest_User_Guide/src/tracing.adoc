@@ -1,0 +1,58 @@
+== Tracing
+
+Tracing is a simple ring buffer which can collect trace characters.
+It's purpose is to record a time ordered series of indicators (characters),
+which might of otherwise been collected by the the use of printf statements.
+In a real time system, printf statements take a relatively long time to process,
+ensuring that any timing issues are not replicated in a similar form in a test
+system.
+Tracing is provide to inject a minimum delay into code, while still provide an
+ability to collect a serial stream of indicators for indicating the order of
+various real time activities - interrrupts, processes or code.
+
+trace_init() :: initialise the trace subsystem.
+The trace buffer is emptied prior to every test which run.
+It is unlikely a test should need to re-initialise the buffer so no example of
+use of this function are felt necessary.
+
+void trace(char tracechar) :: insert an entry into the trace buffer.
+
+Adds a character into the trace buffer.
+
+Example code - which includes the use of the TESTINGBUILD compiler option to 
+include the trace calls only in test builds.
+
+[source,c]
+----
+
+#ifdef TESTINGBUILD
+#include "ptest.h"
+#endif
+
+    ....
+
+ifdef TESTINGBUILD
+    trace("S"); <1>
+#endif
+    while (!finished) {
+ifdef TESTINGBUILD
+        trace("X"); <2>
+#endif
+        .... 
+    }
+ifdef TESTINGBUILD
+    trace("D"); <3>
+#endif
+
+----
+<1> using S as the "Start" indicator
+<2> using X as the "Loop Entered" indicator
+<3> using D as the "Done" indicator
+
+The resulting trace string would be of the form "SXXXX...D", where the number of
+X characters would the the number of times the loop was executed.
+
+
+One method of checking the content of the trace buffer.
+
+void pass_if_trace_equal(char* expected) :: a check for trace content v. an expected string.

@@ -1,0 +1,92 @@
+== An Example of PTest in action
+
+=== sum.c - the module to test
+
+[source,c]
+----
+
+int sum(int a, int b) { <1>
+    return a+b;
+}
+
+----
+<1> this function is declared in sum.h
+
+=== main() - test module
+
+In this example there is only one test module
+"test_sum".
+
+[source,c]
+----
+
+...
+#include "ptest.h"
+#include "test_sum.h"
+
+int main() {
+    stdio_init_all(); <1>
+    ptest_init(); <2>
+    //
+    // define all tests
+    //
+    test_sum_init(); <3>
+    //
+    // run the tests
+    //
+    ptest_execute();<4>
+}
+
+----
+<1> ensure stdio is initialised (PTest uses UART serial port to communicate with
+it's controlling device)
+<2> initialise PTest
+<3> initialise 1 or more test modules
+<4> start execution of the tests (non interactive) or start execution of the PTest selection UI.
+
+
+=== test_sum.h 
+
+[source,c]
+----
+
+....
+void test_sum_init();
+
+----
+
+=== test_sum.c
+
+[source,c]
+----
+...
+#include "ptest.h"
+#include "sum.h"
+
+static void test_sum() { <4>
+    int res = sum(2,3); <5>
+    pass_if_equal_int("sum 2 and 3", 5, res);<6>
+    res = sum(2, -1);
+    pass_if_equal_int("sum 2 and -1", 1, res); <7>
+}
+
+// =============================================================================
+//
+// module API
+//
+// =============================================================================
+
+void test_sum_init() { <1>
+    add_test("sum", "u", test_sum); <2>
+    ...<3>
+}
+
+----
+<1> register the test with PTest
+<2> this function call provides a name, a string containing the groups this test
+belongs to and a function to be called to run the test
+<3> multiple tests can be added in one test module
+<4> test function
+<5> test interacts with the module under test - calling any necessary functions
+<6> results of test interactions are checked using the PTest library functions
+<7> multiple checks may be used during a test

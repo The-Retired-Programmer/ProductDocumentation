@@ -1,0 +1,15 @@
+== Introduction
+
+PTest is a small Test Runner library written in C, to allow
+testing of C functions on Pico Hardware.
+
+A compiled set of tests and the modules to be tested can be loaded
+and run interactively.  Test can then be run individually, in groups, or the
+complete set.
+Alternatively the complete set can be run without user interaction.
+
+The library includes:
+
+* a test registration API
+* a set of functions (checks) which can be included in the test code
+* a run time trace buffer for logging progress
