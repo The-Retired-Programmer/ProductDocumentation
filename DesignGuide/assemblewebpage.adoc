@@ -1,3 +1,0 @@
-= PICO-HAT Design Guide
-
-include::src/designguide.adoc[]

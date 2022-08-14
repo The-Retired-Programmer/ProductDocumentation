@@ -1,0 +1,25 @@
+== Step 1: Prepare the Board
+
+As noted in the Design Guide, selection of a prototyping board which has the
+capability of both carrying a Pico and also a standard Pi GPIO connector (20x2)
+was limited.
+
+To achieve all the features desired in V2 the basic form of the selected board
+was insufficient and some adaptations are required (cutting tracks to create
+more independent pads for component interconnection).
+
+The first steps of the build is to complete these cuts.
+
+<insert board picture>
+
+The following cuts are to be made:
+
+<insert cuts template>
+
+Cuts are carefully made using a scalpel to break the tracks, cutting to
+remove small amounts of the trace between the solder pads.
+
+<add picture of a cut>
+
+I used a meter to check for any continuity across the cut and ensure complete
+isolation.

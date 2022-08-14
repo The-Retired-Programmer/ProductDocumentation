@@ -1,0 +1,20 @@
+== Introduction
+
+The PicoHat is a Hat for a Raspberry Pi host, which supports Pico Progranmming
+in a convenient package.
+
+This design was built on the work of ??? who build and documented a Pico Printed
+Circuit Board specifically for the Raspberry Pi 400 (supply the necessary references).
+
+This board is a more general in that it can be connected to any Pi.
+
+It is build from a prototyping board, rather than using a pre-designed circuit board.
+
+This allows any builder to make any customisations they wish to the design without
+having any PCB design skills.
+ 
+This is version 2 of the build.  Experience with version 1 resulted in small
+changes which improved the usability of the board.
+
+For full references to the original ???, and the PicoHat V1 and V2 design goals,
+the builder should look at the Design Guide which provides the information.
