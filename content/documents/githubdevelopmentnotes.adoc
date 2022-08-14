@@ -1,9 +1,11 @@
 = Development Notes - Using GitHub
 Richard Linsdale
-2022-08-01
+2022-08-12
 :jbake-type: page
 :jbake-status: published
 :jbake-tags: General
+
+== GitHub usage key points
 
 The-Retired-Programmer (TRP) uses some general principles in the processes
 associated with product development as they are common across all Products.
@@ -46,7 +48,7 @@ The default action of the release process includes:
 * attaching source files (zip and tar.gz)
 
 TRP products will attach additional files as are necessary for the release.
-This may include generated (executable) objects:
+This may include generated (executable) objects, such as:
 
 * .nbm files for NetBeans products
 * .jar files for Java products
@@ -90,7 +92,7 @@ are used initially to alert everyone of the proposed changes.
 == Developing Software and/or Documentation for a Product
 
 
-=== Dependency on an NBM in a Product which uses a Maven Build
+=== NBM dependency in a Product which uses a Maven Build
 
 Where a NBM is being used in the build of another product, you will find the
 other project's POM contains a dependency similar to that below.
@@ -125,19 +127,6 @@ in your NetBeans IDE, and placed in your local copy of the Maven repository.
 As Pull Requests are the method of submitting changes, the development processes
 are to a degree predefined. 
 
-=== Get a personal copy of the repository on GitHub
-
-=== Clone that repository onto you local machine
-
-=== Complete the development
-
-// use commits, push and pulls regularly to manage change history, and ensure the
-// development is maintained against the latest version of the source.
-
-=== Generate a PR on your repository and submit
-
-=== Be prepared to submit changes to the modules documentation as soon as
-possible
 
 === Updating Documentation
 
