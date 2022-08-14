@@ -37,7 +37,7 @@ NodeDynamicActions supports the creation of DynamicCLIActions for a
 node, by enabling the creation of DynamicCLIActions using a properties file.
 
 NodeDynamicActions observes the node folder containing the property file,
-ensuring the actions are updated whenever changes to the properties file occur.
+ensuring the actions are updated whenever changes occur to the properties file.
 
 Additional files within the node folder can be observed,
 so that changes can trigger updates to any associated objects.

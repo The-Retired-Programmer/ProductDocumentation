@@ -1,4 +1,4 @@
-== ActionSupport in action
+== ActionsSupport in action
 
 === NodeDynamicActions example
 
@@ -66,7 +66,7 @@ and setNodeActions methods).
 
 
 The Node should use the NodeDynamicActions getAllNodeActions method to obtain
-it's Action array.  This will dynamically create the actions array, combining
+it's Action array.  This will combine
 all valid actions which have been made known to NodeDynamicActions.
 
 [source, java]
@@ -86,7 +86,7 @@ all actions.
 While the majority of uses of this module will be via the NodeDynamicActions
 API, it is possible to use the DynamicAction classes independently.
 
-==== DynamicActions examples
+==== DynamicAction examples
 
 Add a DynamicAction to a node's actions.
 
@@ -107,7 +107,7 @@ public Action[] getActions(boolean arg0) {
 ----
 <1> Create the DynamicAction
 <2> ...and add it to the nodes's actions.
-The actions is enabled so needs no further initialisation.
+The action is enabled so needs no further initialisation.
 
 Add a Dynamic action as an icon in toolbar.
 
@@ -123,7 +123,7 @@ Add a Dynamic action as an icon in toolbar.
 <1> Create the DynamicAction
 <2> ...and add it to the toolbar.
 
-==== DynamicCLIActions example
+==== DynamicCLIAction example
 
 Add a DynamicCLIAction to a node's actions.
 
@@ -145,4 +145,4 @@ public Action[] getActions(boolean arg0) {
 ----
 <1> create the CLICommand object and pass to DynamicCLIAction.
 <2> Add the DynamicCLIAction to the nodes's actions.
-The actions is enabled so needs no further initialisation.
+The action is enabled so needs no further initialisation.

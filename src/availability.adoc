@@ -7,11 +7,11 @@ https://github.com/The-Retired-Programmer/ActionsSupport
 
 GitHub Releases holds the necessary files for all releases, including the NBM
 file.
-Download the NBM file and install it in your current Netbean system.
+Download the NBM file and install it in your current Netbeans system.
 For full details see:
 https://www.the-retired-programmer.uk/netbeansinstallingnbm.html
 
-For a fuller description of The-Retired_Programmer's use of GitHub as repository,
+For a fuller description of The-Retired_Programmer's use of GitHub as a repository,
 please look at: https://www.the-retired-programmer.uk/githubdevelopmentnotes.html
 
 === Installing the ActionsSupport.nbm when required by another NetBeans plug-in
@@ -58,7 +58,7 @@ to be able to build the project.
 
 ==== Debugging/Testing a project which uses the ActionsSupport NBM
 
-with the ActionsSupport installed,
+With the ActionsSupport installed,
 
 * JUnit testing can be undertaken.
 
@@ -82,20 +82,6 @@ Users wishing to propose fixes or new features for ActionsSupport should read
 the Guide first:
 https://www.the-retired-programmer.uk/githubdevelopmentnotes.html
 
-==== Get a personal copy of the repository on GitHub
-
-==== Clone that repository onto you local machine
-
-==== Complete the development
-
-// use commits, push and pulls regularly to manage change history, and ensure the
-// development is maintained against the latest version of the source.
-
-==== Generate a PR on your repository and submit
-
-==== Be prepared to submit changes to the modules documentation as soon as
-possible
-
 === Updating Documentation
 
 Users wishing to propose changes for ActionsSupport documentation should read
@@ -104,4 +90,3 @@ https://www.the-retired-programmer.uk/githubdevelopmentnotes.html
 
 The documentation is just another GitHub repository.
 
-*more to add ........*
