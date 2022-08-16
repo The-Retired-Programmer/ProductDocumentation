@@ -1,2 +1,0 @@
-# Extexp
-Documentation for Extexp
