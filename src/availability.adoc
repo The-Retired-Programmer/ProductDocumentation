@@ -1,0 +1,92 @@
+== Installing the ActionsSupport NBM file 
+
+ActionsSupport files are available on GitHub.
+
+The GitHub repository is:
+https://github.com/The-Retired-Programmer/ActionsSupport
+
+GitHub Releases holds the necessary files for all releases, including the NBM
+file.
+Download the NBM file and install it in your current Netbeans system.
+For full details see:
+https://www.the-retired-programmer.uk/netbeansinstallingnbm.html
+
+For a fuller description of The-Retired_Programmer's use of GitHub as a repository,
+please look at: https://www.the-retired-programmer.uk/githubdevelopmentnotes.html
+
+=== Installing the ActionsSupport.nbm when required by another NetBeans plug-in
+
+==== Installing the ActionsSupport.nbm
+
+The ActionsSupport.nbm file should be downloaded from GitHub Releases and then
+installed into your Netbeans installation.  For full details see:
+https://www.the-retired-programmer.uk/netbeansinstallingnbm.html
+
+Once the dependencies are loaded then the required NBM can be downloaded and
+installed.
+
+=== Developing a Netbeans plug-in which uses ActionsSupport
+
+==== Install the ActionsSupport.nbm plug-in
+
+Ensure the ActionsSupport NBM file is installed into your Netbeans installation.
+
+==== Add the ActionsSupport.nbm in your local Maven repository.
+
+The downloaded NBM file should be placed in the user's local copy of the
+Maven repository.
+
+==== Add the following dependency in your projects POM
+
+Add the following dependency in the projects POM to access the module and
+to be able to build the project.
+[source,xml,subs="attributes+"]
+----
+
+<dependencies>
+    ...
+    <dependency>
+        <groupId>uk.theretiredprogrammer</groupId>
+        <artifactId>actionssupport</artifactId>
+        <version>{release-version}</version> <1>
+    </dependency>
+    ....
+</dependencies>
+
+----
+<1> change the version to that of the latest version
+
+==== Debugging/Testing a project which uses the ActionsSupport NBM
+
+With the ActionsSupport installed,
+
+* JUnit testing can be undertaken.
+
+* Using Run or Debug on your development NBM
+will allow module testing to take place.
+
+==== Installing the Project NBM
+
+Once the project NBM has been built and tested, it can be installed into
+any copies of Netbeans, as required.
+Use the NetBeans Tools>Plugins menu item to complete this action.
+Note that that the required version of ActionsSupport must be installed prior
+to installing any plug-in which uses ActionsSupport features.
+
+It would be the developer's choice about what process they choose to use to
+deliver their plugin to their users.
+
+=== Developing ActionsSupport (fixes or new features)
+
+Users wishing to propose fixes or new features for ActionsSupport should read
+the Guide first:
+https://www.the-retired-programmer.uk/githubdevelopmentnotes.html
+
+=== Updating Documentation
+
+Users wishing to propose changes for ActionsSupport documentation should read
+the Guide first:
+https://www.the-retired-programmer.uk/githubdevelopmentnotes.html
+
+The documentation is just another GitHub repository.
+

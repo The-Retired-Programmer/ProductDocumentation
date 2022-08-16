@@ -1,0 +1,12 @@
+:release-version: 1.4.0
+= Actions Support User Guide : Early Preview Edition - Release {release-version} 
+
+:imagesdir: src/
+include::src/introduction.adoc[]
+
+include::src/example.adoc[]
+
+include::src/api.adoc[]
+
+include::src/availability.adoc[]
+                              
