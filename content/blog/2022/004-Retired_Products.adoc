@@ -1,0 +1,19 @@
+= Retired Products
+Richard Linsdale
+2022-07-28
+:jbake-type: post
+:jbake-tags: General, Retired_Products, Extexp
+:jbake-status: published
+
+My decision to use AsciiDoc and JBake to publish this
+website has resulted in a review to needs to support the existing array of
+products which have been documented on this site.
+
+Extexp, which is a publishing toolchain, is now redundant and so will be
+*Retired* immediately.
+
+All current documentation associated with Retired products will remain on this
+website but will be found in a new Retired Section.  Sources for the products
+will remain on GitHub, but will be set to Archived status (read  only).
+
+  

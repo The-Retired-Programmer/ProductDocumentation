@@ -1,0 +1,19 @@
+= Publishing Tools
+Richard Linsdale
+2022-07-28
+:jbake-type: post
+:jbake-tags: Publishing
+:jbake-status: published
+
+Following my decision to use AsciiDoc and JBake to publish this
+website and other documents, I have started to develop tools to support these
+processes.
+
+To enable my IDE of choice (NetBeans), these will be in the form of
+NetBeans plug-ins.
+These plugins will initially provide basic support for JBake and AsciiDoc
+projects.
+Integration of the respective toolchains will be a high priority for early development.
+
+Watch out for future posts on this subject and the documentation associated with
+these NetBeans plugins.
