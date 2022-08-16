@@ -1,0 +1,20 @@
+== Availability
+
+JBake-NB-Plugin files are available on GitHub.
+
+The GitHub repository for is: https://github.com/The-Retired-Programmer/JBake-NBProject-Plugin
+
+The project uses the GitHub Releases to record the formal releases.  In addition
+the NBM file created as part of the release in stored with the release information.
+
+For a fuller description of The-Retired_Programmer use of GitHub as repository,
+please look at: https://www.the-retired-programmer.uk/githubdevelopmentnotes.html
+
+=== Installing the Plug-in NBM
+
+Once the  NBM has been download, it can be installed into
+any copies of Netbeans, as required.
+Use the NetBeans Tools>Plugins menu item to complete this action.
+
+For more information about installing a NBM, please look at:
+https://www.the-retired-programmer.uk/netbeansinstallingnbm.html
