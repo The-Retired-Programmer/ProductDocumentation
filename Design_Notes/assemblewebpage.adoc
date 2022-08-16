@@ -1,0 +1,3 @@
+= PICO-HAT Design Notes
+
+include::src/designnotes.adoc[]
