@@ -1,0 +1,116 @@
+== Building the ptest executable
+
+=== The cmake file
+
+[source: cmake]
+----
+
+.... the cmake commands to build the application executable
+
+set(PICO-LIB_CURRENT_LIST_DIR "${CMAKE_CURRENT_LIST_DIR}/../Pico-Lib" )
+
+#
+#     now build the testing executable
+#
+add_executable(tests)
+
+pico_set_program_name(tests "${PROGNAME} tests")
+pico_set_program_version(tests "${VERSION}-tests")
+target_compile_definitions(tests PUBLIC VERSION="${VERSION}-tests")
+
+pico_enable_stdio_uart(tests 1)
+pico_enable_stdio_usb(tests 1) <1>
+
+target_compile_definitions(tests PUBLIC TESTINGBUILD) <2>
+
+include_directories(
+    ${PICO-LIB_CURRENT_LIST_DIR}/src/ptest/ <3>
+    ${CMAKE_CURRENT_LIST_DIR}/src/ <4>
+)
+
+target_sources(tests PUBLIC
+    test/main.c <5>
+    ${PICO-LIB_CURRENT_LIST_DIR}/src/ptest/ptest.c <6>
+    test/test_probe_controls.c <7>
+        src/probe_controls.c <8>
+    ... <9>
+)
+
+target_link_libraries(tests pico_stdlib hardware_pio hardware_dma hardware_gpio ) <10>
+
+pico_add_extra_outputs(tests)
+
+----
+<1> enable the USB serial connection if required
+<2> compile time flag, as this is a testing compilation 
+<3> the directory path for the ptest library
+<4> the directory path for the source modules under test
+<5> the main module for the test
+<6> the ptest source module
+<7> the test module
+<8> the module under test
+<9> add futher test / src "pairs" as required (actually is 1 test to many
+modules under test but is normally 1 to 1)
+<10> define all necessary pico libraries
+
+=== using TESTINGBUILD compiler definition
+
+The TESTINGBUILD compiler option is set for the test build (see point 2 in the
+previous section).
+A number of usages have been recognised:
+
+* testing internal functions in a module.
+By adding a declaration of the function in the modules header file you can make the
+make this function accessible to the testing system.  By using a preprocessor
+test such that this is dependent on TESTINGBUILD you can control the access to test
+builds only.
+
+[source: c]
+----
+
+#ifdef TESTINGBUILD
+
+#include "probe_controls.h"
+
+enum probestate getprobestate();
+
+#endif
+
+----
+
+* Inserting ptest code into modules for tracing.
+The tracing functions of the ptest library can be included in a module,
+but only in cases of a test build.
+
+[source: c]
+----
+
+....
+
+#ifdef TESTINGBUILD
+#include "ptest.h"
+#endif
+
+....
+
+ifdef TESTINGBUILD
+        trace('C');
+#endif
+
+----
+
+
+* Add functionality to obtain internal state from a module, to support testing
+
+[source: c]
+----
+
+#ifdef TESTINGBUILD
+
+uint32_t piodigitalsampling_read() {
+    return  pio_sm_get_blocking(ppb->pio, ppb->sm);
+}
+
+#endif
+
+----

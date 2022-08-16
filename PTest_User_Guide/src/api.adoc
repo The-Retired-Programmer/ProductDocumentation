@@ -1,0 +1,68 @@
+== The PTest API
+
+The PTest API is defined in PTest header file (ptest.h)
+
+---
+=== Test Runner Control
+
+void ptest_init() :: Initialise the PTest test runner see usage example (example1)
+
+bool add_test(char* name, char* groups, void (*testfunction)()) :: add a test
+to the set of tests in this build. see usage example (example2)
+
+char* name ;; the name of the test in the ptest UI
+char* groups ;; one or more alpha character (check if lc only!) which represent
+one or more groups to which this test is associated. see example (interactive1)
+void (*testfunction)()) ;; the function which used to run this test.
+
+void ptest_execute() :: start to run the ptest test runner see usage example (example3)
+
+---
+=== Tracing
+
+void trace_init() :: initialise the trace subsystem.
+
+void trace(char tracechar) :: insert an entry into the trace buffer. see example (trace1)
+
+---
+=== Pass / Fail Checks
+
+All checks are used to gain status on the success or failure of a test or part
+of a test.  These checks are summed when run a series of tests (such as groups
+or ALL) and are reported in a Red/Green report at the end of the series of tests.
+
+There are different checks for different data types, plus different report styles
+(hex / decimal reports).
+Most checks have a test id, which is a name that will be used in reporting a
+failure, and some of the boolean check have an addition message string;
+
+**void pass_if_trace_equal(char* expected)**
+
+**void pass_if_null(char* id, char* value)**
+
+**void pass_if_equal_string(char* id, char* expected, char* value)**
+
+**void pass_if_equal_int(char* id, int expected, int value)**
+
+**void pass_if_equal_uint(char* id, uint expected, uint value)**
+
+**void pass_if_equal_uintx(char* id, uint expected, uint value)**
+
+**void pass_if_equal_uint32(char* id, uint32_t expected, uint32_t value)**
+
+**void pass_if_equal_uint32x(char* id, uint32_t expected, uint32_t value)**
+
+**void pass_if_greaterthan_uintx(char* id, uint expected, uint value)**
+
+**void pass_if_true_with_message(char* id, bool value, char* message)**
+
+**void pass_if_true(char* id, bool value)**
+
+**void pass_if_false_with_message(char* id, bool value, char* message)**
+
+**void pass_if_false(char* id, bool value)**
+
+**void fail(char* id)**
+
+**void pass(char* id)**
+

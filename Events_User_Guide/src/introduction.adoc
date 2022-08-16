@@ -1,0 +1,12 @@
+== Introduction
+
+The Event Handler is an event queue and sequenual event processor for the Pico processor.
+It currently handles GPIO events and timer events.
+It will be expanded in the future to handle other event types.
+
+The GPIO source of events optionally includes a GPIO software debouncer, implemented within
+the PIO hardware of the PICO.
+
+The timer allow the generation of periodic events.
+
+
