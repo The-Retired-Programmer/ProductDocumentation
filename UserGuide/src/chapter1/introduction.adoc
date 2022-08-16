@@ -1,0 +1,46 @@
+== Introduction
+
+
+CAUTION: Extexp is probably an end-of-life product.  As of 28th May I will no longer
+using it for website builds. So its main need is no longer a priority for me.  I have
+move to using JBake as a website builder. I will investigate alternatives to the other major
+use case (that of book building and pdf creation).  Should I find a good alternative
+then Extexp will definitely become end-of-life
+
+WARNING: This documentation was written for a previous version (1.0.0-SNAPSHOT).
+The latest release of Extexp is 1.1.0.
+
+Extexp is a NetBeans plug-in which can process a command sequence which defines the
+required text processing.  Whilst this
+task could be undertaken by a command script, Extexp provides an OS
+independent implementation, with the additional benefits of a simple
+definition of the command sequences, and use of in-memory storage for
+intermediate results (if required).
+
+Text processing actions (executors) which are integral to the plug-in include:
+
+*   xref:executors.adoc#_markdown[Markdown processing]: using markdown sources to create HTML fragments
+
+*   xref:executors.adoc#_substitute[Substitution]: insert file content/parameter strings into a template file
+
+*   xref:executors.adoc#_freemarker[FreeMarker Template processing]: inserting file context and other fragments
+
+*   xref:executors.adoc#_xslt[XSLT processing]: XML to XML as directed by an xslt stylesheet
+
+*   xref:executors.adoc#_fop[FOP processing]: using a fo-xsl document to create a PDF
+
+*   xref:executors.adoc#_imageset[HTML IMG tag creation]: scanning image resources to create IMG tags suitable for
+responsive HTML page (using the srcset attribute)
+
+*   xref:executors.adoc#_external[Ability to run any OS utility program]: providing basic extendibility
+
+In addition, actions (controls) are available to provide simple flow control functions within
+a command sequence.  These controls include:
+
+*   xref:controls.adoc#_if_defined[If-defined]: allows optional processing if a parameter or file is defined/present
+
+*   xref:controls.adoc#_run[Run]: run a command sequence
+
+*   xref:controls.adoc#_use[Use]: similar to run, with minor differences when handling in-memory file system access
+
+*   xref:controls.adoc#_for[For]: repeat an action on all files with the defined extension
