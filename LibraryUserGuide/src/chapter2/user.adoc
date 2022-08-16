@@ -1,0 +1,41 @@
+
+== User Notes
+
+The library exists on Maven Central so no explicit repository information is required to be included 
+in user's POM. Add any required dependencies into the POM.  An example statement is:
+
+[source,xml]
+----
+    ...
+    <dependency>
+        <artifactId>xxxxx</artifactId>
+        <groupId>uk.the retiredprogrammer.nbpcglibrary</groupId>
+        <version>4.0.0</version>
+    </dependency>
+    ...
+----
+
+where xxxxx is one of:
+
+* api
+* annotations
+* common
+* data
+* form
+* icons
+* json
+* node
+* topcomponent
+* mysql
+* localjsonaccess
+* localdatabaseaccess
+* remoteclient
+* email
+* expressionparserandevaluate
+* lifecycle
+* simpleexpressionlanguage
+
+Online Javadoc for this release can be found http://www.javadoc.io/doc/uk.theretiredprogrammer/nbpcglibrary[here],
+whilst a downloadable jar file containing the same Javadoc is available
+http://central.maven.org/maven2/uk/theretiredprogrammer/nbpcglibrary/4.0.0/nbpcglibrary-4.0.0-javadoc.jar[from Maven Central].
+
