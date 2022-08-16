@@ -1,0 +1,17 @@
+== Introduction
+
+The AsciiDoctor Project NetBeans plugin is designed to support the building
+reasonably sized web pages and/or pdf documents from AsciiDoc sources.
+
+It assumes that these documents are assembled from multiple AsciiDoc source
+files, and assembly will be controlled by a top level AsciiDoc.
+
+The plug-in integrates the asciidoctor and asciidoctor-pdf executables as
+project node actions, so that asciidoctor builds can be completed from within
+the NetBeans environment (Build book and Build webpage).
+
+Identification of these Asciidoctor document assembly project is made by the
+presence of one or more assembly file(s) at the root level of the project.
+
+CAUTION: The predefined project node actions are limited to unix family systems
+(ie Linix and MacOS), they were not designed/implemented for Windows devices.
