@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>CUSTOM-Assemble</actionName>
+            <displayName>Assemble</displayName>
+            <recursive>false</recursive>
+            <goals>
+                <goal>clean</goal>
+                <goal>assembly:single</goal>
+            </goals>
+        </action>
+        <action>
+            <actionName>CUSTOM-Assemble and Deploy to GiHub</actionName>
+            <displayName>Assemble and Deploy to GiHub</displayName>
+            <recursive>false</recursive>
+            <goals>
+                <goal>clean</goal>
+                <goal>assembly:single</goal>
+                <goal>deploy:deploy-file</goal>
+            </goals>
+        </action>
+        <action>
+            <actionName>CUSTOM-Deploy only</actionName>
+            <displayName>Deploy only</displayName>
+            <recursive>false</recursive>
+            <goals>
+                <goal>deploy:deploy-file</goal>
+            </goals>
+        </action>
+    </actions>
