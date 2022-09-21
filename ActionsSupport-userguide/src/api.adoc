@@ -187,3 +187,4 @@ public CLICommand noinput() :: the command will not receive input from the user.
 public CLICommand actions(Action[] actions) :: define the set of actions to
 be inserted into the output window.
 
+public void executeCommand() :: execute this CLICommand.
