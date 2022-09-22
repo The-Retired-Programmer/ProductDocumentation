@@ -1,0 +1,9 @@
+= Actions Support User Guide : Early Preview Edition 
+
+include::introduction.adoc[]
+
+include::example.adoc[]
+
+include::api.adoc[]
+
+include::availability.adoc[]
