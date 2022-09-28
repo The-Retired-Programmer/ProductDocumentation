@@ -39,7 +39,3 @@ Both have the following commands:
 *  Build: execute the build file
 
 *  Clean and Build: a clean action followed by build action
-
-The build file also had one additional feature which is "Open Visual Editor"
-which is an experimental feature which displays the command sequences in a
-visual format. Thus providing visual feedback of the build file structure.

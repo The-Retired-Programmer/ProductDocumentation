@@ -1,9 +1,7 @@
 == Installing / Configuring / Extending Extexp
 === Installing
 
-
-    <<more to added when first version is released>>
-
+The NBM can be built from source if required.
 
 === Configuring 
 
@@ -26,14 +24,3 @@ root of the users file system where FreeMarker templates are stored. This defaul
 OS specific value ("/" for MacOS and LINUX, or "c:\" for Windows). If this needs
 to be changed for your workstation, it can be configured in the preferences window
 (Extexp options panel/FreeMarker tab).
-
-=== Extending 
-
-Extexp is designed for extendability. At the simplest level the
-External command runs any executable to process textual data.
-
-However to allow a developer to completely integrate new executors into the processor
-it is possible to create an additional NetBeans module which adds one or more executors, 
-with full integration (parameters, in-memory file store, Preferences URI,
-and visual display) with Extexp. Details for creating such an extension can be
-found xref:extending.adoc#_extending_extexp[here].

@@ -1,11 +1,11 @@
 == Introduction
 
 
-CAUTION: Extexp is probably an end-of-life product.  As of 28th May I will no longer
-using it for website builds. So its main need is no longer a priority for me.  I have
-move to using JBake as a website builder. I will investigate alternatives to the other major
-use case (that of book building and pdf creation).  Should I find a good alternative
-then Extexp will definitely become end-of-life
+CAUTION: Extexp is an end-of-life product.
+As of 28th May I will no longer using it for website builds.
+So its no longer a priority for me.
+I am using JBake as a website builder and asciidoctor to build webpages,
+documents and books.
 
 WARNING: This documentation was written for a previous version (1.0.0-SNAPSHOT).
 The latest release of Extexp is 1.1.0.

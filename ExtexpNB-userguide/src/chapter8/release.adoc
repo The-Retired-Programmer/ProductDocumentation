@@ -1,3 +1,0 @@
-== Release Notes 
-
-No formal release to Maven Central has yet to be made.
