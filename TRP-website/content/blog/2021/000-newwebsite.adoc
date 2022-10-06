@@ -4,6 +4,7 @@ Richard Linsdale
 :jbake-type: post
 :jbake-tags: General
 :jbake-status: published
+:jbake-archive_only: yes
 
 
 The-Retired-Programmer-Website

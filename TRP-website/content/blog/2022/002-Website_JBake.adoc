@@ -4,6 +4,7 @@ Richard Linsdale
 :jbake-type: post
 :jbake-tags: General
 :jbake-status: published
+:jbake-archive_only: yes
 
 You will probably notice additional changes to this WebSite.  These are due to
 a decision to move away from a privately developed tool (Extexp) and use JBake as

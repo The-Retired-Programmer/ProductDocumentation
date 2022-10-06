@@ -6,7 +6,7 @@
     <@parent.layout title="News">
         <#if posts??>
             <#list posts as post>
-                <#if (post.status == "published")>
+                <#if (post.status == "published" && !post.archive_only??)>
                     <a href="${post.uri}"><h2>${post.title}</h2></a>
                     ${post.body}
                     <div class="previousnextmenu">
