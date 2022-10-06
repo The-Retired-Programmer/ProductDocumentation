@@ -4,11 +4,6 @@
 
 <#macro layout>
     <@parent.layout>
-	<#if (content.title)??>
-            <div class="page-header">
-                <h1>${content.title}</h1>
-            </div>
-	<#else></#if>
 	<#nested>
         <div class="previousnextmenu">
             <div class="button-icon-left" >

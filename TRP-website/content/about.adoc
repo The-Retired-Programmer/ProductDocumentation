@@ -6,7 +6,6 @@ Richard Linsdale
 
 == The-Retired-Programmer
 
-
 As a software engineer with over 40 years experience of software development, product
 delivery and project management, I have wide range of experience in the profession.
 Now retired I have returned to my roots as a programmer continuing to build software

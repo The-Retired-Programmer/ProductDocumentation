@@ -42,7 +42,7 @@ body {
 /* Not required for template or sticky footer method. */
 
 #wrap > .container {
-  padding-top: 100px;
+  padding-top: 110px;
 }
 .container .credit {
   margin: 20px 0;
