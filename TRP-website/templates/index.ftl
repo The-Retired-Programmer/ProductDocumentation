@@ -3,14 +3,11 @@
 <@layout/>
 
 <#macro layout>
-    <@parent.layout title="News Items">
-	<div class="page-header">
-            <h1>News Items</h1>
-	</div>
+    <@parent.layout title="News">
 	<#list posts as post>
             <#if (post.status == "published")>
                 <a href="${post.uri}"><h2>${post.title}</h2></a>
-                <p>${post.body}</p>
+                ${post.body}
                 <div class="previousnextmenu">
                     <div class="button-icon-left" >
                         <#if (post.tags)??>

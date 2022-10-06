@@ -16,7 +16,36 @@ limitations under the License.
 /* 
     Author: richard linsdale
 */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400;1,700&family=Shrikhand&display=swap');
 
+.navbar-default {
+    background-color: lightsteelblue;
+    color: blue;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: inherit;
+}
+
+.navbar-default .navbar-brand {
+    color: inherit;
+    font-family: 'Shrikhand', cursive;
+    font-size:  28px;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.container>.navbar-collapse {
+    float:right;
+    width: 348px;
+}
+
+@media (min-width:768px){.navbar-nav{float:right;}}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+}
 
 h1 {
     font-size: 150%;
@@ -27,6 +56,7 @@ h1 {
 }
 
 h2 {
+    font-family: inherit;
     font-size: 125%;
     font-weight: 700;
     margin-top: 10px;
