@@ -1,1 +1,4 @@
 **/target/
+**/generated_documents/
+**/generated_assemblies/
+**/output/
