@@ -2,7 +2,7 @@
 Richard Linsdale
 2021-11-15
 :jbake-type: post
-:jbake-tags: Extexp, NetBeans_Plugins
+:jbake-tags: Extexp, NetBeans Plugin
 :jbake-status: published
 
 Extexp has been updated and a new version (1.1) has been released.  The NBM is available for

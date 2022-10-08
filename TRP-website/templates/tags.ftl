@@ -7,46 +7,31 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
-                    <h3>Documents</h3>
-                    <#if documents??>
-                        <#list documents as document>
-                            <#if (document.tags)??>
-                                <#list document.tags as dtag>
-                                    <#if dtag == tag>
-                                        <li><a href="${content.rootpath}${document.uri}">${document.title}</a> - ${document.date?string("dd MMMM yyyy")}</li>
-                                    <#else></#if>
+                    <h2>Documents</h2>
+                    <#if tagged_documents??>
+                        <#list tagged_documents as document>
+                            <#switch document.type>
+                            <#case "metadata">
+                                <p>${document.title}<br/>${document.version} - ${document.date?string("dd MMMM yyyy")}<br>
+                                <#list document.documents?split(",") as doc >
+                                    <#assign docinfo = doc?split("|") >
+                                    <a href="${content.rootpath}documents/${document.folderpath!}${docinfo[0]}" target="_blank" rel="noopener noreferrer">[${docinfo[1]} version]</a>
                                 </#list>
-                            <#else></#if>
-                        </#list>
-                    </#if>
-                    <#if passthroughs??>
-                    <#list passthroughs as passthrough>
-                        <#if (passthrough.tags)??>
-                            <#list passthrough.tags as dtag>
-                                <#if dtag == tag>
-                                    <li><a href="${content.rootpath}${passthrough.uri}">${passthrough.title}</a> - ${passthrough.date?string("dd MMMM yyyy")}</li>
-                                <#else></#if>
-                            </#list>
-                        <#else></#if>
-                        </#list>
-                    </#if>
-                    <#if pages??>
-                        <#list pages as page>
-                            <#if (page.tags)??>
-                                <#list page.tags as dtag>
-                                    <#if dtag == tag>
-                                        <li><a href="${content.rootpath}${page.uri}">${page.title}</a> - ${page.date?string("dd MMMM yyyy")}</li>
-                                    <#else></#if>
-                                </#list>
-                            <#else></#if>
+                                </p>
+                                <#break>
+                            <#case "post">
+                                <#break>
+                            <#default>
+                                <p><a href="${content.rootpath}${document.uri}">${document.title}</a> - ${document.date?string("dd MMMM yyyy")}</p>
+                            </#switch>
                         </#list>
                     </#if>
                 </div>
                 <div class="col-sm-6">
                     <#if tag_posts??>
-                        <h3>News Items</h3>
+                        <h2>News Items</h2>
                         <#list tag_posts as post>
-                            <li><a href="${content.rootpath}${post.uri}">${post.title}</a> - ${post.date?string("dd MMMM yyyy")}</li>
+                            <p><a href="${content.rootpath}${post.uri}">${post.title}</a> - ${post.date?string("dd MMMM yyyy")}</p>
                         </#list>
                     </#if>
                 </div>

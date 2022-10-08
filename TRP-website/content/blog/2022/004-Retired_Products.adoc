@@ -2,7 +2,7 @@
 Richard Linsdale
 2022-07-28
 :jbake-type: post
-:jbake-tags: General, Retired_Products, Extexp
+:jbake-tags: General, Retired Product, Extexp
 :jbake-status: published
 
 My decision to use AsciiDoc and JBake to publish this
