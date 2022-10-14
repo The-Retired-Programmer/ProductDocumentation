@@ -2,7 +2,7 @@
 Richard Linsdale
 2022-07-28
 :jbake-type: post
-:jbake-tags: Publishing
+:jbake-tags: AsciiDoc,JBake
 :jbake-status: published
 
 Following my decision to use AsciiDoc and JBake to publish this

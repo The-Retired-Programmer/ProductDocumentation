@@ -2,7 +2,7 @@
 Richard Linsdale
 2022-07-28
 :jbake-type: post
-:jbake-tags: General, Retired Product, Extexp
+:jbake-tags: TRP Website, Retired Products, Extexp, AsciiDoc, JBake
 :jbake-status: published
 
 My decision to use AsciiDoc and JBake to publish this
@@ -12,8 +12,8 @@ products which have been documented on this site.
 Extexp, which is a publishing toolchain, is now redundant and so will be
 *Retired* immediately.
 
-All current documentation associated with Retired products will remain on this
-website but will be found in a new Retired Section.  Sources for the products
+All current documentation associated with Retired Products will remain on this
+website but will be found in a new Retired Products section.  Sources for the products
 will remain on GitHub, but will be set to Archived status (read  only).
 
   
