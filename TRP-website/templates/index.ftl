@@ -51,8 +51,8 @@
                                 <p><a href="../tags/Pico Hat.html" >Pico Hat</a></p>
                                 <br/>
                                 <p>Software Libraries for use with Pico Applications.</p>
-                                <p><a href="../tags/Pico Events.html" >Events Library</a></p>
-                                <p><a href="../tags/Pico PTest.html" >PTest library</a></p>
+                                <p><a href="../tags/Events.html" >Events</a></p>
+                                <p><a href="../tags/PTest.html" >PTest</a></p>
                             </div>
                         </div>
                     </div>

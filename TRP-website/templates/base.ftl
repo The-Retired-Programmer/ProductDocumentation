@@ -50,15 +50,15 @@
                         <div class="navbar-collapse collapse">
                             <ul class="nav navbar-nav">
                                 <li><a href="${content.rootpath!}index.html">Home</a></li>
+                                <li><a href="${content.rootpath!}blogindex.html">Blog</a></li>
                                 <li><a href="${content.rootpath!}about.html">About</a></li>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Products<b class="caret"></b></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="${content.rootpath!}tags/Publishing.html"><b>Publishing</b></a></li>
-                                        <li><a href="${content.rootpath!}tags/NetBeans_Plugins.html"><b>NetBeans Plugins</b></a></li>
-                                        <li><a href="${content.rootpath!}tags/NBPCG.html">NBPCG</a></li>
-                                        <li><a href="${content.rootpath!}tags/NBPCGLibrary.html">NBPCGLibrary</a></li>
-                                        <li><a href="${content.rootpath!}tags/Retired_Products.html"><b>Retired Products</b></a></li>
+                                        <li><a href="${content.rootpath!}tags/Publishing Tools.html"><b>Publishing Tools</b></a></li>
+                                        <li><a href="${content.rootpath!}tags/NetBeans Libraries.html"><b>NetBeans Libraries</b></a></li>
+                                        <li><a href="${content.rootpath!}tags/Pico Products.html"><b>Pico Products</b></a></li>
+                                        <li><a href="${content.rootpath!}tags/Retired Products.html"><b>Retired Products</b></a></li>
                                     </ul>
                                 </li>
                                 <li><a href="${content.rootpath!}archive.html">Archive</a></li>
