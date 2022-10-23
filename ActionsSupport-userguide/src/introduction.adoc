@@ -14,7 +14,7 @@ These Action can execute:
 * External programs which can be executed in a CLI-like manner, allowing the use
 of such programs from the NetBeans UI
 
-=== DynamicActions and DynamicCLIActions
+=== DynamicActions and DynamicAsyncActions
 
 A Dynamic Action is an Action which
 can be enabled or disabled and is not displayed when disabled.
@@ -22,26 +22,27 @@ can be enabled or disabled and is not displayed when disabled.
 These are two classes of Dynamic Actions:
 
 * The base class (DynamicAction) which mirrors the Action class.
-* The DynamicCLIAction class which provides the extended functionality to run
-an external program.
+* The DynamicAsyncAction class which mirrors the DynamicAction class, running the
+onClick method in a seperate thread, so being suitable for any action which takes
+a period of time (which would otherwise block the processing of UI events).
 
 DynamicActions can be associated with a particular node, either being for: 
 
 * All projects of a particular type
 * A specific project, as defined by a properties file
-(DynamicCLIActions only).
+ using DynamicAyncActions.
   
-=== NodeDynamicActions
+=== NodeActions
 
-NodeDynamicActions supports the creation of DynamicCLIActions for a 
+NodeActions supports the creation of Actions for a 
 node, by enabling the creation of DynamicCLIActions using a properties file.
 
-NodeDynamicActions observes the node folder containing the property file,
+NodeActions observes the node folder containing the property file,
 ensuring the actions are updated whenever changes occur to the properties file.
 
 Additional files within the node folder can be observed,
 so that changes can trigger updates to any associated objects.
 
-NodeDynamicActions provides a method for assembling node actions, combining
+NodeActions provides a method for assembling node actions, combining
 various sources of actions to create the final dynamic actions array required by
 a node definition.

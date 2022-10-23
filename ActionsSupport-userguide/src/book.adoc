@@ -1,12 +1,15 @@
-:release-version: 1.4.2
-= Actions Support User Guide : Early Preview Edition - Release {release-version} 
-
+:doctype: book
+:backend: pdf
+:toc:
+:revnumber: 2.0.4
+:revremark: Early Preview Edition
+:version-label: Release
+= Actions Support User Guide
+ 
 :imagesdir: 
 include::introduction.adoc[]
 
 include::example.adoc[]
-
-include::api.adoc[]
 
 include::availability.adoc[]
                               

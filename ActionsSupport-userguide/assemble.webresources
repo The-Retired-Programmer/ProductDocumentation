@@ -1,3 +1,0 @@
-# assemble all the resources into the target resources folder
-#
-#cp src/resources/* target/resources/

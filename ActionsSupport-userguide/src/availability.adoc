@@ -1,92 +1,66 @@
-== Installing the ActionsSupport NBM file 
+== Utilising the ActionsSupport NBM
 
-ActionsSupport files are available on GitHub.
+The following provides a quick reference to key information needed to
+use the ActionsSupport NBM.
 
-The GitHub repository is:
-https://github.com/The-Retired-Programmer/ActionsSupport
+=== Using the Library in a Maven build
 
-GitHub Releases holds the necessary files for all releases, including the NBM
-file.
-Download the NBM file and install it in your current Netbeans system.
-For full details see:
-https://www.the-retired-programmer.uk/netbeansinstallingnbm.html
+The NBM must be added as a dependency in your POM.  To ensure Maven can find
+it in the GitHub Maven repository, you will have add the following in your POM:
 
-For a fuller description of The-Retired_Programmer's use of GitHub as a repository,
-please look at: https://www.the-retired-programmer.uk/githubdevelopmentnotes.html
-
-=== Installing the ActionsSupport.nbm when required by another NetBeans plug-in
-
-==== Installing the ActionsSupport.nbm
-
-The ActionsSupport.nbm file should be downloaded from GitHub Releases and then
-installed into your Netbeans installation.  For full details see:
-https://www.the-retired-programmer.uk/netbeansinstallingnbm.html
-
-Once the dependencies are loaded then the required NBM can be downloaded and
-installed.
-
-=== Developing a Netbeans plug-in which uses ActionsSupport
-
-==== Install the ActionsSupport.nbm plug-in
-
-Ensure the ActionsSupport NBM file is installed into your Netbeans installation.
-
-==== Add the ActionsSupport.nbm in your local Maven repository.
-
-The downloaded NBM file should be placed in the user's local copy of the
-Maven repository.
-
-==== Add the following dependency in your projects POM
-
-Add the following dependency in the projects POM to access the module and
-to be able to build the project.
-[source,xml,subs="attributes+"]
+[source,xml]
+----
+<repositories>
+    <repository>
+        <id>github</id>
+        <url>https://maven.pkg.github.com/The-Retired-Programmer/NetBeansNBMs</url>
+    </repository>
+</repositories>
 ----
 
-<dependencies>
-    ...
+and then add a dependency in your POM
+
+[source,xml]
+----
     <dependency>
         <groupId>uk.theretiredprogrammer</groupId>
         <artifactId>actionssupport</artifactId>
-        <version>{release-version}</version> <1>
+        <version>{revnumber}</version>
     </dependency>
-    ....
-</dependencies>
-
 ----
-<1> change the version to that of the latest version
 
-==== Debugging/Testing a project which uses the ActionsSupport NBM
+=== Installing the NBM into Netbeans
 
-With the ActionsSupport installed,
+To be able to use the Plugin it must be downloaded and then installed in Netbeans.
 
-* JUnit testing can be undertaken.
+There is two ways to download the NBM:
 
-* Using Run or Debug on your development NBM
-will allow module testing to take place.
+* Releases of this product are stored in a Maven repository on GitHub.
+It is possible to download an NBM from the Package available 
+.
 
-==== Installing the Project NBM
+* However assuming you have added the dependency to you POM and have compiled your
+code, a copy of the NBM will have been down loaded to your local Maven
+repository (by default ~/.m2).
 
-Once the project NBM has been built and tested, it can be installed into
-any copies of Netbeans, as required.
-Use the NetBeans Tools>Plugins menu item to complete this action.
-Note that that the required version of ActionsSupport must be installed prior
-to installing any plug-in which uses ActionsSupport features.
+Once you have a downloaded copy on your machine, you follow the standard
+Netbeans process to install the downloaded file (Tools>Plugins)
 
-It would be the developer's choice about what process they choose to use to
-deliver their plugin to their users.
+=== Links
 
-=== Developing ActionsSupport (fixes or new features)
+* Releases are stored in a Packages Maven repository on 
+https://github.com/The-Retired-Programmer/NetBeansNBMs/packages/1609349[GitHub]
 
-Users wishing to propose fixes or new features for ActionsSupport should read
-the Guide first:
-https://www.the-retired-programmer.uk/githubdevelopmentnotes.html
+* Source Code is stored in a Git repository on
+https://github.com/The-Retired-Programmer/NetBeansNBMs[GitHub] as part of
+a monorepro containing NBMs.
 
-=== Updating Documentation
+* Documentation (included JavaDoc API documentation) can be found on the
+https://www.theretiredprogrammer.com/tags/ActionsSupport.html[TRP website].
 
-Users wishing to propose changes for ActionsSupport documentation should read
-the Guide first:
-https://www.the-retired-programmer.uk/githubdevelopmentnotes.html
+* Documentation source is stored in a Git repository on
+https://github.com/The-Retired-Programmer/ProductDocumentation[GitHub] as part of
+a monorepro containing documentation.
 
-The documentation is just another GitHub repository.
-
+* Development Process Guide for The-Retired-Programmer products can be found on the
+https://www.theretiredprogrammer.com/tags/DevelopProcesses.html[TRP website].

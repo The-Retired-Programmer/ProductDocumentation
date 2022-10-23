@@ -1,9 +1,11 @@
-= Actions Support User Guide : Early Preview Edition 
+:toc2:
+:revnumber: 2.0.4
+:revremark: Early Preview Edition
+:version-label: Release
+= Actions Support User Guide 
 
 include::introduction.adoc[]
 
 include::example.adoc[]
-
-include::api.adoc[]
 
 include::availability.adoc[]

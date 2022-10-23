@@ -1,11 +1,11 @@
 == ActionsSupport in action
 
-=== NodeDynamicActions example
+=== NodeActions example
 
-NodeDynamicActions creation:
+NodeActions creation:
 
 * accepts the filename of a properties file
-* enables the creation of DynamicCLIActions from the information in the
+* enables the creation of DynamicAyncActions from the information in a
 properties file
 * monitors the properties file for changes and refreshes the actions as
 necessary
@@ -14,21 +14,22 @@ necessary
 In the node constructor, add:
 
 [source,java]
+[%unbreakable]
 ----
 
 XXXXProject(FileObject dir, ProjectState state) {
-        .....
-        dynamicactions = new NodeDynamicActions(dir, "projectactions"); <1>
-    }
+    .....
+    dynamicactions = new NodeActions(dir, "projectactions"); <1>
+}
 
 ----
 <1> create a DynamicActions object, which will observe a
 file _projectactions.properties_ within folder _dir_ for changes.
-It will use the content of that file to define DynamicCLIAction objects,
+It will use the content of that file to define DynamicAsyncAction objects,
 updating these actions whenever the file changes.
 
-In order to be able to create the node's actions, NodeDynamicActions must be
-made aware of all actions required.
+In order to be able to create the node's actions, NodeActions must be
+made aware of all other actions required.
 It will create the list containing three sections, with separators.   
 Any of the sections may be empty.
 
@@ -36,40 +37,43 @@ The sections are:
 
 * Basic node actions, typically the standard NetBeans actions which a node
 would want to include
-* Node actions, typically DynamicCLIActions which are node type specific (ie not
+* Node actions, typically DynamicAsyncActions which are node type specific (ie not
 defined in the node's properties file)
-* DynamicCLIActions which are created using the node's property file
+* DynamicAsyncActions which are created using the node's property file
 
-The third group is defined by the NodeDynamicActions constructor, while the
-others must be passed to NodeDynamicActions (using setNodeBasicActions
+The third group are defined by the NodeActions constructor, while the
+others must be passed to NodeActions (using setNodeBasicActions
 and setNodeActions methods).
 
 [source,java]
+[%unbreakable]
 ----
 
-        dynamicactions.setNodeBasicActions(
-                        CommonProjectActions.renameProjectAction(),
-                        CommonProjectActions.copyProjectAction(),
-                        CommonProjectActions.closeProjectAction() <1>
-                );
-        dynamicactions.setNodeActions(
-                        new DynamicCLIAction(
-                            new CLICommand(projectDir, "Bake")
-                                .cliCommandLine("jbake -b") <2>
-                        )
+dynamicactions.setNodeBasicActions(
+                CommonProjectActions.renameProjectAction(),
+                CommonProjectActions.copyProjectAction(),
+                CommonProjectActions.closeProjectAction() <1>
+        );
+dynamicactions.setNodeActions(
+                new DynamicAsyncAction("Bake")
+                        .onAction(
+                            () -> new CLIExec(projectDir,"jbake -b")
+                                    .stderrToOutputWindow()
+                                    .stdoutToOutputWinow()
+                                    .ioTabName("Bake " + projectDir.getName())
+                                    .execute("Baking")) <2>
                 );
         
 ----
 <1> define 3 actions, in this case standard Netbeans Project Actions.
-<2> define 1 DynamicCLIAction, which will appear in all projects of this type.
+<2> define 1 DynamicAsyncAction, which will appear in all projects of this type.
 
-
-
-The Node should use the NodeDynamicActions getAllNodeActions method to obtain
-it's Action array.  This will combine
-all valid actions which have been made known to NodeDynamicActions.
+The Node should use the NodeActions getAllNodeActions method to obtain
+it's Action array.
+This will combine all valid actions which have been made known to NodeActions.
 
 [source, java]
+[%unbreakable]
 ----
 
 public Action[] getActions(boolean arg0) {
@@ -77,13 +81,13 @@ public Action[] getActions(boolean arg0) {
 }
 
 ----
-<1> Call NodeDynamicActions getAllActions method to get a merged list of
+<1> Call NodeActions getAllNodeActions method to get a merged list of
 all actions.
 
 
-=== Use of the DynamicAction/DynamicCLIAction classes independently
+=== Use of the DynamicAction/DynamicAsyncAction classes
 
-While the majority of uses of this module will be via the NodeDynamicActions
+While the majority of uses of this module will be via the NodeActions
 API, it is possible to use the DynamicAction classes independently.
 
 ==== DynamicAction examples
@@ -91,6 +95,7 @@ API, it is possible to use the DynamicAction classes independently.
 Add a DynamicAction to a node's actions.
 
 [source,java]
+[%unbreakable]
 ----
 
 @Override
@@ -98,8 +103,7 @@ public Action[] getActions(boolean arg0) {
     return  new Action[]{
                 ...
                 null,
-                new DynamicAction()
-                    .label("do something")
+                new DynamicAction("do something")
                     .onAction(()->do_something()) <1> <2>
             });
 }
@@ -109,25 +113,12 @@ public Action[] getActions(boolean arg0) {
 <2> ...and add it to the nodes's actions.
 The action is enabled so needs no further initialisation.
 
-Add a Dynamic action as an icon in toolbar.
+==== DynamicAsyncAction example
+
+Add a DynamicAsyncAction to a node's actions.
 
 [source,java]
-----
-
-    DynamicAction toolbaraction = new DynamicAction()
-                                    .icon("do_something_image.png")
-                                    .onAction(()->do_something()) <1>
-    ... <2>
-
-----
-<1> Create the DynamicAction
-<2> ...and add it to the toolbar.
-
-==== DynamicCLIAction example
-
-Add a DynamicCLIAction to a node's actions.
-
-[source,java]
+[%unbreakable]
 ----
 
 @Override
@@ -135,14 +126,12 @@ public Action[] getActions(boolean arg0) {
     return  new Action[]{
                 ...
                 null,
-                new DynamicCLIAction(
-                        new CLICommand(projectDir, "Bake")
-                            .cliCommandLine("jbake -b") <1>
-                 ) <2>
+                new DynamicAsyncAction("do something")
+                    .onAction(()->do_something()) <1> <2>
             });
 }
 
 ----
-<1> create the CLICommand object and pass to DynamicCLIAction.
-<2> Add the DynamicCLIAction to the nodes's actions.
+<1> Create the DynamicAsyncAction
+<2> ...and add it to the nodes's actions.
 The action is enabled so needs no further initialisation.
