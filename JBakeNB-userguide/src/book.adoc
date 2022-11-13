@@ -1,0 +1,15 @@
+:doctype: book
+:backend: pdf
+:toc:
+:revnumber: 1.4.1
+:revremark: Early Preview Edition
+:version-label: Release
+= JBake NetBeans Plugin User Guide
+ 
+:imagesdir: 
+include::introduction.adoc[]
+
+include::example.adoc[]
+
+include::availability.adoc[]
+                              

@@ -1,20 +1,32 @@
-== Availability
+== Utilising the JBake NBM
 
-JBake-NB-Plugin files are available on GitHub.
+=== Installing the NBM
 
-The GitHub repository for is: https://github.com/The-Retired-Programmer/JBake-NBProject-Plugin
+To be able to use the Plugin it must be downloaded and then installed in Netbeans.
 
-The project uses the GitHub Releases to record the formal releases.  In addition
-the NBM file created as part of the release in stored with the release information.
+Releases of this product are stored in a Maven repository on GitHub.
+The NBM can be downloaded from the Package available.
 
-For a fuller description of The-Retired_Programmer use of GitHub as repository,
-please look at: https://www.the-retired-programmer.uk/githubdevelopmentnotes.html
+Once you have a downloaded copy on your machine, you follow the standard
+Netbeans process to install the downloaded file (Tools>Plugins).
+The https://www.theretiredprogrammer.uk/tags/Actions%20Support.html[ActionsSupport NBM]
+must also be installed with or prior to installing this NBM.
 
-=== Installing the Plug-in NBM
+=== Links
 
-Once the  NBM has been download, it can be installed into
-any copies of Netbeans, as required.
-Use the NetBeans Tools>Plugins menu item to complete this action.
+* Releases are stored in a Packages Maven repository on 
+https://github.com/The-Retired-Programmer/NetBeansNBMs/packages/1652862[GitHub]
 
-For more information about installing a NBM, please look at:
-https://www.the-retired-programmer.uk/netbeansinstallingnbm.html
+* Source Code is stored in a Git repository on
+https://github.com/The-Retired-Programmer/NetBeansNBMs[GitHub] as part of
+a monorepro containing NBMs.
+
+* Documentation can be found on the
+https://www.theretiredprogrammer.uk/tags/JBake.html[TRP website].
+
+* Documentation source is stored in a Git repository on
+https://github.com/The-Retired-Programmer/ProductDocumentation[GitHub] as part of
+a monorepro containing documentation.
+
+* Development Process Guide for The-Retired-Programmer products can be found on the
+https://www.theretiredprogrammer.uk/tags/DevelopProcesses.html[TRP website].
