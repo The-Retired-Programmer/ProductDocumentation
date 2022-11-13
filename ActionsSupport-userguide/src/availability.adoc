@@ -1,8 +1,5 @@
 == Utilising the ActionsSupport NBM
 
-The following provides a quick reference to key information needed to
-use the ActionsSupport NBM.
-
 === Using the Library in a Maven build
 
 The NBM must be added as a dependency in your POM.  To ensure Maven can find
@@ -36,8 +33,7 @@ To be able to use the Plugin it must be downloaded and then installed in Netbean
 There is two ways to download the NBM:
 
 * Releases of this product are stored in a Maven repository on GitHub.
-It is possible to download an NBM from the Package available 
-.
+It is possible to download an NBM from the Package available.
 
 * However assuming you have added the dependency to you POM and have compiled your
 code, a copy of the NBM will have been down loaded to your local Maven
