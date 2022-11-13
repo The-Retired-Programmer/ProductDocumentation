@@ -41,6 +41,8 @@
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>3.4.2</version>
                 <configuration>
+                    <finalName>websitezip</finalName>
+                    <appendAssemblyId>false</appendAssemblyId>
                     <descriptors>
                         <descriptor>./assembly.xml</descriptor>
                     </descriptors>
@@ -60,7 +62,7 @@
                 <artifactId>maven-deploy-plugin</artifactId>
                 <version>3.0.0</version>
                 <configuration>
-                    <file>${project.build.directory}/${project.artifactId}-${project.version}-websitezip.zip</file>
+                    <file>websitezip.zip</file>
                 </configuration>
             </plugin>
         </plugins>

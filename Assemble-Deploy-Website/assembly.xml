@@ -6,10 +6,15 @@
     <formats>
         <format>zip</format>
     </formats>
-    <files>
-        <file>
-            <source>dummycontent.html</source>
-            <outputDirectory></outputDirectory>
-        </file>
-    </files>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <fileSets>
+        <fileSet>
+            <directory>${basedir}/../TRP-website/output/</directory>
+            <includes>
+                <include>**</include>
+            </includes>
+            <useDefaultExcludes>true</useDefaultExcludes>
+            <outputDirectory>./</outputDirectory>
+        </fileSet>
+    </fileSets>
 </assembly>
