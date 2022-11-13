@@ -1,7 +1,0 @@
-= AsciiDoctor Project Plugin User Guide : Early Preview Edition 
-
-include::src/introduction.adoc[]
-
-include::src/example.adoc[]
-
-include::src/availability.adoc[]

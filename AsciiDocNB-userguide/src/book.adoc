@@ -1,0 +1,15 @@
+:doctype: book
+:backend: pdf
+:toc:
+:revnumber: 2.0.2
+:revremark: Early Preview Edition
+:version-label: Release
+= AsciiDoc NetBeans Plugin User Guide
+ 
+:imagesdir: 
+include::introduction.adoc[]
+
+include::example.adoc[]
+
+include::availability.adoc[]
+                              

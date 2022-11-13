@@ -1,79 +1,187 @@
 ==  Examples of the AsciiDoctor NB-Plugin
 
+=== Basic file recognition
+
+Any AsciiDoc file (__.adoc__) will be recognised by Netbeans and will have
+a Publish action included in it's pull down menu.
+
+image::resources/basicpublishaction.png[basic publish action]
+
+If the file is not located
+within a AsciiDoc project then the Publish action will create the published
+document in a same folder as the source.
+
+image::resources/basicfolderstructure.png[basic folder structure]
+
+=== Publish a pdf article
+
+To publish an asciidoctor-pdf article your asciidoc file will need to define 
+options in it's header
+
+[source]
+----
+:doctype: book
+:backend: pdf
+:toc: <1>
+:revnumber: 2.0.2 <1>
+:revremark: Early Preview Edition <1>
+:version-label: Release <1>
+= AsciiDoc NetBeans Plugin User Guide
+ 
+----
+<1> optional options
+
+
+=== Publish an html article
+
+To publish an asciidoctor article your asciidoc file will need to define 
+options in it's header
+
+[source]
+----
+:toc2: <1>
+:revnumber: 2.0.2 <1>
+:revremark: Early Preview Edition <1>
+:version-label: Release <1>
+= AsciiDoc NetBeans Plugin User Guide
+
+----
+<1> optional options
+
+
+=== To repurpose an asciidoc file for both pdf and html publishing
+
+To repurpose a file for multiple publishing formats, it can be easily handled
+by creating 3 files - the source file (without headers) and two file which contain the necessary
+options headers and an include statement to add the actual source.
+
+image::resources/repurposingscrfolderstructure.png[source folder structure]
+
+In __book.adoc__ set the options for a book and use an include to add
+the source.
+
+[source]
+----
+:doctype: book
+:backend: pdf
+:toc:
+:revnumber: 2.0.2
+:revremark: Early Preview Edition
+:version-label: Release
+= AsciiDoc NetBeans Plugin User Guide
+
+\include::introduction.adoc[]
+ 
+----
+
+Select Publish on the __book.adoc__ file to create the pdf.
+
+image::resources/repurposingbookaction.png[book action]
+
+
+In __web.adoc__ set the options for an html document and use an include to
+add the same source. Select Publish on the __web.adoc__ file to create the html.
+
+[source]
+----
+:toc2:
+:revnumber: 2.0.2 
+:revremark: Early Preview Edition 
+:version-label: Release 
+= AsciiDoc NetBeans Plugin User Guide
+
+\include::introduction.adoc[]
+
+----
+
+The resulting folder structure which will contain the two published documents:
+
+image::resources/repurposingfolderstructure.png[folder structure]
+
 === The project structure
 
-The project structure is:
+The project structure that is recognised by this plug-in is:
 
-* up to 3 assembly definition files located at the root level of the project. 
-* a set of asciidoc files, located within the src folder
-* resources (images etc) to be used in the build, in one or more resource folder
-with the src folder
-* a target folder into which the generated files are saved (pdf and/or html),
-and resources folder within the target folder to collect all resources needed
-for the generated html document 
+* an __asciidoc.properties__ file (no content is required).
+* asciidoc files, located within the src folder
+* resources (images etc) to be used in the Publishing process
+
 
 image::resources/projectstructure.png[project structure]
 
-=== The project actions
+The publishing process will create a __generated_documents__ folder.
 
-The project includes actions to execute asciidoctor commands to build the
-book (pdf) or webpage (html).
+image::resources/projectstructurewithpublished.png[project structure with published]
 
-image::resources/projectactions.png[project actions]
+There are no specific project level Actions.
+  
+The standard output of the Publishing command is routed to the NetBeans
+Output Window, while the
+published document is created in the __generated_documents__ folder. 
 
-The output of the command is routed to the NetBeans output window, while the
-generated document is created in the target folder. 
+=== To assemble multiple asciidoc files for pdf and/or html publishing
 
-=== The "Build book" action and its associated assembly definition documents
+As one of the major use cases for an AsciiDoc project is to be able to
+assemble multiple AsciiDoc source files into a book and/or html file.
 
-There is a single assembly definition for building a book.  This is
-__assemblebook.adoc_.
-Typically this is a series of asciidoc include statements, but can
-include any other necessary statements to ensure the completion of the build.
-
-[source]
-----
-
-= AsciiDoctor Project Plugin User Guide : Early Preview Edition <1>
-
-:imagesdir: src/ <2> 
-<3>
-\include::src/introduction.adoc[]
-
-\include::src/example.adoc[]
-
-\include::src/availability.adoc[]
-
-----
-<1> book title
-<2> a necessary statement to ensure access to images for embedding
-<3> include statement(s)
-
-===  The "Build webpage" action and its associated assembly definition documents
-
-There are two assembly definitions for building a webpage.  These are
-__assemblewebpage.adoc_ and assemble.webresources.
-
-assemblewebpage.adoc is very similar to the equivalent assemblebook.adoc,
-however they are not exact copies as some instructions are only required in
-one of the environments.  So in this example the assemblewebpage.adoc is
+So developing the previous examples, an asciidoc file for each output is created
+which define the options and a series of include statements to define the
+assembly order.
 
 [source]
 ----
-= AsciiDoctor Project Plugin User Guide : Early Preview Edition
+:doctype: book
+:backend: pdf
+:toc:
+:revnumber: 2.0.2
+:revremark: Early Preview Edition
+:version-label: Release
+= AsciiDoc NetBeans Plugin User Guide
 
-\include::src/introduction.adoc[]
+\include::introduction.adoc[]
 
-\include::src/example.adoc[]
+\include::example.adoc[]
 
-\include::src/availability.adoc[]
+\include::availability.adoc[]
+ 
 ----
 
-The assemble.webresources is a command file which copies all required resources
-to the target/resources file.  In this case it is as simple as:
+or if you have the source in a subfolder structure.
 
 [source]
 ----
-cp src/resources/* target/resources/
-----
+:doctype: book
+:backend: pdf
+:toc:
+:revnumber: 2.0.2
+:revremark: Early Preview Edition
+:version-label: Release
+= AsciiDoc NetBeans Plugin User Guide
 
+:imagesdir: part1/
+\include::part1/introduction.adoc[]
+
+\include::part1/example.adoc[]
+
+:imagesdir: part2/
+\include::part2/availability.adoc[]
+ 
+---- 
+
+and html version
+
+[source]
+----
+:toc2:
+:revnumber: 2.0.2 
+:revremark: Early Preview Edition 
+:version-label: Release 
+= AsciiDoc NetBeans Plugin User Guide
+
+\include::part1/introduction.adoc[]
+
+\include::part1/example.adoc[]
+
+\include::part2/availability.adoc[]
+
+---- 

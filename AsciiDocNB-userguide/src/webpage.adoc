@@ -1,0 +1,12 @@
+:toc2:
+:revnumber: 2.0.2
+:revremark: Early Preview Edition
+:version-label: Release
+= AsciiDoc NetBeans Plugin User Guide
+ 
+include::introduction.adoc[]
+
+include::example.adoc[]
+
+include::availability.adoc[]
+                              

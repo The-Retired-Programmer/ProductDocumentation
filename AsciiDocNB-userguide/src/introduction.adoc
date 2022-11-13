@@ -1,17 +1,26 @@
 == Introduction
 
-The AsciiDoctor Project NetBeans plugin is designed to support the building
-reasonably sized web pages and/or pdf documents from AsciiDoc sources.
+The AsciiDoc NetBeans plugin is designed to support the publishing of AsciiDoc
+files using the asciidoctor and asciidoctor-pdf executables.
 
-It assumes that these documents are assembled from multiple AsciiDoc source
-files, and assembly will be controlled by a top level AsciiDoc.
+Its most basic form, it will provide a publish action for any .adoc file, which
+will create either an html or pdf document (depending upon the header of
+the document).  The resulting published file will be placed in
+the same folder as the source .doc file.
 
-The plug-in integrates the asciidoctor and asciidoctor-pdf executables as
-project node actions, so that asciidoctor builds can be completed from within
-the NetBeans environment (Build book and Build webpage).
+An AsciiDoc Project is defined by the presence of an __asciidoc.properties__
+file at the root level of the project.  There will also be a folder at the root
+level (named __src__) which will contain the asciidoc files which make up the
+project and associated resources.  Any folder structure within the __src__
+folder is acceptable.  All asciidoc will have a publishing action (as per the
+basic form of operation.  However the published documents will be placed within
+another root level folder (named __generated_documents__), placed with a folder
+structure that reflects the source folder structure.
 
-Identification of these Asciidoctor document assembly project is made by the
-presence of one or more assembly file(s) at the root level of the project.
+AsciiDoc projects are suited to publishing an assembly of AsciiDoc files 
+and/or repurposing documents so that they can be published in multiple format.
+However they can be used as containers for a collection of individual documents.
 
-CAUTION: The predefined project node actions are limited to unix family systems
-(ie Linix and MacOS), they were not designed/implemented for Windows devices.
+
+CAUTION: The predefined __.adoc__ file actions are limited to unix family systems
+(ie Linix and MacOS). No Windows implementation have yet been completed.
