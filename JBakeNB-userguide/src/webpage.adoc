@@ -1,6 +1,5 @@
 :toc2:
-:revnumber: 1.4.1
-:revremark: Early Preview Edition
+:revnumber: 1.5.0
 :version-label: Release
 = JBake NetBeans Plugin User Guide
  

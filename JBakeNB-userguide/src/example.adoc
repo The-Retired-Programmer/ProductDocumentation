@@ -1,4 +1,4 @@
-==  Examples of the JBake NB-Plugin
+==  JBake NB-Plugin by Example
 
 === The basic project structure
 
@@ -10,19 +10,19 @@ image::resources/projectstructure.png[basic project structure]
 === The basic project nodeactions
 
 The project includes an action to use __jbake -b__ command to build the site.
+This appears in the project node's popup actions as "Bake". 
 
 image::resources/projectactions.png[basic project actions]
 
-The output of the command is routed to the NetBeans Output Window, while the
+The output and error streams of the command is routed to the NetBeans Output Window, while the
 generated website is created in the _output_ folder. 
 
 image::resources/bakeoutput.png[basic project structure]
 
-=== The project structure with projectactions.properties
+=== The projectactions.properties file
 
 The __projectactions.properties__ file is used to add further CLI commands to the
-project action list.
-
+project actions.
 
 image::resources/projectstructure-with-projectactions.png[project structure with projectactions]
 
@@ -35,14 +35,15 @@ generated website).
 [source]
 ----
 1.label = Start project test webserver
-1.command = jwebserver -d "${NODEPATH}/output/"
+1.command = jwebserver
+1.commandargs = -d ${NODEPATH}/output/
 1.tabname = Test Webserver for TRP-website
-1.needscancel = yes
+1.killcommand = q
+1.cleartab = every execution
 COMMANDCOUNT = 1
 ----
 
-=== The project actions with projectactions.properties
-
-The resulting project actions can be seen below:
+The resulting project actions is added to the project node's popup actions as
+"Start project test webserver". 
 
 image::resources/projectactions-with-projectactions.png[project actions with projectactions]

@@ -1,25 +1,24 @@
 == Introduction
 
-The JBake Project NetBeans plugin is designed to support the JBake WebSite
-builder.
+The JBake Project NetBeans plugin supports the JBake WebSite builder.
 
-It currently provides basic Netbeans Project support for a site being
-built by JBake.
+It provides basic Netbeans Project support for a site being built by JBake.
 This includes:
 
-* Identification of JBake websites - by the presence of
+* Identification of JBake projects - by the presence of
 a _jbake.properties_ file at the root level of the project.
 
-* Capability to run the JBake executable from within Netbeans.
+* Capability to run the JBake executable from within NetBeans.
 This is provided as a project node action.
 
-* Additional executables or scripts may be added to a project node as actions, allowing
-more commands to be added at the individual project level.
+* Additional executables or scripts may be added as project node actions, allowing
+commands to be defined at the project level (using the
+__projectactions.properties file to define these).
 
 No features of JBake are thought to be masked by this plug-in.
 
-CAUTION: The predefined project node actions are limited to unix family systems
-(ie Linix and MacOS). No Windows implementation have yet been completed.
+CAUTION: The predefined project node actions are limited to Unix family systems
+(i.e. Linix and MacOS). No Windows implementation have yet been completed.
 This does not stop a user attempting to use the additional CLI actions
-capability to execute the JBake -b command, but the provided Bake action
-does not yet work for Windows.
+capability to execute the JBake -b command, but the built-in Bake action
+may not work with Windows.

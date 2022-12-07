@@ -1,18 +1,19 @@
-== Utilising the JBake NBM
+== Using the JBake NBM
 
-=== Installing the NBM
+=== Adding the NBM to NetBeans
 
-To be able to use the Plugin it must be downloaded and then installed in Netbeans.
+To be able to use the Plugin it must be downloaded and then installed in NetBeans.
 
 Releases of this product are stored in a Maven repository on GitHub.
-The NBM can be downloaded from the Package available.
+It is possible to download an NBM from Packages.
 
 Once you have a downloaded copy on your machine, you follow the standard
-Netbeans process to install the downloaded file (Tools>Plugins).
-The https://www.theretiredprogrammer.uk/tags/Actions%20Support.html[ActionsSupport NBM]
-must also be installed with or prior to installing this NBM.
+NetBeans process to install the downloaded file (Tools>Plugins)
 
-=== Links
+The https://www.theretiredprogrammer.uk/tags/Actions%20Support.html[ActionsSupport NBM]
+must be installed with or prior to installing this NBM.
+
+=== Useful Links
 
 * Releases are stored in a Packages Maven repository on 
 https://github.com/The-Retired-Programmer/NetBeansNBMs/packages/1652862[GitHub]
