@@ -1,11 +1,11 @@
-== ActionsSupport in action
+== ActionsSupport by Example
 
-=== NodeActions example
+=== NodeActions
 
 NodeActions creation:
 
 * accepts the filename of a properties file
-* enables the creation of DynamicAyncActions from the information in a
+* enables the creation of DynamicAsyncActions from the information in a
 properties file
 * monitors the properties file for changes and refreshes the actions as
 necessary
@@ -19,13 +19,13 @@ In the node constructor, add:
 
 XXXXProject(FileObject dir, ProjectState state) {
     .....
-    dynamicactions = new NodeActions(dir, "projectactions"); <1>
+    nodeactions = new NodeActions(dir, "projectactions"); <1>
 }
 
 ----
-<1> create a DynamicActions object, which will observe a
+<1> create a NodeActions object, which will observe a
 file _projectactions.properties_ within folder _dir_ for changes.
-It will use the content of that file to define DynamicAsyncAction objects,
+It will use the content of that file to define DynamicAsyncActions,
 updating these actions whenever the file changes.
 
 In order to be able to create the node's actions, NodeActions must be
@@ -41,7 +41,7 @@ would want to include
 defined in the node's properties file)
 * DynamicAsyncActions which are created using the node's property file
 
-The third group are defined by the NodeActions constructor, while the
+The third group are created by the NodeActions constructor, while the
 others must be passed to NodeActions (using setNodeBasicActions
 and setNodeActions methods).
 
@@ -49,21 +49,19 @@ and setNodeActions methods).
 [%unbreakable]
 ----
 
-dynamicactions.setNodeBasicActions(
-                CommonProjectActions.renameProjectAction(),
-                CommonProjectActions.copyProjectAction(),
-                CommonProjectActions.closeProjectAction() <1>
-        );
-dynamicactions.setNodeActions(
-                new DynamicAsyncAction("Bake")
-                        .onAction(
-                            () -> new CLIExec(projectDir,"jbake -b")
-                                    .stderrToOutputWindow()
-                                    .stdoutToOutputWinow()
-                                    .ioTabName("Bake " + projectDir.getName())
-                                    .execute("Baking")) <2>
-                );
-        
+    nodeactions.setNodeBasicActions(
+            CommonProjectActions.renameProjectAction(),
+            CommonProjectActions.copyProjectAction(),
+            CommonProjectActions.closeProjectAction()  <1>
+    );
+    nodeactions.setNodeActions(
+            new DynamicAsyncAction("Bake")
+                    .onAction(() -> new NbCliDescriptor(projectDir, "jbake", "-b")
+                    .stderrToIO()
+                    .stdoutToIO()
+                    .ioTabName("Bake " + projectDir.getName())
+                    .exec("Baking"))  <2>
+    );
 ----
 <1> define 3 actions, in this case standard Netbeans Project Actions.
 <2> define 1 DynamicAsyncAction, which will appear in all projects of this type.
@@ -77,17 +75,43 @@ This will combine all valid actions which have been made known to NodeActions.
 ----
 
 public Action[] getActions(boolean arg0) {
-    return dynamicactions.getAllNodeActions(); <1>
+    return nodeactions.getAllNodeActions(); <1>
 }
 
 ----
 <1> Call NodeActions getAllNodeActions method to get a merged list of
 all actions.
 
+=== NbCliDescriptor
 
-=== Use of the DynamicAction/DynamicAsyncAction classes
+The NbCliDescriptor uses a set of Builder style methods to create the
+description. Once the description is complete the external process can be started
+and run to completion.
 
-While the majority of uses of this module will be via the NodeActions
+[source, java]
+[%unbreakable]
+----
+
+NbCliDescriptor descriptor = new NbCliDescriptor(projectDir, "jbake", "-b") <1>
+                        .ioTabName("Bake " + projectDir.getName()) <2>
+                        .stderrToIO() <3>
+                        .stdoutToIO() <3>
+                        .exec("Baking")) <4>
+
+----
+<1> initialise the CLI command and arguements, and the required
+working directory
+<2> Request an IOTab, defining the tab label
+<3> attach an external process stream to the IOTab
+<4> once configuration is complete, 
+the exec method is used to open or reuse an IOTab, start
+the external process, connect all the required IO, run to process completion and
+finally tidy up the resources used.
+
+
+=== DynamicAction and DynamicAsyncAction
+
+While the primary use case will be the NodeActions
 API, it is possible to use the DynamicAction classes independently.
 
 ==== DynamicAction examples

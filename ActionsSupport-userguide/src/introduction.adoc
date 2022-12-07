@@ -1,18 +1,13 @@
 == Introduction
 
-The ActionsSupport NBM is a set of classes which can be used by other NetBeans
-plugins, to allow the creation of Actions, with the ability to run external
-programs.
+The ActionsSupport NBM is a library which can be used by other NetBeans
+plugins, to allow the creation of Actions.
+
+One of its major actions is to run external programs. This feature make it easy to
+integrate tool chains used with particular file types and/or new project types.
 
 This document is designed for developers of NetBeans Modules who wish to
 integrate these features into their code.
-
-These Action can execute:
-
-* NetBeans methods
-* Methods coded within the plugin
-* External programs which can be executed in a CLI-like manner, allowing the use
-of such programs from the NetBeans UI
 
 === DynamicActions and DynamicAsyncActions
 
@@ -23,19 +18,17 @@ These are two classes of Dynamic Actions:
 
 * The base class (DynamicAction) which mirrors the Action class.
 * The DynamicAsyncAction class which mirrors the DynamicAction class, running the
-onClick method in a seperate thread, so being suitable for any action which takes
+onClick method in a separate thread, so being suitable for any action which takes
 a period of time (which would otherwise block the processing of UI events).
 
-DynamicActions can be associated with a particular node, either being for: 
+These Actions can be associated with a particular node, either being for: 
 
 * All projects of a particular type
 * A specific project, as defined by a properties file
- using DynamicAyncActions.
   
 === NodeActions
 
-NodeActions supports the creation of Actions for a 
-node, by enabling the creation of DynamicCLIActions using a properties file.
+NodeActions supports the creation of Actions for a node using a properties file.
 
 NodeActions observes the node folder containing the property file,
 ensuring the actions are updated whenever changes occur to the properties file.
@@ -43,6 +36,48 @@ ensuring the actions are updated whenever changes occur to the properties file.
 Additional files within the node folder can be observed,
 so that changes can trigger updates to any associated objects.
 
-NodeActions provides a method for assembling node actions, combining
-various sources of actions to create the final dynamic actions array required by
-a node definition.
+NodeActions provides a method for assembling all node actions, combining
+various sources of actions to create the Actions array required by
+a Node.
+
+===  Structure of the Node Actions Properties file.
+
+The properties file must include a property _COMMANDCOUNT_ which indicates
+the number of actions being defined.
+
+Each action definition must have two or more property lines defined:
+
+* n.label - defines the label displayed in the popup list (required).
+
+* n.command - defines the CLI command to be executed when the action is selected
+(required).
+
+* n.commandargs - defines the CLI command arguments to be used when the
+action is selected (optional).  This text is subject to parameter substitution
+prior to use.  The only substitution defined is \$\{NODEPATH\}.
+
+* n.tabname - defines the IO Tab name to be used in the Output Window. Optional,
+if not defined then the label property will be used for the tab name.
+
+* n.killcommand - defines the command word for the 'kill the external process'
+action (optional).
+Commands are typed into the IO Tab. 
+
+* n.cleartab = "every execution" - clears the tab between every usage (optional).
+
+Note that n must be an integer between 1 and _COMMANDCOUNT_.
+
+=== NbCliDescriptor
+
+NbCliDescriptor is used to define the configuration of the External process that
+will run.  The description includes:
+
+* The CLI command and its arguments.
+
+* The IO Tab configuration (optional)
+
+* file connections for the STDIN, STDOUT and STDERR streams which are accepted
+or produced by the external program.  This can including use of the IO Tab to 
+accept either of the two stream produced.
+
+* Other configuration options.

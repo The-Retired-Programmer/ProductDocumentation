@@ -1,4 +1,4 @@
-== Utilising the ActionsSupport NBM
+== Using the ActionsSupport NBM
 
 === Using the Library in a Maven build
 
@@ -8,7 +8,7 @@ it in the GitHub Maven repository, you will have add the following in your POM:
 [source,xml]
 ----
 <repositories>
-    <repository>
+    <repository>Actions Support
         <id>github</id>
         <url>https://maven.pkg.github.com/The-Retired-Programmer/NetBeansNBMs</url>
     </repository>
@@ -22,27 +22,27 @@ and then add a dependency in your POM
     <dependency>
         <groupId>uk.theretiredprogrammer</groupId>
         <artifactId>actionssupport</artifactId>
-        <version>{revnumber}</version>
+        <version>2.1.0</version>
     </dependency>
 ----
 
-=== Installing the NBM into Netbeans
+=== Adding the NBM to NetBeans
 
-To be able to use the Plugin it must be downloaded and then installed in Netbeans.
+To be able to use the Plugin it must be downloaded and then installed in NetBeans.
 
 There is two ways to download the NBM:
 
 * Releases of this product are stored in a Maven repository on GitHub.
-It is possible to download an NBM from the Package available.
+It is possible to download an NBM from Packages.
 
 * However assuming you have added the dependency to you POM and have compiled your
 code, a copy of the NBM will have been down loaded to your local Maven
 repository (by default ~/.m2).
 
 Once you have a downloaded copy on your machine, you follow the standard
-Netbeans process to install the downloaded file (Tools>Plugins)
+NetBeans process to install the downloaded file (Tools>Plugins)
 
-=== Links
+=== Useful Links
 
 * Releases are stored in a Packages Maven repository on 
 https://github.com/The-Retired-Programmer/NetBeansNBMs/packages/1609349[GitHub]
@@ -52,11 +52,11 @@ https://github.com/The-Retired-Programmer/NetBeansNBMs[GitHub] as part of
 a monorepro containing NBMs.
 
 * Documentation (included JavaDoc API documentation) can be found on the
-https://www.theretiredprogrammer.com/tags/ActionsSupport.html[TRP website].
+https://www.theretiredprogrammer.uk/tags/ActionsSupport.html[TRP website].
 
 * Documentation source is stored in a Git repository on
 https://github.com/The-Retired-Programmer/ProductDocumentation[GitHub] as part of
 a monorepro containing documentation.
 
 * Development Process Guide for The-Retired-Programmer products can be found on the
-https://www.theretiredprogrammer.com/tags/DevelopProcesses.html[TRP website].
+https://www.theretiredprogrammer.uk/tags/DevelopProcesses.html[TRP website].
