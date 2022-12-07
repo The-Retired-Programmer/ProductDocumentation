@@ -57,6 +57,7 @@
                                     <ul class="dropdown-menu">
                                         <li><a href="${content.rootpath!}tags/Publishing Tools.html"><b>Publishing Tools</b></a></li>
                                         <li><a href="${content.rootpath!}tags/NetBeans Libraries.html"><b>NetBeans Libraries</b></a></li>
+                                        <li><a href="${content.rootpath!}tags/Other NetBeans Tools.html"><b>Other NetBeans Tools</b></a></li>
                                         <li><a href="${content.rootpath!}tags/Pico Products.html"><b>Pico Products</b></a></li>
                                         <li><a href="${content.rootpath!}tags/Retired Products.html"><b>Retired Products</b></a></li>
                                     </ul>

@@ -11,6 +11,9 @@
         <#case "NetBeans Libraries">
             <@tagset set="Actions Support"/>
         <#break>
+        <#case "Other NetBeans Tools">
+            <@tagset set="PostgreSQL"/>
+        <#break>
         <#case "Pico Products">
             <@tagset set="Pico Hat,Events,PTest"/>
         <#break>

@@ -24,7 +24,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                     <div class="indexblock" >
                         <a href="../tags/NetBeans Libraries.html" ><h1>NetBeans Libraries</h1></a>
                         <a href="../tags/NetBeans Libraries.html" >
@@ -35,6 +35,22 @@
                                 <p>Library of utility classes that may be useful to other NetBeans Plug-in
                                     developers. Packaged as NetBeans NBM modules</p>
                                 <p><a href="../tags/Actions Support.html" >Actions Support</a><p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="indexblock" >
+                        <a href="../tags/Other NetBeans Tools.html" ><h1>Other NetBeans Tools</h1></a>
+                        <a href="../tags/Other NetBeans Tools.html" >
+                            <img src="img/cds600x600.jpg" alt="Other NetBeans Tools - servers image"/>
+                        </a>
+                        <div class="indextext">
+                            <div class="paragraph">
+                                    Other tools that have been created for NetBeans
+                                    that may be useful to other NetBeans users.
+                                    Packaged as NetBeans NBM modules</p>
+                                <p><a href="../tags/PostgreSQL.html" >PostgreSQL</a><p>
                             </div>
                         </div>
                     </div>
@@ -57,7 +73,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                     <div class="indexblock" >
                         <a href="../tags/Retired Products.html" ><h1>Retired Products</h1></a>
                         <a href="../tags/Retired Products.html" >
