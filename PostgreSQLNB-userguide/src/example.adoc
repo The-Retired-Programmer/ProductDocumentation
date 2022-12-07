@@ -1,0 +1,19 @@
+==  PostgreSQL NB-Plugin by Example
+
+=== PostgreSQL file recognition
+
+Any PostgreSQL file (__.pgsql__ or __.plpgsql__) will be recognised by NetBeans
+and will have an Execute action included in it's popup menu.
+
+image::resources/basicexecutionaction.png[basic execution action]
+
+However if the files do not exist within a PostgreSQL project they will not be
+actioned.  A database context is needed to execute a command, which is defined
+in the __postgresql.properties__ file.
+
+image::resources/properties.png[postgresql.properties]
+
+The output and error streams from the execution of the PSQL program, are routed
+to the NetBeans Output Window.
+
+image::resources/basicexecutionoutput.png[basic execution output]

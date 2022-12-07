@@ -1,0 +1,11 @@
+:toc2:
+:revnumber: 1.0.2
+:version-label: Release
+= PostgreSQL NetBeans Plugin User Guide
+ 
+include::introduction.adoc[]
+
+include::example.adoc[]
+
+include::availability.adoc[]
+                              
