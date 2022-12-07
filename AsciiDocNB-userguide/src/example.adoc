@@ -1,9 +1,9 @@
-==  Examples of the AsciiDoctor NB-Plugin
+==  AsciiDoctor NB-Plugin by Example
 
-=== Basic file recognition
+=== AsciiDoc file recognition
 
-Any AsciiDoc file (__.adoc__) will be recognised by Netbeans and will have
-a Publish action included in it's pull down menu.
+Any AsciiDoc file (__.adoc__) will be recognised by NetBeans and will have
+a Publish action included in it's popup menu.
 
 image::resources/basicpublishaction.png[basic publish action]
 
@@ -15,7 +15,7 @@ image::resources/basicfolderstructure.png[basic folder structure]
 
 === Publish a pdf article
 
-To publish an asciidoctor-pdf article your asciidoc file will need to define 
+To publish an asciidoctor-pdf article your AsciiDoc file will need to define 
 options in it's header
 
 [source]
@@ -34,7 +34,7 @@ options in it's header
 
 === Publish an html article
 
-To publish an asciidoctor article your asciidoc file will need to define 
+To publish an asciidoctor article your AsciiDoc file will need to define 
 options in it's header
 
 [source]
@@ -49,16 +49,15 @@ options in it's header
 <1> optional options
 
 
-=== To repurpose an asciidoc file for both pdf and html publishing
+=== To repurpose an AsciiDoc file for both pdf and html publishing
 
-To repurpose a file for multiple publishing formats, it can be easily handled
-by creating 3 files - the source file (without headers) and two file which contain the necessary
-options headers and an include statement to add the actual source.
+To repurpose a file to publish in multiple formats, 
+create 3 files - the source file (without headers) and two files which contain the necessary
+headers and an include statement to add the source.
 
 image::resources/repurposingscrfolderstructure.png[source folder structure]
 
-In __book.adoc__ set the options for a book and use an include to add
-the source.
+In __book.adoc__ set the options for a book and an include statement.
 
 [source]
 ----
@@ -79,8 +78,8 @@ Select Publish on the __book.adoc__ file to create the pdf.
 image::resources/repurposingbookaction.png[book action]
 
 
-In __web.adoc__ set the options for an html document and use an include to
-add the same source. Select Publish on the __web.adoc__ file to create the html.
+In __web.adoc__ set the options for an html document and an include statement.
+Select Publish on the __web.adoc__ file to create the html.
 
 [source]
 ----
@@ -115,17 +114,16 @@ image::resources/projectstructurewithpublished.png[project structure with publis
 
 There are no specific project level Actions.
   
-The standard output of the Publishing command is routed to the NetBeans
-Output Window, while the
-published document is created in the __generated_documents__ folder. 
+The standard output and error streams are routed to the NetBeans Output Window,
+while the published document is created in the __generated_documents__ folder. 
 
-=== To assemble multiple asciidoc files for pdf and/or html publishing
+=== To assemble multiple AsciiDoc files for pdf and/or html publishing
 
-As one of the major use cases for an AsciiDoc project is to be able to
+One of the major use cases for an AsciiDoc project is to be able to
 assemble multiple AsciiDoc source files into a book and/or html file.
 
-So developing the previous examples, an asciidoc file for each output is created
-which define the options and a series of include statements to define the
+Using similar techniques seen in previous examples, an AsciiDoc file for each output is created,
+defining the options, and now a series of include statements define the
 assembly order.
 
 [source]

@@ -1,26 +1,32 @@
 == Introduction
 
 The AsciiDoc NetBeans plugin is designed to support the publishing of AsciiDoc
-files using the asciidoctor and asciidoctor-pdf executables.
+files using the asciidoctor and asciidoctor-pdf.
 
-Its most basic form, it will provide a publish action for any .adoc file, which
-will create either an html or pdf document (depending upon the header of
-the document).  The resulting published file will be placed in
-the same folder as the source .doc file.
+In non Project Mode, it provides a publish action for any .adoc file, which
+can create either an html or pdf document (depending upon the header of
+the document).  The resulting file will be placed in
+the same folder as the .adoc file.
 
-An AsciiDoc Project is defined by the presence of an __asciidoc.properties__
-file at the root level of the project.  There will also be a folder at the root
-level (named __src__) which will contain the asciidoc files which make up the
-project and associated resources.  Any folder structure within the __src__
-folder is acceptable.  All asciidoc will have a publishing action (as per the
-basic form of operation.  However the published documents will be placed within
-another root level folder (named __generated_documents__), placed with a folder
-structure that reflects the source folder structure.
+Publishing actions are in the file node's popup actions, and also in the
+editor window's popup actions.
+
+The NetBeans spelling checker is enabled when editing an AsciiDoc file.
+
+In Project Mode, an AsciiDoc Project is recognised by the presence of an
+__asciidoc.properties__ file at the root level of the project.
+There will also be a folder at the root level (named __src__) which will contain
+the asciidoc files which make up the project and their associated resources.
+Any folder structure within the __src__ folder is acceptable.
+All .adoc files will have a publishing action.
+The published documents will be placed within
+another root level folder (named __generated_documents__). This will include a
+folder structure that reflects the source folder structure.
 
 AsciiDoc projects are suited to publishing an assembly of AsciiDoc files 
-and/or repurposing documents so that they can be published in multiple format.
-However they can be used as containers for a collection of individual documents.
+and/or repurposing documents so that they can be published in multiple formats.
+Alternatively they can be used as containers for a collection of individual
+documents.
 
-
-CAUTION: The predefined __.adoc__ file actions are limited to unix family systems
-(ie Linix and MacOS). No Windows implementation have yet been completed.
+CAUTION: The predefined __.adoc__ file actions are limited to Unix family systems
+(i.e. Linix and MacOS). No Windows implementation have yet been completed.

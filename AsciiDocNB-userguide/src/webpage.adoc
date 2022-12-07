@@ -1,6 +1,5 @@
 :toc2:
-:revnumber: 2.0.2
-:revremark: Early Preview Edition
+:revnumber: 2.1.0
 :version-label: Release
 = AsciiDoc NetBeans Plugin User Guide
  
