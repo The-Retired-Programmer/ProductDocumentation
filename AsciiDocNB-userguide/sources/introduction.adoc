@@ -13,6 +13,9 @@ editor window's popup actions.
 
 The NetBeans spelling checker is enabled when editing an AsciiDoc file.
 
+Automatically saving modified documents before Publishing is available.
+It is always enabled in non Project Mode.
+
 In Project Mode, an AsciiDoc Project is recognised by the presence of an
 __asciidoc.properties__ file at the root level of the project.
 There will also be a folder at the root level (named __src__) which will contain
@@ -23,10 +26,19 @@ The published documents will be placed within
 another root level folder (named __generated_documents__). This will include a
 folder structure that reflects the source folder structure.
 
+The default source root folder and generated_documents root folder can be
+redefined by use of properties in the __asciidoc.properties__ file.
+
 AsciiDoc projects are suited to publishing an assembly of AsciiDoc files 
 and/or repurposing documents so that they can be published in multiple formats.
 Alternatively they can be used as containers for a collection of individual
 documents.
+
+Automatically saving modified documents before Publishing is available in
+Project Mode.
+It is optional and is enabled/disabled by a property in the
+__asciidoc.properties__ file.
+By default it is enabled.
 
 CAUTION: The predefined __.adoc__ file actions are limited to Unix family systems
 (i.e. Linix and MacOS). No Windows implementation have yet been completed.

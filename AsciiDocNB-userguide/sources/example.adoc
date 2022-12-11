@@ -13,9 +13,9 @@ document in a same folder as the source.
 
 image::resources/basicfolderstructure.png[basic folder structure]
 
-=== Publish a pdf article
+=== Publish a pdf book
 
-To publish an asciidoctor-pdf article your AsciiDoc file will need to define 
+To publish an asciidoctor-pdf book your AsciiDoc file will need to define 
 options in it's header
 
 [source]
@@ -101,10 +101,9 @@ image::resources/repurposingfolderstructure.png[folder structure]
 
 The project structure that is recognised by this plug-in is:
 
-* an __asciidoc.properties__ file (no content is required).
+* an __asciidoc.properties__ file (content is optional).
 * asciidoc files, located within the src folder
 * resources (images etc) to be used in the Publishing process
-
 
 image::resources/projectstructure.png[project structure]
 
@@ -115,7 +114,23 @@ image::resources/projectstructurewithpublished.png[project structure with publis
 There are no specific project level Actions.
   
 The standard output and error streams are routed to the NetBeans Output Window,
-while the published document is created in the __generated_documents__ folder. 
+while the published document is created in the __generated_documents__ folder.
+
+=== Using alternative source and generated documents folders
+
+While there are default folders (__src__ and __generated_documents__) it is
+possible to change these folders by addition of properties in the
+__asciidoc.properties__ file.
+
+[source]
+----
+
+    source_root_folder: sources <1>
+    generated_root_folder: books_and_pages <2>
+
+----
+<1> source root folder - relative to the project root folder
+<2> generated documents root folder - relative to the project root folder
 
 === To assemble multiple AsciiDoc files for pdf and/or html publishing
 
@@ -182,4 +197,40 @@ and html version
 
 \include::part2/availability.adoc[]
 
----- 
+----
+
+=== Save Before Publishing
+
+Save Before Publishing, if enabled, saves any AsciiDoc files which have been
+modified but not saved, prior to executing the Publish action.
+
+In non Project Mode this feature is always enabled for the file which the Publish
+Action has been applied.
+
+In Project Mode the feature is controlled by a property in the
+__asciidoc.properties__ file.
+
+[source]
+----
+
+    save_before_publishing: XXX <1>
+
+----
+<1> where XXX is one of NO, YES or ALL. 
+This property is optional and its default value is ALL.
+
+This property controls how any modified files may be saved prior to running the
+publish action.
+Only files modified by Netbeans will be considered as a Save candidates.
+
+The possible values for the property are:
+
+* NO - No modified file(s) are saved prior to publishing, so the publish
+action will use the version of files as last saved (ignoring the modifications).
+
+* YES - Only the file selected by the publish action (either via the file node
+or the editor action), will be saved, if modified, prior to running the
+publish action.
+
+* ALL - All modified files that are within the source folder will be saved prior
+to running the publish action.

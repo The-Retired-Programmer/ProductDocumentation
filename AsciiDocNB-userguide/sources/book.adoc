@@ -1,8 +1,11 @@
-:toc2:
-:revnumber: 2.1.0
+:doctype: book
+:backend: pdf
+:toc:
+:revnumber: 2.1.1
 :version-label: Release
 = AsciiDoc NetBeans Plugin User Guide
  
+:imagesdir: 
 include::introduction.adoc[]
 
 include::example.adoc[]
