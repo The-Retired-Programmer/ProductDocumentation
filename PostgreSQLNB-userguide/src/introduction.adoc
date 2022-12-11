@@ -12,6 +12,11 @@ __postgresql.properties__ file at the root level of the project.
 The project will execute the scripts with a specific database, which is defined
 in this file.
 
+Automatically saving modified documents before executing scripts is available.
+It is optional and is enabled/disabled by a property in the
+__postgresql.properties__ file.
+By default it is enabled.
+
 CAUTION: The predefined __.pgsql__ and __.plpgsql__ file actions are limited to
 Unix family systems (i.e. Linix and MacOS).
 No Windows implementation have yet been completed.

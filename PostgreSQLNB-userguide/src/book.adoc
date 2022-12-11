@@ -1,7 +1,7 @@
 :doctype: book
 :backend: pdf
 :toc:
-:revnumber: 1.0.2
+:revnumber: 1.0.3
 :version-label: Release
 = PostgreSQL NetBeans Plugin User Guide
  
