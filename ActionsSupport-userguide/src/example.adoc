@@ -37,8 +37,8 @@ The sections are:
 
 * Basic node actions, typically the standard NetBeans actions which a node
 would want to include
-* Node actions, typically DynamicAsyncActions which are node type specific (ie not
-defined in the node's properties file)
+* Node actions, typically DynamicAsyncActions which are node type specific (ie
+not defined in the node's properties file)
 * DynamicAsyncActions which are created using the node's property file
 
 The third group are created by the NodeActions constructor, while the
@@ -107,6 +107,97 @@ working directory
 the exec method is used to open or reuse an IOTab, start
 the external process, connect all the required IO, run to process completion and
 finally tidy up the resources used.
+
+=== SaveBeforeAction
+
+SaveBeforeAction is a helper class to support SaveIfModified for documents
+which are open and modified.
+
+There are two Use Cases:
+
+**Documents are not in a Project**
+
+In this case there is a simple method that is always enabled which can be
+called prior to calling the NbCliDescriptor __.exec( ... )__ method.
+
+[source, java]
+[%unbreakable]
+----
+
+    SaveBeforeAction.saveIfModified(dataObject); <1>
+
+----
+<1> static method, does not need an instance of SaveBeforeAction as it does
+not have a project property to set the mode.
+SaveIfModified is always enabled.
+
+This will ensure the document will be saved if it is in a modified state.
+Only files modified by NetBeans will be considered as save candidates.
+
+**Document are part of a Project**
+
+In this case there is a need to parse the project properties file in order to
+extract the mode.
+This method will create an instance of SaveBeforeAction.
+Additionally the project source root folder needs to be defined.
+
+[source, java]
+[%unbreakable]
+----
+
+    savebeforeaction = new SaveBeforeAction(properties, "save_before_publishing", ALL); <1>
+    savebeforeaction.setSourceRoot(projectdir.getFileObject("src")); <2>
+
+----
+<1> create the SaveBeforeAction, parsing the properties. Parameter are:
+* the properties for extracting the required property
+* the required property key
+* the default mode (as this property is optional)
+<2> set the project source root folder (used with the ALL option)
+
+Parsing the project's properties file will extract the mode, which
+can be one of NO, YES or ALL.
+
+The mode controls how any modified files are saved.
+Only files modified by Netbeans will be considered as save candidates.
+
+The possible values for the property are:
+
+* NO - No modified file(s) are saved.
+
+* YES - Only the file selected (see saveIfModifiedByMode(dataObject) below).
+
+* ALL - All modified files that are within the source folder will be saved. 
+
+Whenever a change to the properties file is observed, the project properties
+file will need to be reparsed and a new instance of SaveBeforeAction created.
+This occurs automatically as the project properties file is normally registered
+with the NodeActions class.
+
+[source, java]
+[%unbreakable]
+----
+
+   nodeactionsmanager.registerFile("asciidoc", "properties", fct -> updateProperties(projectdir));
+
+----
+
+Finally there is a method to apply SaveIfModified to any project files
+(controlled by mode).
+
+[source, java]
+[%unbreakable]
+----
+
+    aproject.getSaveBeforeAction().saveIfModifiedByMode(dataObject); <1>
+
+----
+<1> depending on the mode saves zero or more modified file(s).
+
+Best practise will encapsulate these actions with the Project's Property
+Handling class.  It then makes the SaveIfModified instance available to the project
+instance, which can in turn make it available to any project code needing the
+SaveIfModified functionality. 
 
 
 === DynamicAction and DynamicAsyncAction

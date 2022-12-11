@@ -81,3 +81,34 @@ or produced by the external program.  This can including use of the IO Tab to
 accept either of the two stream produced.
 
 * Other configuration options.
+
+=== SaveBeforeAction
+
+Supports the saving of modified files prior to running an external process.
+
+Two Use Cases are supported:
+
+* File is not within a project. In that case the file is saved if it is modified.
+
+* File is within a project. In that case, the project properties file can be
+used to obtain a save_before_action setting:
+
+** NO - don't save
+
+** YES - save the file which is the subject of the action (either file node or
+editor)
+
+** ALL - save all project source files which are currently in a modified state.
+
+The class supports:
+
+* Extracting the required property from the project property file (including
+replacement of the instance whenever an update of the property file is made).
+
+* Setting the source files root folder.
+
+* SaveIfModified methods:
+
+** for a file(s) within a project.
+
+** for a file which is not within a project.
