@@ -1,0 +1,38 @@
+= New Versions of all current Products
+Richard Linsdale
+2022-12-12
+:jbake-type: post
+:jbake-tags: AsciiDoc, JBake, PostgreSQL, Actions Support
+:jbake-status: published
+
+Finished 2022 with new versions of all the current Products:
+
+**AsciiDoc Project NBM (2.1.1)** - now handles AsciiDoc documents which are
+part of the AsciiDoc Project or standalone.
+Save Before Publishing options are implemented.
+Uses the latest Actions Support Library.
+
+**JBake Project NBM (1.5.1)** - Uses the latest Actions Support Library.
+
+**PostgreSQL Project NBM (1.0.3)** - A new Project NBM which integrates with
+PSQL, being able to manage and execute PLpgSQL and PqSQL from within the
+NetBeans IDE.
+Save Before Execution options are implemented.
+Uses the latest Actions Support Library.
+
+**Actions Support NBM Library (2.1.1)** - The external Process implementation
+has been completely rewritten to use the NB Execution API, providing greater
+stability.
+Support for Save Before Action implemented.
+
+Full details can be found in the latest documentation which can be found on this
+website.
+
+
+
+
+
+
+
+
+  
