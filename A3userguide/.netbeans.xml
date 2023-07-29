@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<auxiliary-configuration xmlns="http://www.netbeans.org/ns/auxiliary-configuration/1">
+    <spellchecker-wordlist xmlns="http://www.netbeans.org/ns/spellchecker-wordlist/1">
+        <word>ActionsSupport</word>
+        <word>DynamicAction</word>
+        <word>DynamicActions</word>
+        <word>DynamicAsyncAction</word>
+        <word>DynamicAsyncActions</word>
+        <word>NbCliDescriptor</word>
+        <word>NodeActions</word>
+    </spellchecker-wordlist>
+</auxiliary-configuration>

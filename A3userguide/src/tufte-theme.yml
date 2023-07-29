@@ -1,0 +1,207 @@
+extends: default
+
+font:
+  catalog:
+    merge: true
+    # EB Garamond - Garamond like fonts
+    Garamond:
+      normal: GEM_FONTS_DIR/EBGaramond-Regular.ttf
+      medium: GEM_FONTS_DIR/EBGaramond-Medium.ttf
+      bold: GEM_FONTS_DIR/EBGaramond-Bold.ttf
+      italic: GEM_FONTS_DIR/EBGaramond-Italic.ttf
+      medium_italic: GEM_FONTS_DIR/EBGaramond-MediumItalic.ttf
+      bold_italic: GEM_FONTS_DIR/EBGaramond-BoldItalic.ttf
+    # Cabin - Gill Sans like fonts
+    Cabin:
+      normal: GEM_FONTS_DIR/Cabin-Regular.ttf
+      bold: GEM_FONTS_DIR/Cabin-Bold.ttf
+      italic: GEM_FONTS_DIR/Cabin-Italic.ttf
+      bold_italic: GEM_FONTS_DIR/Cabin-BoldItalic.ttf
+    # Inconsolata - Consolas like fonts
+    Inconsolata:
+      normal: GEM_FONTS_DIR/Inconsolata-Regular.ttf
+      bold: GEM_FONTS_DIR/Inconsolata-Medium.ttf
+
+base:
+  text_align: left
+  font_color: #222
+  font_family: Garamond
+  font_size: 12
+  line_height: 1.25
+  
+page:
+  margin: [1.5cm, 2cm, 2cm, 2cm]
+  
+v_spacing: $base_font_size * $base_line_height
+sv_spacing: $v_spacing / 2
+h_spacing: $base_font_size
+gap: 10
+r_gap: 30
+s_gap: 2
+l_fontsize: $base_font_size  * 1.25
+s_fontsize: $base_font_size  * 0.8
+grey_fontcolor: #333
+l_title_gap: 120
+
+role:
+    smallcaps:
+        text_transform: smallcaps
+        font-size: $l_fontsize
+        
+block:
+  margin_bottom: 0
+  margin_top:  0
+  
+prose:
+  margin_inner: $s_gap
+  margin_bottom: $v_spacing
+  text-indent-inner: $h_spacing
+    
+link:
+  font_color: #00A
+  # text_decoration: underline
+  
+  # codespan is currently used for monospaced phrases and table cells
+codespan:
+  font_color:  $base_font_color
+  font_family: Inconsolata
+  font_style: bold
+  font_size: $base_font_size
+
+list:
+  indent: $h_spacing
+  #marker_font_color: 404040
+  # NOTE list_item_spacing only applies to list items that do not have complex content
+  item_spacing: $sv_spacing
+  
+description_list:
+  term_font_style: medium
+  term_spacing: $sv_spacing
+  description_indent: $h_spacing
+  
+admonition:
+  column_rule_width: 4
+  column_rule_color: #888
+  padding: [$s_gap, $r_gap, $s_gap, $gap]
+  label:
+    text_transform: uppercase
+    font_style: medium_italic
+
+code:
+  font_color: $base_font_color
+  font_family: $codespan_font_family
+  font_size: $s_fontsize
+  padding: $gap
+  line_height: $base_line_height
+  background_color: #EEE
+  border_color: #888
+  border_radius: 6
+  border_width: 2
+  margin: $gap
+
+conum:
+  font_family: M+ 1mn
+  font_color: #800
+  font_size: $base_font_size
+  line_height: 4 / 3
+  glyphs: circled
+  
+callout_list:
+    line_height: 1
+    margin_top_after_code: $sv_spacing
+    
+quote:
+  border_width: 0
+  border_left_width: 0
+  padding: [$s_gap, $r_gap, $s_gap, $gap]
+  cite:
+    font_size: $s_fontsize
+    font_color: $grey_fontcolor
+    
+example:
+  font_size: $base_font_size
+  font_style: italic
+  border_width: 0
+  border_left_width: 0
+  padding: [$s_gap, $r_gap, $s_gap, $gap]
+  cite:
+    font_size: $s_fontsize
+    font_color: $grey_fontcolor
+    
+verse:
+  font_size: $base_font_size
+  font_style: italic
+  border_width: 0
+  border_left_width: 0
+  padding: [$s_gap, $r_gap, $s_gap, $gap]
+  cite:
+    font_size: $s_fontsize
+    font_color: $grey_fontcolor
+    
+sidebar:
+  background_color: EEEEEE
+  border_color: E1E1E1
+  border_radius: 4
+  border_width: 0.5
+  padding: [2, 20, 2, 20]
+  title:
+    text_align: center
+    font_color: $heading_font_color
+    font_size: $base_font_size
+    font_style: $heading_font_style
+  
+heading:
+  text_align: left
+  font_family: Garamond
+  font_color: $base_font_color
+  font_style: medium_italic
+  # h1 is used for part titles (book doctype) or the doctitle (article doctype)
+  h1_font_size: $base_font_size * 2
+  h1_margin_bottom: $l_title_gap
+  # h2 is used for chapter titles (book doctype only)
+  h2_font_size: $base_font_size * 2
+  h2_margin_bottom: $l_title_gap
+  h3_font_size: $l_fontsize
+  h3_margin_top: 20
+  h3_margin_bottom: 10
+  line_height: 1
+  min_height_after: $base_line_height * 5
+  # min_height_after: auto
+  
+title_page:
+  text_align: left
+  logo:
+    top: 10%
+  title:
+    top: 25%
+    font_size: 36
+    font_style: bold
+    font_color: #444
+    line_height: 1
+  subtitle:
+    margin-top: 15
+    font_size: 30
+    font_style: bold
+    font_color: #444
+    line_height: 1
+  authors:
+    margin_top: 150
+    font_size: 20
+    font_style: medium_italic
+    font_color: $base_font_color
+    line_height: 1
+  revision:
+    margin_top: 50
+    font_size: 18
+    font_style: medium_italic
+    font_color: $base_font_color
+    line_height: 1
+toc:
+  indent: $h_spacing
+  line_height: $base_line_height * 1.2
+  dot_leader:
+    levels: none
+  font_color: $base_font_color
+  font_style: medium_italic
+  h1-font-color: $base_font_color
+  h1-font_style: medium_italic

@@ -1,0 +1,23 @@
+= Activities and Actions: User Guide
+:author: Richard Linsdale
+:version-label: Draft
+:revnumber: 1.0.2
+:doctype: book
+:backend: pdf
+:toc:
+:outlinelevels: 2
+:toclevels: 3
+:toc-title: Contents
+
+:imagesdir:
+
+include::explained.adoc[]
+
+include::examples.adoc[]
+
+include::appendix_b.adoc[]
+
+include::jbake.adoc[]
+
+
+              

@@ -1,0 +1,356 @@
+== 1. Introduction
+
+[.smallcaps]#Being# able to run external programs from within your favourite IDE
+is regularly seen as a requirement of many developers.
+These external programs may be parts of a tool chain associated with  particular
+language, file type or application, which may not supported by the core IDE. +
+ +
+[.smallcaps]#Solutions# for the NetBeans IDE range from:
+
+* No IDE support and use CLI scripts to run the external programs.
+This requires the lowest amount of development, but is restricted as the IDE
+project or file context is not available to the scripts.
+
+* Use an existing community plug which is configured to execute a CLI command.
+This can run the CLI command or script from the IDE menu bar, probably requiring
+the same amount of development as the previous case (CLI script development).
+Again these can suffer from similar restrictions as the first case, relating to
+context.
+
+* Develop a Project Type plugin, using existing NetBeans APIs.
+This can be time-consuming as a number of NetBeans Platform APIs need to be
+mastered.
+
+* Develop a Project Type plugin, using the Activities and Actions API.
+By utilising the Activities and Actions Module, the amount of knowledge to be
+mastered is much reduced, hence development time can be faster.
+
+[.smallcaps]#This# document reviews the final option, looking at the Activities
+and Actions API, and examples demonstrating specific use cases.
+
+== 2. The Activities and Actions Module and its API
+
+[.smallcaps]#This# Module and its API provide a number of features that make the
+development cycle for a Project Type and/or File Type modules easier and faster,
+while providing the capabilities to run external programs and integrate these
+into the Netbeans IDE. +
+ +
+Features of the Module are outlined the the following sections.
+
+=== Simple Project Type recognition
+
+[.smallcaps]#Recognition# of projects often requires complex project file
+structures to be recognised, and mapped to a logical project node structure.
+Meanwhile the project file structure may be predefined by the tool set we want
+to integrate, which limits our freedom to redefine the project file
+structure.
+
+The insertion of a specifically named properties file at the root level of the
+project is sufficient to recognise a project and its type.
+Any preexisting file structure can be managed as a NetBeans Project Type by
+the inclusion of this single file.
+In its simplest form this file could be empty, but the project can extend the
+use of this file to include project configuration parameters.
+
+=== The Activity
+
+A unit of execution is known as an *Activity*, and while primarily supporting
+the execution of External Programmes, alternate forms of Activities exist,
+including connecting to Devices and execution of Methods.
+
+All Activities include capabilities such as:
+
+* execution of the activity
+
+* creation of tasks to manage IO streams to and from the activity
+
+* termination of the activity and associated tasks when an associated
+Output Tab is closed.
+
+* Using its fluent API makes it easy to configure Activities.
+
+An Activity can have up to three standard IO channels that it may use to share
+data with it's parent.
+These are STDIN, STDOUT and STDERR and relate the the activities data needs.
+When viewed from the data transfer tasks, they see STDIN as a consumer of data
+and STDOUT and STDERR as providers of data.
+
+An Activity instance needs to be created, using the factory method
+`createActivity()`.
+This is followed by a series of methods to configure the Activity.
+Once fully configured the Activity can be executed by using the`run` method.
+
+==== Configuring an Activity running an External Program 
+
+[.smallcaps]#To# configure the external program use `setExternalProcess()` to
+define the external program to be run, its parameters and a working directory.
+If references to files or folders require knowledge of context, basic
+parameter substitution is available to assist: `$\{NODEPATH\}` is
+substituted using the working directory path, when preparing the parameters.
+
+==== Configuring an Activity connecting a Device
+
+[.smallcaps]#To# connect to  a  device (such as a serial port), this type of
+Activity use the `.setDevice()` method to configure the device.
+This method takes a Device Descriptor which includes methods to handle a set of
+device operations.
+
+The IO of the device uses the same model as the external program.
+So the device channel that receives data from the parent (and so sends it "out"
+of the system) will be STDIN, which many would call TRANSMIT for a Serial
+Device.
+Similarly STDOUT is the source of data to the parent, which many would call
+RECEIVE for a Serial Device.
+
+Using this with a serial port allows simple data exchange with external systems.
+The simplest form being connections to the Output Window tab to create a
+character terminal emulation.
+
+==== Configuring an Activity executing a Method
+
+[.smallcaps]#To# execute a method as an activity may seem to be unnecessary, but
+it does provide a consistency to the User Experience, and easy integration with
+Output Window tab functionality, Error reporting, IO selection and Activity
+Cancellation.
+
+There are two options for configuring this:
+
+* A method execution where no IO connections are required.
+The Method has a Runnable signature.
+
+* A method execution where a STDOUT IO connection is required.
+The Method has a Consumer signature, which provides a Writer which has been
+defined in the Activity IO configuration.
+Hence the method has a way to write lines in a consistence manner.
+
+The activity is configured in both case using `.setMethod()`, with a parameter
+which is the method.
+
+==== Configuring IO
+
+The activity has up to three standard IO channels that it may use to share data
+with it's parent.
+The Activity can connect these to either a file (a range of Java and Netbeans
+file objects are supported), the Output tab Reader or Writer, or a empty input
+or discarding output.
+
+For STDIN, the options are `stdinFromFile` where the input file can be any one
+of a range of Java and Netbeans file objects, `stdinFromIOSTDIN` which takes
+interactive input from the Output tab, or `stdinEmpty` provides an empty input
+file.
+
+For STDOUT, the options are `stdoutToFile` where the output file can be any one
+of a range of Java and Netbeans file objects, `stdoutToIOSTDOUT` writes STDOUT
+to the tab's STDOUT, `stdoutToIOSTDERR` writes STDOUT to the tab's STDERR, or
+`stdoutDiscard` which discards any data from STDOUT.
+
+Similarly for STDERR, the options are `stderrToFile` where the output file can
+be any one of a range of Java and Netbeans file objects, `stderrToIOSTDOUT`
+writes STDERR to the tab's STDOUT, `stderrToIOSTDERR` writes STDERR to the tab's
+STDERR, or `stderrDiscard` which discards any data from STDERR.
+
+==== Using an Output Window Tab
+
+[.smallcaps]#When# executing an Activity, the ability to read and write to a
+Output Window tab is a useful capability.
+The uses of a tab can include:
+
+* Displaying data generated by an Activity
+* Entering data for the Activity
+* Reporting errors
+* Showing activity completion
+* Cancelling a running Activity by closing the tab.
+
+The Activity configuration includes method to configure the Output Window tab.
+`needsIOTab` defines the required tab to be used for any IO - it may be existing
+or new tab.
+`ioTabClear` requests the tab be cleared prior to the activity being run (the
+default is that output is concatenated to the tab, so keeping a visible history
+of activities).
+
+To display activity commencement and completion, use the `run(<message>)`
+method, the commencement message will be displayed in the tab, and a `...
+done` message will be display upon activity completion.
+The alternative `run()` method will run the Activity without adding any messages
+to the tab.
+
+An Output Window tab supports two channels that can write to the tab and one
+that can read.
+In many ways this is analogous to the standard IO streams of the external
+program, so can be be used to connect these channels if required.
+The previous section outlined the use of the `stdinFromIOSTDIN`,
+`stdoutToIOSTDOUT`, `stderrToIOSTDERR`, `stderrToIOSTDOUT` and
+`stdoutToIOSTDERR` methods to attach to these channels.
+
+
+=== Creation of Project or other Node Actions
+
+[.smallcaps]#Node# based Actions are the main interface between the IDE and an
+external program.
+These activities can be coded directly in the Project Type definition, but user
+definition of Actions/Activities is also possible for various Project Nodes, by
+the use of additional property file(s).
+
+To create the NodeActions instance the factory method `createNodeActions` is
+called with two parameters: the node folder and the name of the node user
+actions/activities properties file.
+
+This is often created for the project node, but further instances
+can be created if required for other nodes, should the project have a need for a
+deeper logical node structure.
+Theses instance(s) can then be configured with required actions and be able to
+provide the list of the node actions.
+
+The instance also listens to the node folder for changes to the various node
+property files ensuring that node properties configuration is updated on any
+file change.
+
+=== Dynamic Actions
+
+[.smallcaps]#Dynamic# Actions extends the NetBeans Action to provide an Action
+Type that works effectively with the NodeActions instance.
+
+The Dynamic Action is created using the factory method `.createDynamicAction`.
+It has methods to define the function to be executed, either run directly
+`onAction` or on a new thread created for that purpose `onActionAsync`.
+There is one more method for this class which enables/disables the Action
+`enable`, this method also changes the visibly of the action label in any menu.
+
+=== Project defined Actions
+
+[.smallcaps]#Actions# are created, calling Activities or other methods.
+A NodeActions instance has three sets of associated actions.
+
+. Standard NetBeans node actions can be added using `setNodeBasicActions`.
+There is a convenience method to add a standard set of project actions
+`setNodeBasicProjectActions`.
+
+. Node actions which are project type specific are registered with the
+NodeActions instance using `setNodeActions`.
+This method expects one or more DynamicActions as parameter(s).
+
+. Actions created at run-time as defined by the user defined Node Actions
+properties file.
+
+=== User defined Node Actions
+
+[.smallcaps]#Users# may be allowed to define additional actions which are
+Node specific.
+These Actions are defined by additional property file(s).
+These files are placed in the directory of the node.
+The file name is defined by the Project class.
+In the normal use case of a simple project, where only a project node is
+defined, the standard is to define a `projectactions.properties` file in the
+project root directory.
+
+===  Structure of the Node Actions properties file.
+
+[.smallcaps]#The# properties file must include a property `COMMANDCOUNT` which
+indicates the number of actions being defined.
+
+Each action definition must have two or more property lines defined:
+
+* `<n>.label = ... ` - defines the label displayed in the popup list (required).
+
+* `<n>.command = ... ` - defines the CLI command to be executed when the action
+is selected (required).
+
+* `<n>.commandargs = ... ` - defines the CLI command arguments to be used when
+the action is selected (optional).
+This text is subject to parameter substitution prior to use.
+The only substitution defined is `$\{NODEPATH\}`.
+
+* `<n>.tabname = ... ` - defines the IO Tab name to be used in the Output
+Window.
+Optional, if not defined then the label property will be used for the tab name.
+
+* `<n>.cleartab = every execution` - clears the tab between every usage
+(optional).
+
+* `<n>.IOSTDIN = enable` - enable the Output tab input.
+
+Note that `<n>` must be an integer between `1` and `COMMANDCOUNT`.
+
+=== Use of Activities with File Type Actions.
+
+[.smallcaps]#File# Type Actions are implemented using standard NetBeans
+annotations and/or IDE wizards.  Alternatively the use of a layer.xml file to
+add entries into the Netbeans System filestore could be used.
+
+These Actions can  use Activities to access external programs.
+Actions can be associated with the File Node and/or an open editor window.   
+
+=== Cancelling External Programs and associated Threads
+
+[.smallcaps]#It# may be necessary, by design or in cases of error, to cancel an
+External Program and its associated threads.
+The actions of closing an Output Window tab is the method to achieve this.
+
+On closing a tab, the module will attempt to cancel the External program, wait a
+short time to allow any final IO to complete and then cancel any running Tasks
+associated with the Activity.
+
+WARNING:  The implementation has to use polling to watch for tabs closing.
+There will be a minor delay between closing the tab and the
+cancellation activity occurring.
+
+CAUTION:  When the final tab is closed (i.e.
+closing the Output window), it is difficult to observe the fact that a tab has
+closed.
+Hence in this case, it will not trigger the cancellation activity.
+This not a major issue in normal usage patterns, as where a tab is planned to be
+cancelled, it is usually a secondary tab for a project type, and hence when
+cancellation is needed, there are two or more tabs being displayed.
+
+
+=== Save before Action
+
+[.smallcaps]#The# ability to save any edited files prior to running an activity
+helps ensure that the latest versions of file are actually processed.
+
+There are two modes of use of this type of functionality:
+
+The first is a basic check and save that can be applies to a file prior to
+processing.
+It does not need to be associated with a project.
+A simple static method is used to check and save `SaveSelfBeforeAction.saveIfModified`.
+
+The second mode is designed for project use and uses a project property value to
+control its action.
+The property has a key which is defined in the project properties parsing class
+and has associated values `all`, `no` or `yes`.
+The value describes the scope of the SaveBeforeAction which can be: all edited
+files within a defined root folder, no save action to be attempted, or save
+action to  only be applied to the file being actioned.
+
+The project properties parsing class will create a `SaveBeforeAction` object and
+make this available to any Action.
+During creation the `setSourceRoot` method is used to set the root folder, if
+required, so object has full knowledge of scope of any required save.
+
+The Action would use the `saveIfModified` method to complete any required
+saving, prior to running the activity.
+
+=== Exception Reporting
+
+[.smallcaps]#The# Activities and Actions Module uses a `ApplicationException` to
+report exceptions.
+These may be exceptions recognised in the modules logic or may be wrappers
+around any other exceptions raised during execution.
+
+=== Error Reporting
+
+[.smallcaps]#There# is a small Error Reporting API, implemented as a set of
+static methods in the `UserReporting` class'.
+These report exceptions and/or messages to both the IDE log and also the named
+Output Window tab.
+
+=== Summary
+
+[.smallcaps]#The# Activities and Actions Module provides a range of features to
+allow the creation of project types, particularly those required to run external
+programs.
+
+The appendices show some implementation examples and also references to a number
+of Project Type Modules which I have developed as POC, using the Activities and
+Actions Module.

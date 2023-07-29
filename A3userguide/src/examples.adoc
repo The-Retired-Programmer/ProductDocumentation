@@ -1,0 +1,404 @@
+== Appendix A - Code Examples
+
+[.smallcaps]#Examples# of the use of the Activities and Actions NBM, in the
+context of building simple Project Type NBMs, are shown in this chapter.
+For examples of completed implementations there are a number of Project Type
+NBMs that can be consulted.
+
+These examples assume that the classes xxxProjectFactory and xxxProject are
+structured as described in the
+https://netbeans.apache.org/tutorials/nbm-projecttype.html[Netbeans Project Type
+Module Tutorial^].
+
+=== Simple Project Type recognition
+
+[.smallcaps]#To# implement a project with the minimum of coding requires the
+insertion of a specifically named properties file at the root level of the
+project.
+Any existing file structure  can be recognised as a NetBeans Project Type by
+inclusion of this file.
+
+This requires very little coding to create the ProjectFactory implementation.
+
+[source,java]
+[%unbreakable]
+----
+
+@ServiceProvider(service = ProjectFactory.class)
+public class JBakeProjectFactory implements ProjectFactory {
+
+    @Override
+    public boolean isProject(FileObject projectDirectory) {
+        boolean isA3present = ActionsAndActivitiesFactory.IsActionsAndActivitiesAvailable(); <1>
+        FileObject jbakepropertiesfile = projectDirectory.getFileObject("jbake.properties"); <2>
+        return isA3present && jbakepropertiesfile != null && jbakepropertiesfile.isData(); <3>
+    }
+
+    @Override
+    public Project loadProject(FileObject dir, ProjectState state) throws IOException {
+        return isProject(dir) ? new JBakeProject(dir, state) : null;
+    }
+
+    @Override
+    public void saveProject(final Project project) throws IOException, ClassCastException {
+        // leave unimplemented for the moment
+    }
+}
+
+----
+<1> Check if an ActionsAndActivities NBM module has been installed
+<2> ...
+attempt to open the project properties file
+<3> ...
+test if ActionsAndActivities NBM and the project properties file are present.
+
+=== The Activity, configuration and the Output Window Tab
+
+[.smallcaps]#An# Activity is the unit needed to execute work (external program,
+device or method), also  managing IO channels to and from that program, and any
+associated Output Window tab.
+
+==== An External Program Activity
+
+[source,java]
+[%unbreakable]
+----
+    Activity activity = ActionsAndActivitiesFactory.createActivity()
+                            .setExternalProcess("jbake", "-b", projectDir) <1>
+                            .outputToIOSTDOUT(STDOUT) <2>
+                            .outputToIOSTDERR(STDERR)
+                            .needsIOTab("Bake " + projectDir.getName()); <3>
+----
+<1> configure the external program to be run
+<2> configure the IO requirements
+<3> configure the Output Window Tab
+
+Once configured the activity can be run, usually as the function associated with
+an action.
+
+[source,java]
+[%unbreakable]
+----
+    activity.run("Baking");
+----
+==== A Device Activity
+
+[source, java]
+----
+    public final void showSerialTerminal(String iotabname, PicoCPropertyFile picocproperties) {
+        Activity activity;
+        try {
+            activity = ActivitiesAndActionsFactory.createActivity()
+                    .setDevice(new SerialDeviceDescriptor(picocproperties.getDevicename(),
+                            picocproperties.getBaudrate(), picocproperties.getEncoding())) <1>
+                    .needsIOTab(iotabname)
+                    .stdinFromIOSTDIN()
+                    .stdoutToIOSTDOUT();
+        } catch (ApplicationException ex) {
+            UserReporting.exceptionWithMessage(iotabname, "Error initialising the serial terminal activity", ex);
+            return;
+        }
+        activity.run(); <2>
+    }
+----
+<1> configure as a Device Activity; The Device Descriptor is created based on
+parameter values in the project properties file.
+<2> run the Activity; note that no message is written to the tab for initial or
+completion status.
+
+==== A Method Activity
+
+[.smallcaps]#Here# a word count method is being run.
+It used the Consumer Method option as  the method wants to output its result to
+the STDOUT connection (which is the IOTab in this case).
+
+[source, java]
+[%unbreakable]
+----
+
+    try {
+        activity = ActivitiesAndActionsFactory.createActivity()
+                .setMethod((stdoutwriter) -> wordCount(dataObject, iotabname, stdoutwriter))<1>
+                .needsIOTab(iotabname)
+                .stdoutToIOSTDOUT();
+    } catch (ApplicationException ex) {
+        UserReporting.exceptionWithMessage(iotabname, "Error Word Count", ex);
+        return;
+    }
+    activity.run("Counting Words");
+
+----
+<1>  configure by using `setMethod()`, with a function with a Consumer<Writer>
+signature.
+
+=== Creation of Project or other Node Actions
+
+[.smallcaps]#The# simplest Project Type class in one that does not need to
+process its project properties file,so the Project class can be initialised in
+the following manner:
+
+[source,java]
+[%unbreakable]
+----
+public class JBakeProject implements Project {
+    .....
+    JBakeProject(FileObject dir, ProjectState state) {
+        this.projectDir = dir;
+        try {
+            nodeactions = ActionsAndActivitiesFactory
+                            .createNodeActions(dir, "projectactions"); <1>
+        } catch (ApplicationException ex) {
+            UserReporting.exception(ex);
+        }
+    }
+    .....
+----
+<1> create any user defined activities for the project node using the file
+`projectactions.properties`.
+
+Should the Project Type class need to extract properties from its project
+properties file, it can be initialised in the following manner:
+
+[source,java]
+[%unbreakable]
+----
+public class PostgreSQLProject implements Project {
+    .....
+    PostgreSQLProject(FileObject dir, ProjectState state) throws IOException {
+        this.projectDir = dir;
+        try {
+            nodeactions = ActionsAndActivitiesFactory
+                            .createNodeActions(dir, "projectactions"); <1>
+            postgresqlproperties = new PostgreSQLPropertyFile(
+                                        dir, nodeactions, state); <2>
+        } catch (ApplicationException ex) {
+            UserReporting.exception(ex);
+        }
+    }
+    .....
+----
+<1> create any user defined activities for the project node using the file
+`projectactions.properties`.
+<2> read the project properties file and extract any parameters that it may
+contain.
+Also adds the `postgresql.properties` file to the node action's file listeners,
+ensuring its property values are refreshed upon change.
+
+A typical Project property file class could be:
+
+[source,java]
+[%unbreakable]
+----
+public class PostgreSQLPropertyFile {
+    .....
+    public PostgreSQLPropertyFile(FileObject projectdir, NodeActions nodeactions,
+                ProjectState state) throws IOException, ApplicationException {
+        loadProperties(projectdir); <1>
+        nodeactions.registerFile("postgresql",
+                "properties", fct -> loadProperties(fct, projectdir, state)); <2>
+    }
+    .....
+----
+<1> extract parameters from the property file
+<2> register the file with the NodeActions instance, providing a callback
+routine to reprocess the properties file if changed.
+
+=== Project defined Actions
+
+[.smallcaps]#Create# two of the three sets of project node actions during
+Project class construction, and register with NodeActions object.
+Ensure requests to Project object for Node Actions is delegated to the
+NodeActions object.
+
+[source,java]
+----
+public class JBakeProject implements Project {
+    .....
+    class LogicalView implements LogicalViewProvider {
+        .....
+        private final class ProjectNode extends FilterNode {
+            .....
+            public ProjectNode(Node node, JBakeProject project)
+                        throws DataObjectNotFoundException {
+                .....
+                nodeactions.setNodeBasicProjectActions(); <1>
+                try {
+                    Activity activity = ActionsAndActivitiesFactory.createActivity()
+                            .setExternalProcess("jbake", "-b", projectDir)
+                            .outputToIOSTDOUT(STDOUT)
+                            .outputToIOSTDERR(STDERR)
+                            .needsIOTab("Bake " + projectDir.getName()); <2>
+                    nodeactions.setNodeActions(
+                            ActionsAndActivitiesFactory.createDynamicAction("Bake")
+                                .onActionAsync(() -> activity.run("Baking")) <3>
+                            ); <4>
+                } catch (ApplicationException ex) {
+                    UserReporting.exceptionWithMessage(
+                            "Error when parsing the actions properties file", ex);
+                }
+            }
+
+            @Override
+            public Action[] getActions(boolean arg0) {
+                return nodeactions.getAllNodeActions(); <5>
+            }
+    .....
+----
+<1> use the convenient method to set basic project actions
+<2> configure an Activity to run the jbake program with the bake (-b) option
+<3> create a dynamic action to run the activity
+<4> set the dynamic action as a node action.
+<5> return list of node actions when actions for this node are requested,
+
+=== User defined Node Actions
+
+[.smallcaps]#An# example `projectactions.properties` file.
+This starts the Java JDK jwebserver with the site root being the projects output
+directory.
+By default the jwebserver STDOUT and STDERR are displayed in the Output window
+tab `Test Webserver for TRP-website`.
+
+The process will never terminate itself.
+If the user wishes to terminate the jwebserver, they should close the `Test
+Webserver for TRP-website` tab, which will terminate the jwebserver instance.
+
+[source]
+[%unbreakable]
+----
+    1.label = Start project test webserver
+    1.command = jwebserver
+    1.commandargs = -d ${NODEPATH}/output/
+    1.tabname = Test Webserver for TRP-website
+    1.cleartab = every execution
+    COMMANDCOUNT = 1
+----
+=== Save before Actions
+
+[.smallcaps]#In# the non project case, use this static method prior to running
+the Activity,
+
+[source, java]
+[%unbreakable]
+----
+    SaveSelfBeforeAction.saveIfModified(dataObject);
+----
+[.smallcaps]#In# the Project case, the SaveBeforeAction object is created in the
+parsing code for the the project properties file.
+
+[source, java]
+[%unbreakable]
+----
+
+private void parseProperties(FileObject projectdir, Properties properties)
+                throws IOException, ApplicationException {
+    ...
+    savebeforeaction = ActionsAndActivitiesFactory.createSaveBeforeAction(
+                                    properties, "save_before_publishing", ALL);<1>
+    savebeforeaction.setSourceRoot(projectdir.getFileObject(srcroot));<2>
+    ...
+}
+
+----
+<1> use the factory method to create a `SaveBeforeAction` object which has the
+type configured by parsing the properties file.
+<2> set the source root for `SaveBeforeAction` object, needed to process the
+`save_before_publishing=all` property.
+
+[.smallcaps]#Prior# to running the Activity, call the `saveIfModified` method of
+the `SaveBeforeAction` object  to ensure any required edited files are saved.
+
+[source, java]
+[%unbreakable]
+----
+
+aproject.getSaveBeforeAction().saveIfModified(dataObject); 
+
+----
+=== Example of an File Type Action
+
+[.smallcaps]#This# example shows a number of the features outlined above
+combined into a File Type Action.
+
+[source, java]
+----
+
+@ActionID(
+        category = "Build",
+        id = "uk.theretiredprogrammer.asciidocfiles.BuildAdoc"
+)
+@ActionRegistration(
+        displayName = "#CTL_BuildAdoc"
+)
+@ActionReference(path = "Loaders/text/x-asciidoc/Actions", position = 150)
+@Messages("CTL_BuildAdoc=Publish") <1>
+public final class BuildAdoc implements ActionListener, Runnable {
+
+    private final List<DataObject> context;
+
+    public BuildAdoc(List<DataObject> context) {
+        this.context = context;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent ev) {
+        RequestProcessor rp = new RequestProcessor("text-x-asciidoc_publish");
+        rp.post(this);
+    }
+
+    @Override
+    public void run() {
+        for (DataObject dataObject : context) {
+            FileObject input = dataObject.getPrimaryFile();
+            Project project = FileOwnerQuery.getOwner(input);
+            Activity activity;
+            if (project != null && project instanceof AsciiDocProject) { <2>
+                AsciiDocProject aproject = (AsciiDocProject) project;
+                try {
+                    aproject.getSaveBeforeAction().saveIfModified(dataObject); <3>
+                    activity = ActionsAndActivitiesFactory.createActivity()
+                            .setExternalProcess("asciidoctor",
+                                    "-r asciidoctor-pdf " +
+                                        aproject.getAsciiDoctorParameters() +
+                                        input.getPath(),
+                                    aproject.getProjectDirectory())
+                            .needsIOTab(aproject.getTabname())
+                            .outputToIOSTDERR(STDERR); <4>
+                } catch (ApplicationException ex) {
+                    UserReporting.exceptionWithMessage(aproject.getTabname(),
+                        "Error configuring Project AsciiDoc Publishing Activity", ex);
+                    return;
+                }
+                activity.run("Publishing " + input.getNameExt()); <5>
+            } else { <6>
+                SaveSelfBeforeAction.saveIfModified(dataObject); <7>
+                try {
+                    activity = ActionsAndActivitiesFactory.createActivity()
+                            .setExternalProcess("asciidoctor",
+                                    "-r asciidoctor-pdf " +
+                                        input.getPath(),
+                                    input.getParent())
+                            .needsIOTab("Publish AsciiDocs")
+                            .outputToIOSTDERR(STDERR); <8>
+                } catch (ApplicationException ex) {
+                    UserReporting.exceptionWithMessage("Publish AsciiDocs",
+                        "Error configuring AsciiDoc Publishing Activity", ex);
+                    return;
+                }
+                activity.run("Publishing " + input.getNameExt()); <9>
+            }
+        }
+    }
+}
+
+----
+<1> use standard Netbeans annotations to configure the Action.
+<2> test if this file exists within an AsciiDoc Project context.
+<3> Save file(s) as required, using the project's SaveBeforeAction object which
+understands the project properties parameters for this action.
+<4> create the activity: to run `asciidoctor` to process this file, getting some
+parameters from the project properties parameters.
+<5> execute the activity.
+<6> if file is not in a project context:
+<7> Save this file if needed.
+<8> create the activity: to run `asciidoctor` to process this file.
+<9> execute the activity.

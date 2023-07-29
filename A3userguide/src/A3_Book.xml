@@ -1,0 +1,694 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc maxdepth="1"?>
+<?asciidoc-numbered?>
+<book xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Activities and Actions</title>
+<subtitle>User Guide</subtitle>
+<date>2023-06-19</date>
+<author>
+<personname>
+<firstname>Richard</firstname>
+<surname>Linsdale</surname>
+</personname>
+</author>
+<authorinitials>RL</authorinitials>
+</info>
+<chapter xml:id="_1_introduction">
+<title>1 Introduction</title>
+<simpara><phrase role="smallcaps">Being</phrase> able to run external programs from within your favourite IDE
+is regularly seen as a requirement of many developers.
+These external programs may be parts of a tool chain associated with  particular
+language, file type or application, which may not supported by the core IDE.</simpara>
+<simpara><?asciidoc-hr?></simpara>
+<simpara><phrase role="smallcaps">Solutions</phrase> for the NetBeans IDE range from:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>No IDE support and use CLI scripts to run the external programs.
+This requires the lowest amount of development, but is restricted as the IDE
+project or file context is not available to the scripts.</simpara>
+</listitem>
+<listitem>
+<simpara>Use an existing community plug which is configured to execute a CLI command.
+This can run the CLI command or script from the IDE menu bar, probably requiring
+the same amount of development as the previous case (CLI script development).
+Again this suffers from similar restriction as the first case relating to
+context.</simpara>
+</listitem>
+<listitem>
+<simpara>Develop a Project Type plugin, using existing NetBeans APIs.
+This can be time-consuming as a number of NetBeans Platform APIs need to be
+mastered.</simpara>
+</listitem>
+<listitem>
+<simpara>Develop a Project Type plugin, using the Activities and Actions Module API.
+By utilising the Activities and Actions Module, the amount of knowledge to be
+mastered is much reduced, hence development time can be faster.</simpara>
+</listitem>
+</itemizedlist>
+<simpara><phrase role="smallcaps">We</phrase> will review the final solution, introducing the Activities and
+Actions API, and look at examples of implementations for specific use cases.</simpara>
+</chapter>
+<chapter xml:id="_2_the_activities_and_actions_module_and_its_api">
+<title>2 The Activities and Actions Module and its API</title>
+<simpara><phrase role="smallcaps">This</phrase> Module and its API provide a number of features that make the
+development cycle for a Project Type and/or File Type modules easier and faster.
+Providing the capabilities to run external programs and integrate these into the
+Netbeans IDE.</simpara>
+<simpara>Features of the Module are outlined the the following sections.</simpara>
+<section xml:id="_simple_project_type_recognition">
+<title>Simple Project Type recognition</title>
+<simpara><phrase role="smallcaps">Recognition</phrase> of projects often requires complex project file
+structures to be recognised, and mapped to a logical project node structure.
+In addition the project file structure may be predefined by the tool set we want
+to integrate, which limits our freedom to modify the project file
+structure.</simpara>
+<simpara>The insertion of a specifically named properties file at the root level of the
+project is sufficient to recognise a project and its type.
+Any preexisting file structure can be managed as a NetBeans Project Type by
+the inclusion of this single file.
+In its simplest form this file could be empty, but the project can extend the
+use of this file to include project configuration parameters.</simpara>
+<simpara>For examples of such project recognition, a following appendices contains
+<link linkend="example_projectfactory">samples</link> to demonstrate various
+features as implemented in a ProjectFactory class for the Project Type.</simpara>
+</section>
+<section xml:id="return_projectfactory">
+<title>Activities</title>
+<simpara><phrase role="smallcaps">Running</phrase> an External Program is the prime requirement of this
+Module.
+This unit of execution is known as an <emphasis role="strong">Activity</emphasis> and provides:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>execution of the remote program</simpara>
+</listitem>
+<listitem>
+<simpara>creation of tasks to manage IO streams to and from the external program</simpara>
+</listitem>
+<listitem>
+<simpara>termination of the external program and associated tasks when an associated
+Output Tab is closed.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>Using its fluent API makes it easy to configure Activities.</simpara>
+<simpara>An Activity instance needs to be created, using the factory method
+<literal>createActivity()</literal>.
+This is followed by a series of methods to configure the Activity.
+Once fully configured the Activity can be executed by using the`run` method.</simpara>
+</section>
+<section xml:id="_activity_configuration">
+<title>Activity Configuration</title>
+<simpara><phrase role="smallcaps">To</phrase> configure the external program use <literal>setExternalProcess</literal> to
+define the external program to be run, its parameters and a working directory.
+If references to files or folders require knowledge of context, basic
+parameter substitution is available to assist: <literal>${NODEPATH}</literal> is
+substituted using the working directory path.</simpara>
+<simpara><phrase role="smallcaps">An</phrase> External Program has three standard IO channels that it may use
+to share data with it&#8217;s parent.
+The Activity can connect these to either a file (a range of Java and Netbeans
+file objects are supported), the Output tab Reader or Writer, or a empty input
+or discarding output.</simpara>
+<simpara>For input, the options are <literal>inputFromFile</literal> where the input file can be any one
+of a range of Java and Netbeans file objects, or <literal>inputFromIOSTDIN</literal> which takes
+interactive input from the Output tab, or <literal>inputEmpty</literal> provides an empty input
+file.</simpara>
+<simpara>For output, the options are <literal>outputToFile</literal> where the output file can be any one
+of a range of Java and Netbeans file objects, or <literal>outputToIOSTDOUT</literal> writes the
+named IO channel to the tab&#8217;s STDOUT, or <literal>outputToIOSTDERR</literal> writes the named IO
+channel to the tab&#8217;s STDERR, or <literal>outputDiscard</literal> which discards any data from the
+named IO channel.</simpara>
+<simpara>For examples of Activity creation and use, the following appendices contains
+<link xl:href="A3_Examples.xml#example_activity">samples</link> to demonstrate various features.</simpara>
+</section>
+<section xml:id="return_activity">
+<title>Using an Output Window Tab</title>
+<simpara><phrase role="smallcaps">When</phrase> executing an Activity, the ability to read and write to a
+Output Window tab is a useful capability.
+The uses of a tab can include:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Displaying data generated by an Activity</simpara>
+</listitem>
+<listitem>
+<simpara>Entering data for the Activity</simpara>
+</listitem>
+<listitem>
+<simpara>Reporting errors</simpara>
+</listitem>
+<listitem>
+<simpara>Showing activity completion</simpara>
+</listitem>
+<listitem>
+<simpara>Cancelling a running Activity by closing the tab.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>An Output Window tab supports two streams that can write to the tab and one that
+can read.
+In many ways this is analogous to the standard IO streams of the external
+program, so can be be used to read or write these stream if required.</simpara>
+<simpara>The Activity configuration includes method to configure the Output Window tab.
+<literal>needsIOTab</literal> defines the required tab to be used for any IO - it may be existing
+or new tab.
+<literal>ioTabClear</literal> requests the tab be cleared prior to the activity being run (the
+default is that output is concatenated to the tab, so keeping a visible history
+of activities).</simpara>
+</section>
+<section xml:id="_creation_of_project_or_other_node_actions">
+<title>Creation of Project or other Node Actions</title>
+<simpara><phrase role="smallcaps">Node</phrase> based Actions are the main interface between the IDE and an
+external program.
+These activities can be coded directly in the Project Type definition, but user
+definition of Actions/Activities is also possible for various Project Nodes, by
+the use of additional property file(s).</simpara>
+<simpara>To create the NodeActions instance the factory method <literal>createNodeActions</literal> is
+called with two parameters: the node folder and the name of the node user
+actions/activities properties file.</simpara>
+<simpara>This is often created for the project node, but further instances
+can be created if required for other nodes, should the project have a need for a
+deeper logical node structure.
+Theses instance(s) can then be configured with required actions and be able to
+provide the list of the node actions.</simpara>
+<simpara>The instance also listens to the node folder for changes to the various node
+property files ensuring that node properties configuration is updated on any
+file change.</simpara>
+</section>
+<section xml:id="_dynamic_actions">
+<title>Dynamic Actions</title>
+<simpara><phrase role="smallcaps">Dynamic</phrase> Actions extends the NetBeans Action to provide an Action
+Type that works effectively with the NodeActions instance.</simpara>
+<simpara>The Dynamic Action is created using the factory method <literal>.createDynamicAction</literal>.
+It has methods to define the function to be executed, either run directly
+<literal>onAction</literal> or on a new thread created for that purpose <literal>onActionAsync</literal>.
+There is one more method for this class which enables/disables the Action
+<literal>enable</literal>, this method also changes the visibly of the action label in any menu.</simpara>
+</section>
+<section xml:id="_project_defined_actions">
+<title>Project defined Actions</title>
+<simpara><phrase role="smallcaps">Actions</phrase> are created, calling Activities or other methods.
+A NodeActions instance has three sets of associated actions.</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Standard NetBeans node actions can be added using <literal>setNodeBasicActions</literal>, or
+there is a convenience method to add a standard set of project actions
+<literal>setNodeBasicProjectActions</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara>Node actions which are project type specific are registered with the
+NodeActions instance using <literal>setNodeActions</literal>.
+This method expects DynamicActions as parameter(s).</simpara>
+</listitem>
+<listitem>
+<simpara>Actions created as defined by the node&#8217;s user actions/activities properties
+file.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="_user_defined_node_actions">
+<title>User defined Node Actions</title>
+<simpara><phrase role="smallcaps">Users</phrase> may be allowed to define additional actions which are
+Project Node specific.
+These Actions are defined by additional property file(s).
+These files are placed in the directory of the node.
+The file name is defined by the Project class.
+In the normal use case of a simple project, where only a project node is
+defined, the standard is to define a <literal>projectactions.properties</literal> file in the
+project root directory.</simpara>
+</section>
+<section xml:id="_structure_of_the_node_actions_properties_file">
+<title>Structure of the Node Actions Properties file.</title>
+<simpara><phrase role="smallcaps">The</phrase> properties file must include a property <literal>COMMANDCOUNT</literal> which
+indicates the number of actions being defined.</simpara>
+<simpara>Each action definition must have two or more property lines defined:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><literal>&lt;n&gt;.label</literal> - defines the label displayed in the popup list (required).</simpara>
+</listitem>
+<listitem>
+<simpara><literal>&lt;n&gt;.command</literal> - defines the CLI command to be executed when the action is
+selected (required).</simpara>
+</listitem>
+<listitem>
+<simpara><literal>&lt;n&gt;.commandargs</literal> - defines the CLI command arguments to be used when the
+action is selected (optional).
+This text is subject to parameter substitution prior to use.
+The only substitution defined is <literal>${NODEPATH}</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara><literal>&lt;n&gt;.tabname</literal> - defines the IO Tab name to be used in the Output Window.
+Optional, if not defined then the label property will be used for the tab name.</simpara>
+</listitem>
+<listitem>
+<simpara><literal>&lt;n&gt;.cleartab: every execution</literal> - clears the tab between every usage
+(optional).</simpara>
+</listitem>
+<listitem>
+<simpara><literal>&lt;n&gt;.IOSTDIN</literal> = "enable" - enable the Output tab input.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>Note that <literal>&lt;n&gt;</literal> must be an integer between <literal>1</literal> and <literal>COMMANDCOUNT</literal>.</simpara>
+<simpara>For examples of NodeActions methods, the following appendices contains
+<link xl:href="A3_Examples.xml#example_nodeactions">samples</link> to demonstrate various
+features.</simpara>
+</section>
+<section xml:id="return_nodeactions">
+<title>Use of Activities with File Type Actions.</title>
+<simpara><phrase role="smallcaps">File</phrase> Type Actions are implemented using standard NetBeans
+annotations and/or IDE wizards.
+These Actions can  use Activities to access external programs.</simpara>
+<simpara>For examples of File Type creation and use, the appendices contains
+<link xl:href="A3_Examples.xml#example_filetype">samples</link> to demonstrate various features.</simpara>
+</section>
+<section xml:id="return_filetype">
+<title>Summary</title>
+<simpara><phrase role="smallcaps">The</phrase> Activities and Actions Module provides a range of features to
+allow the creation of project types, particularly those required to run external
+programs.</simpara>
+<simpara>The appendices show some implementation examples and also references to a number
+of Project Type Modules which using the Activities and Actions Module.</simpara>
+</section>
+</chapter>
+<chapter xml:id="_appendix_a_code_examples">
+<title>Appendix A - Code Examples</title>
+<simpara><phrase role="smallcaps">Examples</phrase> of the use of the Activities and Actions NBM, in the
+context of building simple Project Type NBMs, are shown in this chapter.
+For example of complete implementations there are a number of Project Type NBMs
+that have been developed which can be consulted.</simpara>
+<simpara>These examples assume that the classes xxxProjectFactory and xxxProject are
+structured as described in the
+<link xl:href="https://netbeans.apache.org/tutorials/nbm-projecttype.html">Netbeans Project Type
+Module Tutorial</link>.</simpara>
+<section xml:id="example_projectfactory">
+<title>Simple Model for Project Type creation</title>
+<simpara><phrase role="smallcaps">To</phrase> implementation a simple project with the minimum of coding requires
+the insertion of a specifically named properties file at the root level of the
+project.
+Any existing file structure  can be recognised as a NetBeans project type by
+including the presence of this file.</simpara>
+<simpara>This requires very little coding to create the ProjectFactory implementation.</simpara>
+<programlisting language="java" linenumbering="unnumbered">@ServiceProvider(service = ProjectFactory.class)
+public class JBakeProjectFactory implements ProjectFactory {
+
+    @Override
+    public boolean isProject(FileObject projectDirectory) {
+        boolean isA3present = ActionsAndActivitiesFactory.IsActionsAndActivitiesAvailable(); <co xml:id="CO1-1"/>
+        FileObject jbakepropertiesfile = projectDirectory.getFileObject("jbake.properties"); <co xml:id="CO1-2"/>
+        return isA3present &amp;&amp; jbakepropertiesfile != null &amp;&amp; jbakepropertiesfile.isData(); <co xml:id="CO1-3"/>
+    }
+
+    @Override
+    public Project loadProject(FileObject dir, ProjectState state) throws IOException {
+        return isProject(dir) ? new JBakeProject(dir, state) : null;
+    }
+
+    @Override
+    public void saveProject(final Project project) throws IOException, ClassCastException {
+        // leave unimplemented for the moment
+    }
+}</programlisting>
+<calloutlist>
+<callout arearefs="CO1-1">
+<para>Check if an ActionsAndActivities NBM module has been installed</para>
+</callout>
+<callout arearefs="CO1-2">
+<para>&#8230;&#8203;
+attempt to open the project properties file</para>
+</callout>
+<callout arearefs="CO1-3">
+<para>&#8230;&#8203;
+test if ActionsAndActivities NBM and the project properties file are present.</para>
+</callout>
+</calloutlist>
+<simpara>To return to the description, <link xl:href="A3_Explained.xml#return_projectfactory">click here</link>.</simpara>
+</section>
+<section xml:id="example_activity">
+<title>Easy use of external programs (Activities)</title>
+<simpara><phrase role="smallcaps">An</phrase> Activity is the unit needed to execute an external program, also
+managing IO streams to and from that program and any associated Output Window tab.</simpara>
+<programlisting language="java" linenumbering="unnumbered">    Activity activity = ActionsAndActivitiesFactory.createActivity()
+                            .setExternalProcess("jbake", "-b", projectDir) <co xml:id="CO2-1"/>
+                            .outputToIOSTDOUT(STDOUT) <co xml:id="CO2-2"/>
+                            .outputToIOSTDERR(STDERR)
+                            .needsIOTab("Bake " + projectDir.getName()); <co xml:id="CO2-3"/></programlisting>
+<calloutlist>
+<callout arearefs="CO2-1">
+<para>configure the external program to be run</para>
+</callout>
+<callout arearefs="CO2-2">
+<para>configure the IO requirements</para>
+</callout>
+<callout arearefs="CO2-3">
+<para>configure the Output Window Tab</para>
+</callout>
+</calloutlist>
+<simpara>Once configured the activity can be run, usually as the function associated with
+an action.</simpara>
+<programlisting language="java" linenumbering="unnumbered">    activity.run();</programlisting>
+<simpara>To return to the description, <link xl:href="A3_Explained.xml#return_activity">click here</link>.</simpara>
+</section>
+<section xml:id="example_nodeactions">
+<title>Creation of Project or other Node Actions</title>
+<simpara><phrase role="smallcaps">The</phrase> simplest Project Type class in one that does not need to process its project
+properties file,so the Project class can be initialised in the following manner:</simpara>
+<programlisting language="java" linenumbering="unnumbered">public class JBakeProject implements Project {
+    .....
+    JBakeProject(FileObject dir, ProjectState state) {
+        this.projectDir = dir;
+        try {
+            nodeactions = ActionsAndActivitiesFactory
+                            .createNodeActions(dir, "projectactions"); <co xml:id="CO3-1"/>
+        } catch (ApplicationException ex) {
+            UserReporting.exception(ex);
+        }
+    }
+    .....</programlisting>
+<calloutlist>
+<callout arearefs="CO3-1">
+<para>create any user defined activities for this node - the file containing the
+activity definitions is <literal>projectactions.properties</literal>.</para>
+</callout>
+</calloutlist>
+<simpara>Should the Project Type class need to extract properties from its project
+properties file, it can be initialised in the following manner:</simpara>
+<programlisting language="java" linenumbering="unnumbered">public class PostgreSQLProject implements Project {
+    .....
+    PostgreSQLProject(FileObject dir, ProjectState state) throws IOException {
+        this.projectDir = dir;
+        try {
+            nodeactions = ActionsAndActivitiesFactory
+                            .createNodeActions(dir, "projectactions"); <co xml:id="CO4-1"/>
+            postgresqlproperties = new PostgreSQLPropertyFile(
+                                        dir, nodeactions, state); <co xml:id="CO4-2"/>
+        } catch (ApplicationException ex) {
+            UserReporting.exception(ex);
+        }
+    }
+    .....</programlisting>
+<calloutlist>
+<callout arearefs="CO4-1">
+<para>create any user defined activities for this node - the file containing the
+activity definitions is <literal>projectactions.properties</literal>.</para>
+</callout>
+<callout arearefs="CO4-2">
+<para>read the project properties file and extract any runtime parameters that it
+may contain.
+Add the <literal>postgresql.properties</literal> file to the node action&#8217;s file listeners,
+ensuring its property values are refreshed upon change.</para>
+</callout>
+</calloutlist>
+<simpara>A typical Project property file class could be:</simpara>
+<programlisting language="java" linenumbering="unnumbered">public class PostgreSQLPropertyFile {
+    .....
+    public PostgreSQLPropertyFile(FileObject projectdir, NodeActions nodeactions,
+                ProjectState state) throws IOException, ApplicationException {
+        loadProperties(projectdir); <co xml:id="CO5-1"/>
+        nodeactions.registerFile("postgresql",
+                "properties", fct -&gt; loadProperties(fct, projectdir, state)); <co xml:id="CO5-2"/>
+    }
+    .....</programlisting>
+<calloutlist>
+<callout arearefs="CO5-1">
+<para>extract parameters from the property file</para>
+</callout>
+<callout arearefs="CO5-2">
+<para>register the file with the NodeActions instance, providing a callback
+routine to reprocess the properties file if changed.</para>
+</callout>
+</calloutlist>
+</section>
+<section xml:id="_project_defined_actions_2">
+<title>Project defined Actions</title>
+<programlisting language="java" linenumbering="unnumbered">public class JBakeProject implements Project {
+    .....
+    class LogicalView implements LogicalViewProvider {
+        .....
+        private final class ProjectNode extends FilterNode {
+            .....
+            public ProjectNode(Node node, JBakeProject project)
+                        throws DataObjectNotFoundException {
+                .....
+                nodeactions.setNodeBasicProjectActions(); <co xml:id="CO6-1"/>
+                try {
+                    Activity activity = ActionsAndActivitiesFactory.createActivity()
+                            .setExternalProcess("jbake", "-b", projectDir)
+                            .outputToIOSTDOUT(STDOUT)
+                            .outputToIOSTDERR(STDERR)
+                            .needsIOTab("Bake " + projectDir.getName()); <co xml:id="CO6-2"/>
+                    nodeactions.setNodeActions(
+                            ActionsAndActivitiesFactory.createDynamicAction("Bake")
+                                .onActionAsync(() -&gt; activity.run("Baking")) <co xml:id="CO6-3"/>
+                            ); <co xml:id="CO6-4"/>
+                } catch (ApplicationException ex) {
+                    UserReporting.exceptionWithMessage(
+                            "Error when parsing the actions properties file", ex);
+                }
+            }
+
+            @Override
+            public Action[] getActions(boolean arg0) {
+                return nodeactions.getAllNodeActions(); <co xml:id="CO6-5"/>
+            }
+    .....</programlisting>
+<calloutlist>
+<callout arearefs="CO6-1">
+<para>use the convenient method to set basic project actions</para>
+</callout>
+<callout arearefs="CO6-2">
+<para>configure an Activity to run the jbake program with the bake (-b) option</para>
+</callout>
+<callout arearefs="CO6-3">
+<para>create a dynamic action to run the activity</para>
+</callout>
+<callout arearefs="CO6-4">
+<para>set the dynamic action as a node action.</para>
+</callout>
+<callout arearefs="CO6-5">
+<para>return list of node actions when all actions for this node are requested,</para>
+</callout>
+</calloutlist>
+</section>
+<section xml:id="_user_defined_node_actions_2">
+<title>User defined Node Actions</title>
+<simpara><phrase role="smallcaps">An</phrase> example <literal>projectactions.properties</literal> file.
+This starts the Java JDK jwebserver with the site root being the projects output
+directory.
+By default the jwebserver STDOUT and STDERR are displayed in the Output window
+tab <literal>Test Webserver or TRP-website</literal>, the process will never terminate its self.</simpara>
+<simpara>If the user wishes to terminate the jwebserver, they should close the <literal>Test
+Webserver for TRP-website</literal> which will terminate the jwebserver instance.</simpara>
+<screen linenumbering="unnumbered">    1.label = Start project test webserver
+    1.command = jwebserver
+    1.commandargs = -d ${NODEPATH}/output/
+    1.tabname = Test Webserver for TRP-website
+    1.cleartab = every execution
+    COMMANDCOUNT = 1</screen>
+<simpara>To return to the description, <link xl:href="A3_Explained.xml#return_nodeactions">click here</link>.</simpara>
+</section>
+<section xml:id="_use_of_activities_with_file_type_actions">
+<title>Use of Activities with File Type Actions.</title>
+
+</section>
+</chapter>
+<chapter xml:id="_appendix_b_project_type_modules">
+<title>Appendix B: Project Type Modules</title>
+<simpara>There are number of small project types that have be implemented using the
+Activities and Action Module.
+These are described in the following chapters, with a short description of their
+functionality, with references to source, further documentation and module
+binaries.</simpara>
+<simpara>They are available for use, if required, or as reference materials for
+implementers who wish to create their own Project Type modules, using the
+Activities and Action Module.</simpara>
+<caution>
+<simpara>All predefined project node actions in these Project Type Modules have
+only been completed/tested with Unix family systems (i.e.
+Linix and MacOS).
+No specific implementations for Activities using Windows programs have yet been
+completed/tested, although some Activities may work.
+This does not stop a user adding CLI action command(s) to add further Windows
+specific Activities as alternatives to any built-in Node Actions.</simpara>
+</caution>
+<section xml:id="_where_to_find_further_information_about_these_modules">
+<title>Where to find further information about these Modules</title>
+<itemizedlist>
+<listitem>
+<simpara>Source Code for the NetBeans Modules is stored in a single Git repository on
+<link xl:href="https://github.com/The-Retired-Programmer/NetBeansNBMs">GitHub</link></simpara>
+</listitem>
+<listitem>
+<simpara>The <link xl:href="https://www.theretiredprogrammer.uk/">TRP website</link> containing information
+for various projects.</simpara>
+</listitem>
+<listitem>
+<simpara>Documentation source for the Netbeans Modules is stored in a single Git repository on
+<link xl:href="https://github.com/The-Retired-Programmer/ProductDocumentation">GitHub</link>.
+Most documentation is written in AsciiDoc.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_how_to_download_and_install_these_modules">
+<title>How to download and install these Modules</title>
+<itemizedlist>
+<listitem>
+<simpara>Releases of Modules are available from a Maven repository on GitHub.
+These releases are stored as Maven Packages and can be found
+<link xl:href="https://github.com/The-Retired-Programmer?tab=packages&amp;repo_name=NetBeansNBMs">here</link>.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>To be able to use any of the Project Type Modules they must first be downloaded
+for the GitHub Maven repository.</simpara>
+<simpara>Once downloaded, you follow the standard
+NetBeans process to install the downloaded file (Tools&gt;Plugins)</simpara>
+<simpara>The Activities and Action API Module and the Activities and Action Module are
+prerequisites for any of these Project Type Modules.
+They are also available from the same GitHub Maven repository,  and must be
+installed with or prior to installing the Project Type Module.</simpara>
+</section>
+<section xml:id="_to_use_the_activities_and_action_api_modules_for_development_purposes">
+<title>To use the Activities and Action API Modules for development purposes.</title>
+<simpara>In your POM you should:</simpara>
+<simpara>1) include a repository definition for the GitHub Maven repository:</simpara>
+<programlisting language="xml" linenumbering="unnumbered">    &lt;repositories&gt;
+        &lt;repository&gt;
+            &lt;id&gt;github&lt;/id&gt;
+            &lt;url&gt;https://maven.pkg.github.com/The-Retired-Programmer/NetBeansNBMs&lt;/url&gt;
+        &lt;/repository&gt;
+    &lt;/repositories&gt;</programlisting>
+<simpara>2) include the Activities and Action API dependency:</simpara>
+<programlisting language="xml" linenumbering="unnumbered">    &lt;dependency&gt;
+        &lt;groupId&gt;uk.theretiredprogrammer&lt;/groupId&gt;
+        &lt;artifactId&gt;a3api&lt;/artifactId&gt;
+        &lt;version&gt;1.0.1&lt;/version&gt; <co xml:id="CO7-1"/>
+    &lt;/dependency&gt;</programlisting>
+<calloutlist>
+<callout arearefs="CO7-1">
+<para>update version to choose the latest version of the API module, which is
+available from the GitHub Maven repository.</para>
+</callout>
+</calloutlist>
+<simpara>Once your Project Type Module is built it can be installed into NetBeans (with the
+prerequisites: the Activities and Action API Module and the Activities and
+Action Module).</simpara>
+</section>
+</chapter>
+<chapter xml:id="_b_1_the_jbake_project_type_module">
+<title>B.1 The JBake Project Type Module</title>
+<simpara><phrase role="smallcaps">JBake</phrase> is a WebSite builder.
+By using the existing features of the IDE for source editing and integrating the
+website building action (an external program) are the benefits of using this
+simple Project Type Module</simpara>
+<section xml:id="_project_recognition">
+<title>Project recognition</title>
+<informalfigure role="thumb">
+<mediaobject>
+<imageobject>
+<imagedata fileref="jbake_resources/projectstructure.png"/>
+</imageobject>
+<textobject><phrase>projectstructure</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara><phrase role="smallcaps">A</phrase> JBake project is identified by the presence of a <literal>jbake.properties</literal>
+file.  This file is always present for any JBake site (as created by the <literal>jbake -i</literal>
+command), so any JBake site will automatically be recognised by the project Module.</simpara>
+</section>
+<section xml:id="_project_node_actions">
+<title>Project Node Actions</title>
+<informalfigure role="thumb">
+<mediaobject>
+<imageobject>
+<imagedata fileref="jbake_resources/projectactions.png"/>
+</imageobject>
+<textobject><phrase>projectactions</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara><phrase role="smallcaps">The</phrase> JBake Project Type Module adds a single Project Node Action
+"Bake", which builds the site (executing the <literal>jbake -b</literal> command).</simpara>
+</section>
+<section xml:id="_project_node_user_defined_actions">
+<title>Project Node User Defined Actions</title>
+<informalfigure role="thumb">
+<mediaobject>
+<imageobject>
+<imagedata fileref="jbake_resources/projectstructure-with-projectactions.png"/>
+</imageobject>
+<textobject><phrase>projectstructure with projectactions</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara><phrase role="smallcaps">The</phrase> module supports user defined actions
+for the Project Node, using the content of the  <literal>projectactions.properties</literal>
+file.
+Primary use of this will be to run a webserver to allow display of the site
+after building, if required.</simpara>
+<simpara>JBake has a command to  run a web server to allow viewing of the resulting
+website, but has the side effect to rebuild every every incremental change.
+As these two actions are not indivisible, some users may not want this rebuild.
+Hence this command has not a defined Project Node Action, but a user action can
+be defined to handle this requirement in a manner that suits the user.</simpara>
+<informalfigure role="thumb">
+<mediaobject>
+<imageobject>
+<imagedata fileref="jbake_resources/projectactions-with-projectactions.png"/>
+</imageobject>
+<textobject><phrase>projectactions with projectactions</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara><phrase role="smallcaps">For</phrase> a webserver only option, the user
+could select the <literal>JWebServer</literal>  which is shipped with the newer versions of the
+Java JDK.</simpara>
+<simpara>An example defining an additional action which starts jwebserver (to
+enable viewing of the generated website).</simpara>
+<simpara>The resulting project action is added to the project node&#8217;s menu as
+<literal>Start project test webserver</literal>.</simpara>
+<screen linenumbering="unnumbered">1.label = Start project test webserver
+1.command = jwebserver
+1.commandargs = -d ${NODEPATH}/output/
+1.tabname = Test Webserver for TRP-website
+1.cleartab = every execution
+COMMANDCOUNT = 1</screen>
+<simpara><phrase role="smallcaps">While</phrase> the JBake implementation of the webserver (and incremental
+rebuild), could use:</simpara>
+<screen linenumbering="unnumbered">1.label = Start JBake test webserver
+1.command = jbake
+1.commandargs = -s
+1.tabname = Test Webserver for TRP-website
+1.cleartab = every execution
+COMMANDCOUNT = 1</screen>
+</section>
+<section xml:id="_jbake_io">
+<title>JBake IO</title>
+<simpara><phrase role="smallcaps">The</phrase> output and error streams of the jbake command are routed to the
+Output Window tab, while the generated website is created in the <literal>output</literal> folder.</simpara>
+<informalfigure>
+<mediaobject>
+<imageobject>
+<imagedata fileref="jbake_resources/bakeoutput.png"/>
+</imageobject>
+<textobject><phrase>bakeoutput</phrase></textobject>
+</mediaobject>
+</informalfigure>
+</section>
+<section xml:id="_where_to_find_further_information_about_these_modules_2">
+<title>Where to find further information about these Modules</title>
+<itemizedlist>
+<listitem>
+<simpara>Source Code is stored in a Git repository on
+<link xl:href="https://github.com/The-Retired-Programmer/NetBeansNBMs/tree/main/JBakeProject">GitHub</link>
+in a respository containing many NetBeans Modules.</simpara>
+</listitem>
+<listitem>
+<simpara>Further documentation can be found on the
+<link xl:href="https://www.theretiredprogrammer.uk/tags/JBake.html">TRP website</link>.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_how_to_download_and_install_these_modules_2">
+<title>How to download and install these Modules</title>
+<itemizedlist>
+<listitem>
+<simpara>Releases of this product are available as Maven Packages from a repository on GitHub
+and can be found
+<link xl:href="https://github.com/The-Retired-Programmer/NetBeansNBMs/packages/1652862">here</link>.</simpara>
+</listitem>
+</itemizedlist>
+</section>
+</chapter>
+</book>

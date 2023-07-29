@@ -1,0 +1,116 @@
+== Appendix B - Project Type Modules
+
+There are number of small project types that have be implemented using the
+Activities and Action Module.
+These are described in the following chapters, with a short description of their
+functionality, references to source code, further documentation and module
+binaries.
+
+They are available for use, if required, or as reference materials for
+implementers who wish to create their own Project Type modules, using the
+Activities and Action Module.
+
+CAUTION: All predefined project node actions in these Project Type Modules have
+only been completed/tested with Unix family systems (i.e.
+Linix and MacOS).
+No specific implementations for Activities using Windows programs have yet been
+completed/tested, although some Activities may work.
+This does not stop a user adding CLI action command(s) to add further Windows
+specific Activities as alternatives to any built-in Node Actions.
+
+
+=== Where to find further information about these Modules
+
+* Source Code for the NetBeans Modules is stored in a single Git repository on
+https://github.com/The-Retired-Programmer/NetBeansNBMs[GitHub]
+
+* The https://www.theretiredprogrammer.uk/[TRP website] containing information
+for various projects.
+
+* Documentation source for the Netbeans Modules is stored in a single Git repository on
+https://github.com/The-Retired-Programmer/ProductDocumentation[GitHub].
+Most documentation is written in AsciiDoc.
+
+
+=== How to download and install these Modules
+
+* Releases of Modules are available from a Maven repository on GitHub.
+These releases are stored as Maven Packages and can be found 
+https://github.com/The-Retired-Programmer?tab=packages&repo_name=NetBeansNBMs[here].
+
+
+To be able to use any of the Project Type Modules they must first be downloaded
+for the GitHub Maven repository.
+
+Once downloaded, you follow the standard
+NetBeans process to install the downloaded file (Tools>Plugins)
+
+The Activities and Action API Module and the Activities and Action Module are
+prerequisites for any of these Project Type Modules.
+They are also available from the same GitHub Maven repository,  and must be
+installed with or prior to installing the Project Type Module.
+
+=== To use the Activities and Action API Modules for development purposes.
+
+In your POM you should:
+
+1) include a repository definition for the GitHub Maven repository:
+
+[source,xml]
+[%unbreakable]
+----
+
+    <repositories>
+        <repository>
+            <id>github</id>
+            <url>https://maven.pkg.github.com/The-Retired-Programmer/NetBeansNBMs</url>
+        </repository>
+    </repositories>
+
+----
+
+2) include the Activities and Action API dependency:
+
+[source,xml]
+[%unbreakable]
+----
+
+    <dependency>
+        <groupId>uk.theretiredprogrammer</groupId>
+        <artifactId>a3api</artifactId>
+        <version>1.0.1</version> <1>
+    </dependency>
+
+----
+<1> update version to choose the latest version of the API module, which is
+available from the GitHub Maven repository.
+
+
+Once your Project Type Module is built it can be installed into NetBeans (with the
+prerequisites: the Activities and Action API Module and the Activities and
+Action Module).
+
+=== List of Project Type Modules
+
+The following list of Project Types have been developed as POC for Activities
+and Actions API.
+
+JBake:: Support for the JBake website builder;
+
+
+AsciiDoc:: Support for AsciiDoc file type and also AsciiDoc Projects;
+(asciidoctor and asciidoctor-pdf tool chains supported).
+
+
+PostgreSQL:: Support for plpgsql and pgsql file types; plus support for building
+pgsql tables from csv file formats.
+
+
+Pico C:: Support for the standard Raspberry PI Pico tool chain; (Clean, CMake,
+Make and Download via debug or BootLoader); plus simple UART connected serial
+terminal.
+
+Each of these Project Types will be described in the following chapters, but
+first cut documentation may not describe all of the these.
+
+
